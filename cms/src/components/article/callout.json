@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_article_callouts",
+  "info": {
+    "displayName": "Callout"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "default": "info",
+      "enum": [
+        "info",
+        "success",
+        "warning",
+        "danger"
+      ]
+    },
+    "content": {
+      "type": "blocks",
+      "required": true
+    }
+  },
+  "config": {}
+}

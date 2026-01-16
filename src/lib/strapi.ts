@@ -109,10 +109,10 @@ export type LinkCardItem = {
   linkType?: "internal" | "external";
   url?: string | null;
   internalArticle?:
-    | { data: StrapiEntity<StrapiArticleAttributes> | null }
-    | StrapiEntity<StrapiArticleAttributes>
-    | StrapiArticleAttributes
-    | null;
+  | { data: StrapiEntity<StrapiArticleAttributes> | null }
+  | StrapiEntity<StrapiArticleAttributes>
+  | StrapiArticleAttributes
+  | null;
   image?: StrapiMedia | StrapiImage | null;
 };
 
@@ -152,7 +152,7 @@ export type ArticleBlock =
   | CTABlock
   | ImageBlock;
 
-export type ArticleCategory = "industry" | "company" | "career" | "indastry";
+export type ArticleCategory = "industry" | "company" | "career";
 
 export type StrapiSeo = {
   metaTitle?: string | null;
@@ -175,13 +175,9 @@ export type StrapiArticleAttributes = {
   tags?: { data: StrapiTag[] } | StrapiTag[] | null;
   blocks?: ArticleBlock[] | null;
   manualRelatedArticles?:
-    | { data: StrapiEntity<StrapiArticleAttributes>[] }
-    | StrapiEntity<StrapiArticleAttributes>[]
-    | null;
-  manualRelatedArtvles?:
-    | { data: StrapiEntity<StrapiArticleAttributes>[] }
-    | StrapiEntity<StrapiArticleAttributes>[]
-    | null;
+  | { data: StrapiEntity<StrapiArticleAttributes>[] }
+  | StrapiEntity<StrapiArticleAttributes>[]
+  | null;
   featured?: boolean | null;
   seo?: StrapiSeo | null;
 };
@@ -472,12 +468,12 @@ export const buildTagOptions = (
   tags: StrapiTag[],
   allLabel: string,
 ): TagOption[] => [
-  { value: "all", label: allLabel },
-  ...tags.map((tag) => ({
-    value: getEntityAttributes(tag)?.slug ?? "",
-    label: getEntityAttributes(tag)?.name ?? "",
-  })),
-];
+    { value: "all", label: allLabel },
+    ...tags.map((tag) => ({
+      value: getEntityAttributes(tag)?.slug ?? "",
+      label: getEntityAttributes(tag)?.name ?? "",
+    })),
+  ];
 
 export const getTagBySlug = async (slug: string) => {
   const response = await strapiFetch<StrapiCollectionResponse<StrapiTag>>(

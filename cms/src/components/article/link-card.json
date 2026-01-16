@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_article_link_cards",
+  "info": {
+    "displayName": "Link Card"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "cards": {
+      "type": "component",
+      "component": "article.link-card-item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

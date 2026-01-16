@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Caveat, Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 const bodyFont = Noto_Sans_JP({
   variable: "--font-sans",
@@ -23,8 +26,22 @@ const scriptFont = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "Re:Kosen",
-  description: "高専生向けキャリアメディア",
+  title: {
+    default: "Re:Kosen",
+    template: "%s | Re:Kosen",
+  },
+  description: "高専生向けキャリアメディア。業界研究、企業研究、キャリア設計の情報を発信。",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://re-kosen.vercel.app"),
+  openGraph: {
+    title: "Re:Kosen",
+    description: "高専生向けキャリアメディア",
+    type: "website",
+    locale: "ja_JP",
+    siteName: "Re:Kosen",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
@@ -34,6 +51,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
+      <head>
+        {GA_MEASUREMENT_ID ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}');
+              `}
+            </Script>
+          </>
+        ) : null}
+      </head>
       <body
         className={`${bodyFont.variable} ${displayFont.variable} ${scriptFont.variable} antialiased`}
       >

@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_article_pros_cons",
+  "info": {
+    "displayName": "Pros Con"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "pros": {
+      "type": "component",
+      "component": "article.rich-text",
+      "repeatable": true
+    },
+    "cons": {
+      "type": "component",
+      "component": "article.rich-text",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

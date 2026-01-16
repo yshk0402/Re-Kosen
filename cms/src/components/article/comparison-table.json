@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_article_comparison_tables",
+  "info": {
+    "displayName": "Comparison Table"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "table_data": {
+      "type": "json"
+    }
+  },
+  "config": {}
+}
