@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+:root {
+  --background: #efe9e2;
+  --surface: #ffffff;
+  --ink: #1c1b1a;
+  --muted: #6d6a67;
+  --brand: #1f3b8a;
+  --brand-strong: #172554;
+  --brand-soft: #edf1ff;
+  --border: #d7d1c8;
+  --ring: #bfb8ac;
+  --shadow-soft: 0 6px 18px rgba(24, 24, 24, 0.08);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --shadow-soft: var(--shadow-soft);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-script: var(--font-script);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100dvh;
+  background: var(--background);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+::selection {
+  background: var(--brand-soft);
+  color: var(--ink);
+}
+
+a {
+  color: inherit;
+}
+
+.font-display {
+  font-family: var(--font-display), serif;
+}
+
+.font-script {
+  font-family: var(--font-script), "Segoe Script", cursive;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
