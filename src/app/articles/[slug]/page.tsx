@@ -10,7 +10,7 @@ import ProsCons from "@/components/article/ProsCons";
 import RelatedArticles from "@/components/article/RelatedArticles";
 import RichText from "@/components/article/RichText";
 import SummaryCard from "@/components/article/SummaryCard";
-import TOC from "@/components/article/TOC";
+import TOC, { type TocItem } from "@/components/article/TOC";
 import {
   type ArticleBlock,
   type ArticleCardData,
@@ -18,12 +18,20 @@ import {
   type ComparisonTableBlock,
   type HeadingBlock,
   type LinkCardsBlock,
+  type StrapiAuthorAttributes,
+  type StrapiArticleAttributes,
   type StrapiArticle,
+  type ProsConsBlock,
+  type RichTextBlock,
   formatDate,
+  getEntityAttributes,
   getArticleBySlug,
   getArticleSlugs,
   getArticles,
+  getRelationAttributes,
+  getSingleRelationAttributes,
   mapArticleCard,
+  resolveMediaAttributes,
   resolveMediaUrl,
   scoreRelatedArticles,
 } from "@/lib/strapi";
@@ -58,12 +66,15 @@ const createAnchorId = (text: string, fallback: string) => {
 };
 
 const resolveComparisonRows = (block: ComparisonTableBlock) =>
-  block.rows.map((row) => (Array.isArray(row) ? row : row.cells));
+  (block.rows ?? []).map((row) => (Array.isArray(row) ? row : row.cells));
 
 const resolveLinkItems = (block: LinkCardsBlock) =>
-  block.items
+  (block.items ?? block.cards ?? [])
     .map((item) => {
-      const internalSlug = item.internalArticle?.data?.attributes.slug;
+      const internalArticle = getSingleRelationAttributes<StrapiArticleAttributes>(
+        item.internalArticle,
+      );
+      const internalSlug = internalArticle?.slug;
       const href =
         item.linkType === "internal" && internalSlug
           ? `/articles/${internalSlug}`
@@ -85,18 +96,46 @@ const resolveLinkItems = (block: LinkCardsBlock) =>
     })
     .filter((item): item is NonNullable<typeof item> => item !== null);
 
+const normalizeProsConsItems = (
+  items: ProsConsBlock["pros"] | ProsConsBlock["cons"],
+) =>
+  (items ?? [])
+    .map((item) => {
+      if (typeof item === "string") {
+        return item;
+      }
+      if (item && typeof item === "object") {
+        const richText = item as RichTextBlock;
+        const body = richText.body;
+        if (Array.isArray(body)) {
+          return body.join(" ");
+        }
+        if (typeof body === "string") {
+          return body;
+        }
+      }
+      return "";
+    })
+    .map((item) => item.trim())
+    .filter((item) => item.length > 0);
+
 const buildRelatedArticles = async (
   article: StrapiArticle,
 ): Promise<ArticleCardData[]> => {
-  const manual = article.attributes.manualRelatedArticles?.data ?? [];
+  const articleAttributes = getEntityAttributes(article);
+  const manual = getRelationAttributes<StrapiArticleAttributes>(
+    articleAttributes?.manualRelatedArticles,
+  );
   const manualCards = manual.map(mapArticleCard);
   const manualSlugs = new Set(manualCards.map((item) => item.slug));
+  const currentSlug = articleAttributes?.slug ?? "";
 
   const response = await getArticles({ page: 1, pageSize: 50 });
   const candidates = (response?.data ?? []).filter(
-    (item) =>
-      item.attributes.slug !== article.attributes.slug &&
-      !manualSlugs.has(item.attributes.slug),
+    (item) => {
+      const slug = getEntityAttributes(item)?.slug ?? "";
+      return slug !== currentSlug && !manualSlugs.has(slug);
+    },
   );
 
   const scored = scoreRelatedArticles(article, candidates).map(mapArticleCard);
@@ -121,10 +160,15 @@ export async function generateMetadata({
     };
   }
 
-  const { attributes } = article;
+  const attributes = getEntityAttributes(article);
+  if (!attributes) {
+    return {
+      title: "記事が見つかりません",
+    };
+  }
   const seo = attributes.seo;
   const title = seo?.metaTitle ?? attributes.title;
-  const description = seo?.metaDescription ?? attributes.excerpt;
+  const description = seo?.metaDescription ?? attributes.excerpt ?? undefined;
   const ogImage = resolveMediaUrl(seo?.ogImage ?? attributes.coverImage);
 
   return {
@@ -148,7 +192,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     notFound();
   }
 
-  const { attributes } = article;
+  const attributes = getEntityAttributes(article);
+  if (!attributes) {
+    notFound();
+  }
   const blocks = attributes.blocks ?? [];
   const summaryBlock = blocks.find(
     (block) => block.__component === "article.summary-card",
@@ -158,26 +205,55 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   );
 
   const headingBlocks = contentBlocks.filter(isHeadingBlock);
+  const resolveHeadingText = (block: HeadingBlock, index: number) =>
+    block.text ?? block.title ?? `Section ${index + 1}`;
+  const resolveHeadingLevel = (
+    level: HeadingBlock["level"],
+  ): 2 | 3 | 4 | null => {
+    if (level === 2 || level === 3 || level === 4) {
+      return level;
+    }
+    if (typeof level === "string") {
+      const normalized = Number(level.replace(/[^\d]/g, ""));
+      if (normalized === 2 || normalized === 3 || normalized === 4) {
+        return normalized;
+      }
+    }
+    return null;
+  };
   const headingAnchors = headingBlocks.map((block, index) =>
-    block.anchor ?? createAnchorId(block.text, `section-${index + 1}`),
+    block.anchor ??
+    createAnchorId(resolveHeadingText(block, index), `section-${index + 1}`),
   );
-  const tocItems = headingBlocks
-    .map((block, index) => ({
-      id: headingAnchors[index],
-      text: block.text,
-      level: block.level,
-    }))
-    .filter((item) => item.level === 2 || item.level === 3);
+  const tocItems: TocItem[] = headingBlocks.flatMap((block, index) => {
+    const level = resolveHeadingLevel(block.level);
+    if (level !== 2 && level !== 3) {
+      return [];
+    }
+    return [
+      {
+        id: headingAnchors[index],
+        text: resolveHeadingText(block, index),
+        level,
+      },
+    ];
+  });
 
   const coverImageUrl = resolveMediaUrl(attributes.coverImage ?? undefined);
-  const coverAlt =
-    attributes.coverImage?.data?.attributes.alternativeText ??
-    attributes.title;
+  const coverImageAttributes = resolveMediaAttributes(
+    attributes.coverImage ?? null,
+  );
+  const coverAlt = coverImageAttributes?.alternativeText ?? attributes.title;
 
   const relatedArticles = await buildRelatedArticles(article);
-  const authorName = attributes.author?.data?.attributes.name;
-  const categoryLabel = categoryLabels[attributes.category] ??
-    attributes.category;
+  const author = getSingleRelationAttributes<StrapiAuthorAttributes>(
+    attributes.author,
+  );
+  const authorName = author?.name;
+  const categoryLabel =
+    attributes.category in categoryLabels
+      ? categoryLabels[attributes.category as ArticleCategory]
+      : attributes.category;
 
   let headingIndex = 0;
 
@@ -214,7 +290,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
       {summaryBlock && summaryBlock.__component === "article.summary-card" ? (
         <SummaryCard
-          bullets={summaryBlock.bullets}
+          bullets={summaryBlock.bullets ?? []}
           title={summaryBlock.title ?? undefined}
         />
       ) : null}
@@ -224,11 +300,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <section className="space-y-6">
         {contentBlocks.map((block, index) => {
           if (block.__component === "article.heading") {
+            const level = resolveHeadingLevel(block.level) ?? 2;
             const anchor =
               headingAnchors[headingIndex] ??
               `section-${headingIndex + 1}`;
             const HeadingTag =
-              block.level === 2 ? "h2" : block.level === 3 ? "h3" : "h4";
+              level === 2 ? "h2" : level === 3 ? "h3" : "h4";
+            const headingText = resolveHeadingText(block, headingIndex);
 
             headingIndex += 1;
 
@@ -236,9 +314,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               <HeadingTag
                 key={`${block.__component}-${anchor}`}
                 id={anchor}
-                className={`${headingStyles[block.level]} scroll-mt-24`}
+                className={`${headingStyles[level]} scroll-mt-24`}
               >
-                {block.text}
+                {headingText}
               </HeadingTag>
             );
           }
@@ -247,7 +325,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             return (
               <RichText
                 key={`${block.__component}-${index}`}
-                content={block.body}
+                content={block.body ?? ""}
               />
             );
           }
@@ -257,7 +335,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               <div key={`${block.__component}-${index}`} className="pt-2">
                 <ComparisonTable
                   caption={block.caption ?? undefined}
-                  columns={block.columns}
+                  columns={block.columns ?? []}
                   rows={resolveComparisonRows(block)}
                 />
               </div>
@@ -265,12 +343,18 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           }
 
           if (block.__component === "article.callout") {
+            const variant =
+              block.type === "info" ||
+              block.type === "warn" ||
+              block.type === "tip"
+                ? block.type
+                : "info";
             return (
               <Callout
                 key={`${block.__component}-${index}`}
-                body={block.body}
+                body={block.body ?? ""}
                 title={block.title ?? undefined}
-                variant={block.type}
+                variant={variant}
               />
             );
           }
@@ -279,8 +363,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             return (
               <ProsCons
                 key={`${block.__component}-${index}`}
-                cons={block.cons}
-                pros={block.pros}
+                cons={normalizeProsConsItems(block.cons)}
+                pros={normalizeProsConsItems(block.pros)}
               />
             );
           }
@@ -298,30 +382,42 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           }
 
           if (block.__component === "article.cta") {
+            const title = block.title?.trim() ?? "";
+            const description = block.description?.trim() ?? "";
+            const buttonText = block.buttonText?.trim() ?? "";
+            const buttonUrl = block.buttonUrl?.trim() ?? "";
+            if (!title || !description || !buttonText || !buttonUrl) {
+              return null;
+            }
             return (
               <CTA
                 key={`${block.__component}-${index}`}
-                buttonText={block.buttonText}
-                buttonUrl={block.buttonUrl}
-                description={block.description}
-                title={block.title}
+                buttonText={buttonText}
+                buttonUrl={buttonUrl}
+                description={description}
+                title={title}
                 variant={block.variant ?? undefined}
               />
             );
           }
 
           if (block.__component === "article.image") {
-            const image = block.image?.data?.attributes;
+            const imageAttributes = resolveMediaAttributes(block.image ?? null);
             const src = resolveMediaUrl(block.image);
+            const alt =
+              block.alt ??
+              block.alt_text ??
+              imageAttributes?.alternativeText ??
+              attributes.title;
 
             return (
               <ArticleImage
                 key={`${block.__component}-${index}`}
-                alt={block.alt || attributes.title}
+                alt={alt}
                 caption={block.caption ?? undefined}
-                height={image?.height ?? undefined}
+                height={imageAttributes?.height ?? undefined}
                 src={src}
-                width={image?.width ?? undefined}
+                width={imageAttributes?.width ?? undefined}
               />
             );
           }

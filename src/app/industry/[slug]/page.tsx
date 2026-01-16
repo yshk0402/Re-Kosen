@@ -5,6 +5,7 @@ import TagFilter from "@/components/ui/TagFilter";
 import {
   buildTagOptions,
   getArticles,
+  getEntityAttributes,
   getTagBySlug,
   getTags,
   mapArticleCard,
@@ -21,8 +22,9 @@ export default async function IndustryTagPage({
   searchParams,
 }: IndustryTagPageProps) {
   const tag = await getTagBySlug(params.slug);
+  const tagAttributes = getEntityAttributes(tag);
 
-  if (!tag || tag.attributes.slug === "all") {
+  if (!tagAttributes || tagAttributes.slug === "all") {
     notFound();
   }
 
@@ -45,15 +47,15 @@ export default async function IndustryTagPage({
           {industryMeta.eyebrow}
         </p>
         <h1 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
-          {industryMeta.title} / {tag.attributes.name}
+          {industryMeta.title} / {tagAttributes.name}
         </h1>
         <p className="text-sm text-muted sm:text-base">
-          「{tag.attributes.name}」に関連する記事をまとめています。
+          「{tagAttributes.name}」に関連する記事をまとめています。
         </p>
         <TagFilter
           label="タグで絞り込み"
           options={tagOptions}
-          defaultValue={tag.attributes.slug}
+          defaultValue={tagAttributes.slug}
           basePath={industryMeta.basePath}
         />
       </header>
@@ -82,7 +84,7 @@ export default async function IndustryTagPage({
       )}
 
       <Pagination
-        basePath={`${industryMeta.basePath}/${tag.attributes.slug}`}
+        basePath={`${industryMeta.basePath}/${tagAttributes.slug}`}
         currentPage={pagination?.page ?? 1}
         totalPages={pagination?.pageCount ?? 1}
       />

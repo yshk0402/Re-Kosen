@@ -1,7 +1,12 @@
 import { notFound } from "next/navigation";
 import ArticleCard from "@/components/ui/ArticleCard";
 import Pagination from "@/components/ui/Pagination";
-import { getArticles, getTagBySlug, mapArticleCard } from "@/lib/strapi";
+import {
+  getArticles,
+  getEntityAttributes,
+  getTagBySlug,
+  mapArticleCard,
+} from "@/lib/strapi";
 
 type TagPageProps = {
   params: { slug: string };
@@ -10,8 +15,9 @@ type TagPageProps = {
 
 export default async function TagPage({ params, searchParams }: TagPageProps) {
   const tag = await getTagBySlug(params.slug);
+  const tagAttributes = getEntityAttributes(tag);
 
-  if (!tag) {
+  if (!tagAttributes) {
     notFound();
   }
 
@@ -31,7 +37,7 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
           Tag
         </p>
         <h1 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
-          タグ: {tag.attributes.name}
+          タグ: {tagAttributes.name}
         </h1>
         <p className="text-sm text-muted sm:text-base">
           このタグに関連する記事一覧です。
@@ -62,7 +68,7 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
       )}
 
       <Pagination
-        basePath={`/tag/${tag.attributes.slug}`}
+        basePath={`/tag/${tagAttributes.slug}`}
         currentPage={pagination?.page ?? 1}
         totalPages={pagination?.pageCount ?? 1}
       />

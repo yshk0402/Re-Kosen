@@ -327,10 +327,15 @@ export const strapiFetch = async <T>(
   }
 
   const url = `${STRAPI_URL.replace(/\/$/, "")}${path}${buildQuery(params)}`;
-  const response = await fetch(url, getFetchOptions());
+  let response: Response;
+  try {
+    response = await fetch(url, getFetchOptions());
+  } catch {
+    return null;
+  }
 
   if (!response.ok) {
-    throw new Error(`Strapi request failed: ${response.status}`);
+    return null;
   }
 
   return (await response.json()) as T;

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -11,6 +12,9 @@
   --border: #d7d1c8;
   --ring: #bfb8ac;
   --shadow-soft: 0 6px 18px rgba(24, 24, 24, 0.08);
+  --font-sans: "Noto Sans JP";
+  --font-display: "Noto Serif JP";
+  --font-script: "Caveat";
 }
 
 @theme inline {
