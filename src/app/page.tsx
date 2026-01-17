@@ -1,52 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getArticles, mapArticleCard } from "@/lib/strapi";
 
-const heroFeature = {
-  title: "高専生が企業選びで見るべき5つの軸",
-  excerpt: "規模や業種だけでは見えない、成長環境の見極め方を整理。",
-  date: "2025.02.12",
-  tag: "Event Report",
-  image: "/images/cover-placeholder.svg",
+const categoryLabels: Record<string, string> = {
+  industry: "業界研究",
+  company: "企業研究",
+  career: "キャリア設計",
 };
 
-const pickupCards = [
-  {
-    title: "高専生のためのインターン準備チェックリスト",
-    category: "Interview",
-    image: "/images/cover-placeholder.svg",
-  },
-  {
-    title: "高専の研究テーマを伝えるプレゼン構成",
-    category: "Report",
-    image: "/images/cover-placeholder.svg",
-  },
-  {
-    title: "進路面談で質問されるポイントまとめ",
-    category: "Column",
-    image: "/images/cover-placeholder.svg",
-  },
-];
+const resolveCategoryLabel = (category?: string) =>
+  category ? categoryLabels[category] ?? category : undefined;
 
-const newArticles = [
-  {
-    title: "就職か編入かを判断するための視点",
-    tag: "Career",
-    date: "2025.02.10",
-    image: "/images/cover-placeholder.svg",
-  },
-  {
-    title: "IT業界の職種マップと高専生の強み",
-    tag: "Industry",
-    date: "2025.02.02",
-    image: "/images/cover-placeholder.svg",
-  },
-  {
-    title: "企業研究の前に整理しておくべきこと",
-    tag: "Company",
-    date: "2025.01.22",
-    image: "/images/cover-placeholder.svg",
-  },
-];
+const resolveTagLabel = (tags: string[], category?: string) =>
+  tags[0] ?? resolveCategoryLabel(category) ?? "Article";
+
+const fallbackCoverImage = "/images/cover-placeholder.svg";
 
 const trendTiles = [
   {
@@ -125,7 +93,42 @@ const newsItems = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const response = await getArticles({ pageSize: 9 });
+  const articles = response?.data ?? [];
+  const cards = articles.map(mapArticleCard);
+
+  const heroArticle = cards[0];
+  const heroFeature = heroArticle
+    ? {
+        title: heroArticle.title,
+        excerpt: heroArticle.excerpt,
+        date: heroArticle.date,
+        tag: resolveTagLabel(heroArticle.tags, heroArticle.category),
+        image: heroArticle.coverImage ?? fallbackCoverImage,
+      }
+    : {
+        title: "記事は準備中です。",
+        excerpt: "最新記事が公開され次第、こちらに表示されます。",
+        date: "",
+        tag: "Pick Up",
+        image: fallbackCoverImage,
+      };
+
+  const pickupCards = cards.slice(1, 4).map((card) => ({
+    slug: card.slug,
+    title: card.title,
+    category: resolveCategoryLabel(card.category) ?? card.tags[0] ?? "Article",
+    image: card.coverImage ?? fallbackCoverImage,
+  }));
+
+  const newArticles = cards.slice(4, 7).map((card) => ({
+    slug: card.slug,
+    title: card.title,
+    tag: resolveTagLabel(card.tags, card.category),
+    date: card.date,
+    image: card.coverImage ?? fallbackCoverImage,
+  }));
   return (
     <div className="pb-24">
       <section className="mx-auto w-full max-w-[1100px] px-4 pt-6">
@@ -149,7 +152,7 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-muted">
             <span>Pick up</span>
-            <span>{heroFeature.date}</span>
+            {heroFeature.date ? <span>{heroFeature.date}</span> : null}
           </div>
           <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
             {heroFeature.title}
@@ -174,29 +177,35 @@ export default function Home() {
             </button>
           </div>
           <div className="mt-4 grid gap-4 md:grid-cols-3">
-            {pickupCards.map((card) => (
-              <article
-                key={card.title}
-                className="rounded-xl border border-border bg-white p-4"
-              >
-                <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.2em] text-muted">
-                  <span>{card.category}</span>
-                  <span>→</span>
-                </div>
-                <h3 className="mt-3 text-sm font-semibold text-ink">
-                  {card.title}
-                </h3>
-                <div className="mt-4 aspect-[16/9] overflow-hidden rounded-lg border border-border">
-                  <Image
-                    alt={card.title}
-                    height={240}
-                    width={320}
-                    src={card.image}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              </article>
-            ))}
+            {pickupCards.length ? (
+              pickupCards.map((card) => (
+                <article
+                  key={card.slug || card.title}
+                  className="rounded-xl border border-border bg-white p-4"
+                >
+                  <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.2em] text-muted">
+                    <span>{card.category}</span>
+                    <span>→</span>
+                  </div>
+                  <h3 className="mt-3 text-sm font-semibold text-ink">
+                    {card.title}
+                  </h3>
+                  <div className="mt-4 aspect-[16/9] overflow-hidden rounded-lg border border-border">
+                    <Image
+                      alt={card.title}
+                      height={240}
+                      width={320}
+                      src={card.image}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                </article>
+              ))
+            ) : (
+              <div className="rounded-xl border border-border bg-white p-4 text-sm text-muted">
+                おすすめ記事は準備中です。
+              </div>
+            )}
           </div>
           <svg
             aria-hidden="true"
@@ -238,29 +247,35 @@ export default function Home() {
           </Link>
         </div>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
-          {newArticles.map((article) => (
-            <article
-              key={article.title}
-              className="rounded-xl border border-border bg-white p-4"
-            >
-              <div className="aspect-[16/9] overflow-hidden rounded-lg border border-border">
-                <Image
-                  alt={article.title}
-                  height={240}
-                  width={320}
-                  src={article.image}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="mt-3 flex items-center justify-between text-[11px] uppercase tracking-[0.2em] text-muted">
-                <span>{article.tag}</span>
-                <span>{article.date}</span>
-              </div>
-              <h3 className="mt-2 text-sm font-semibold text-ink">
-                {article.title}
-              </h3>
-            </article>
-          ))}
+          {newArticles.length ? (
+            newArticles.map((article) => (
+              <article
+                key={article.slug || article.title}
+                className="rounded-xl border border-border bg-white p-4"
+              >
+                <div className="aspect-[16/9] overflow-hidden rounded-lg border border-border">
+                  <Image
+                    alt={article.title}
+                    height={240}
+                    width={320}
+                    src={article.image}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="mt-3 flex items-center justify-between text-[11px] uppercase tracking-[0.2em] text-muted">
+                  <span>{article.tag}</span>
+                  {article.date ? <span>{article.date}</span> : null}
+                </div>
+                <h3 className="mt-2 text-sm font-semibold text-ink">
+                  {article.title}
+                </h3>
+              </article>
+            ))
+          ) : (
+            <div className="rounded-xl border border-border bg-white p-4 text-sm text-muted">
+              最新記事は準備中です。
+            </div>
+          )}
         </div>
       </section>
 
