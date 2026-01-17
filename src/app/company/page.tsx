@@ -5,11 +5,12 @@ import { buildTagOptions, getArticles, getTags, mapArticleCard } from "@/lib/str
 import { companyMeta } from "./data";
 
 type CompanyPageProps = {
-  searchParams: { page?: string };
+  searchParams: Promise<{ page?: string }>;
 };
 
 export default async function CompanyPage({ searchParams }: CompanyPageProps) {
-  const page = Number(searchParams.page ?? "1");
+  const resolvedSearchParams = await Promise.resolve(searchParams);
+  const page = Number(resolvedSearchParams.page ?? "1");
   const response = await getArticles({
     category: "company",
     page: Number.isNaN(page) ? 1 : page,

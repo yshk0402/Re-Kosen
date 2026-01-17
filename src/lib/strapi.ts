@@ -58,7 +58,7 @@ export type StrapiAuthor = StrapiEntity<StrapiAuthorAttributes>;
 
 export type HeadingBlock = {
   __component: "article.heading";
-  level: 2 | 3 | 4 | "h2" | "h3" | "h4" | string;
+  level: 2 | 3 | 4 | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | string;
   text?: string;
   title?: string;
   anchor?: string | null;
@@ -73,15 +73,15 @@ export type RichTextBlock = {
 export type SummaryCardBlock = {
   __component: "article.summary-card";
   title?: string | null;
-  bullets?: string[];
   description?: string | null;
+  bullets?: string[];
   image?: StrapiMedia | StrapiImage | null;
   link?: string | null;
 };
 
 export type CalloutBlock = {
   __component: "article.callout";
-  type: "info" | "warn" | "tip" | "success" | "warning" | "danger";
+  type: "info" | "warn" | "tip" | "success" | "warning" | "danger" | string;
   title?: string | null;
   body?: string;
   content?: unknown;
@@ -195,6 +195,18 @@ const STRAPI_REVALIDATE_SECONDS = Number(
 );
 
 export const isStrapiConfigured = () => Boolean(STRAPI_URL);
+
+const ARTICLE_POPULATE_PARAMS: Record<string, string> = {
+  "populate[coverImage]": "*",
+  "populate[author]": "*",
+  "populate[tags]": "*",
+  "populate[seo]": "*",
+  "populate[seo][populate]": "*",
+  "populate[blocks]": "*",
+  "populate[blocks][populate]": "*",
+  "populate[manualRelatedArticles]": "*",
+  "populate[manualRelatedArticles][populate]": "*",
+};
 
 export const getEntityAttributes = <T>(
   entity: StrapiEntity<T> | T | null | undefined,
@@ -400,7 +412,7 @@ export const getArticleBySlug = async (slug: string) => {
     {
       "filters[slug][$eq]": slug,
       "filters[stats][$eq]": "published",
-      populate: "*",
+      ...ARTICLE_POPULATE_PARAMS,
     },
   );
 
@@ -424,7 +436,7 @@ export const getArticles = async ({
 }: ArticleQuery) => {
   const params: Record<string, string | number | undefined> = {
     "filters[stats][$eq]": "published",
-    populate: "*",
+    ...ARTICLE_POPULATE_PARAMS,
     "pagination[page]": page,
     "pagination[pageSize]": pageSize,
     "sort[0]": "updatedAt:desc",

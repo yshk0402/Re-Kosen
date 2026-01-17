@@ -186,7 +186,7 @@ export default function Home() {
                 <h3 className="mt-3 text-sm font-semibold text-ink">
                   {card.title}
                 </h3>
-                <div className="mt-4 aspect-[4/3] overflow-hidden rounded-lg border border-border">
+                <div className="mt-4 aspect-[16/9] overflow-hidden rounded-lg border border-border">
                   <Image
                     alt={card.title}
                     height={240}

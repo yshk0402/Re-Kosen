@@ -36,9 +36,7 @@ export default function ArticleCard({
       href={href}
     >
       <div
-        className={`relative overflow-hidden rounded-lg border border-border bg-[#f5f1eb] ${
-          isCompact ? "aspect-[16/9]" : "aspect-[4/3]"
-        }`}
+        className="relative aspect-[16/9] overflow-hidden rounded-lg border border-border bg-[#f5f1eb]"
       >
         {coverImage ? (
           <Image

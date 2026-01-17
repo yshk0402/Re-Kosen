@@ -3,12 +3,13 @@ import Pagination from "@/components/ui/Pagination";
 import { getArticles, mapArticleCard } from "@/lib/strapi";
 
 type SearchPageProps = {
-  searchParams: { q?: string; page?: string };
+  searchParams: Promise<{ q?: string; page?: string }>;
 };
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
-  const query = (searchParams.q ?? "").trim();
-  const page = Number(searchParams.page ?? "1");
+  const resolvedSearchParams = await Promise.resolve(searchParams);
+  const query = (resolvedSearchParams.q ?? "").trim();
+  const page = Number(resolvedSearchParams.page ?? "1");
   const response = query
     ? await getArticles({
         searchQuery: query,

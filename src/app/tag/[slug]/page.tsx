@@ -9,21 +9,23 @@ import {
 } from "@/lib/strapi";
 
 type TagPageProps = {
-  params: { slug: string };
-  searchParams: { page?: string };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ page?: string }>;
 };
 
 export default async function TagPage({ params, searchParams }: TagPageProps) {
-  const tag = await getTagBySlug(params.slug);
+  const resolvedParams = await Promise.resolve(params);
+  const resolvedSearchParams = await Promise.resolve(searchParams);
+  const tag = await getTagBySlug(resolvedParams.slug);
   const tagAttributes = getEntityAttributes(tag);
 
   if (!tagAttributes) {
     notFound();
   }
 
-  const page = Number(searchParams.page ?? "1");
+  const page = Number(resolvedSearchParams.page ?? "1");
   const response = await getArticles({
-    tagSlug: params.slug,
+    tagSlug: resolvedParams.slug,
     page: Number.isNaN(page) ? 1 : page,
     pageSize: 15,
   });

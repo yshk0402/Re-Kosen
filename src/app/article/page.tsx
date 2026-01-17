@@ -4,7 +4,7 @@ import { getArticles, mapArticleCard } from "@/lib/strapi";
 import { articleMeta } from "./data";
 
 type ArticleIndexPageProps = {
-  searchParams: { page?: string };
+  searchParams: Promise<{ page?: string }>;
 };
 
 const categoryLabels: Record<string, string> = {
@@ -16,7 +16,8 @@ const categoryLabels: Record<string, string> = {
 export default async function ArticleIndexPage({
   searchParams,
 }: ArticleIndexPageProps) {
-  const page = Number(searchParams.page ?? "1");
+  const resolvedSearchParams = await Promise.resolve(searchParams);
+  const page = Number(resolvedSearchParams.page ?? "1");
   const response = await getArticles({
     page: Number.isNaN(page) ? 1 : page,
     pageSize: 15,

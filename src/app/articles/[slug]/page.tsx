@@ -35,9 +35,10 @@ import {
   resolveMediaUrl,
   scoreRelatedArticles,
 } from "@/lib/strapi";
+import { strapiBlocksToHtml, strapiBlocksToPlainText } from "@/lib/strapiBlocks";
 
 type ArticlePageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 const headingStyles: Record<2 | 3 | 4, string> = {
@@ -67,6 +68,79 @@ const createAnchorId = (text: string, fallback: string) => {
 
 const resolveComparisonRows = (block: ComparisonTableBlock) =>
   (block.rows ?? []).map((row) => (Array.isArray(row) ? row : row.cells));
+
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  Boolean(value) && typeof value === "object" && !Array.isArray(value);
+
+const parseComparisonTableData = (
+  value: unknown,
+): { columns: string[]; rows: string[][] } | null => {
+  if (!value) {
+    return null;
+  }
+
+  if (Array.isArray(value)) {
+    const rows = value.filter((row): row is unknown[] => Array.isArray(row));
+    if (!rows.length) {
+      return null;
+    }
+    const columns = rows[0]?.filter((cell): cell is string => typeof cell === "string") ?? [];
+    const body = rows
+      .slice(1)
+      .map((row) => row.filter((cell): cell is string => typeof cell === "string"));
+    return columns.length ? { columns, rows: body } : null;
+  }
+
+  if (!isRecord(value)) {
+    return null;
+  }
+
+  const columnsRaw = value.columns ?? value.headers ?? value.header ?? null;
+  const rowsRaw = value.rows ?? value.body ?? value.data ?? null;
+
+  const columns = Array.isArray(columnsRaw)
+    ? columnsRaw.filter((cell): cell is string => typeof cell === "string")
+    : [];
+
+  const rows = Array.isArray(rowsRaw)
+    ? rowsRaw
+        .map((row) => {
+          if (Array.isArray(row)) {
+            return row.filter((cell): cell is string => typeof cell === "string");
+          }
+          if (isRecord(row) && Array.isArray(row.cells)) {
+            return row.cells.filter((cell): cell is string => typeof cell === "string");
+          }
+          return [];
+        })
+        .filter((row) => row.length > 0)
+    : [];
+
+  return columns.length ? { columns, rows } : null;
+};
+
+const resolveComparisonTableProps = (block: ComparisonTableBlock) => {
+  const columns = block.columns ?? [];
+  const rows = resolveComparisonRows(block);
+
+  if (columns.length) {
+    return {
+      caption: block.caption ?? block.title ?? undefined,
+      columns,
+      rows,
+    };
+  }
+
+  const parsed = parseComparisonTableData(block.table_data);
+  if (!parsed) {
+    return null;
+  }
+  return {
+    caption: block.title ?? undefined,
+    columns: parsed.columns,
+    rows: parsed.rows,
+  };
+};
 
 const resolveLinkItems = (block: LinkCardsBlock) =>
   (block.items ?? block.cards ?? [])
@@ -106,18 +180,30 @@ const normalizeProsConsItems = (
       }
       if (item && typeof item === "object") {
         const richText = item as RichTextBlock;
-        const body = richText.body;
-        if (Array.isArray(body)) {
+        const body = richText.body ?? richText.content;
+        if (Array.isArray(body) && body.every((value) => typeof value === "string")) {
           return body.join(" ");
         }
         if (typeof body === "string") {
           return body;
         }
+        return strapiBlocksToPlainText(body);
       }
       return "";
     })
     .map((item) => item.trim())
     .filter((item) => item.length > 0);
+
+const resolveRichTextContent = (block: RichTextBlock): string | string[] => {
+  const body = block.body ?? block.content;
+  if (Array.isArray(body) && body.every((value) => typeof value === "string")) {
+    return body;
+  }
+  if (typeof body === "string") {
+    return body;
+  }
+  return strapiBlocksToHtml(body);
+};
 
 const buildRelatedArticles = async (
   article: StrapiArticle,
@@ -152,7 +238,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: ArticlePageProps): Promise<Metadata> {
-  const article = await getArticleBySlug(params.slug);
+  const resolvedParams = await Promise.resolve(params);
+  const article = await getArticleBySlug(resolvedParams.slug);
 
   if (!article) {
     return {
@@ -186,7 +273,8 @@ export async function generateMetadata({
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
-  const article = await getArticleBySlug(params.slug);
+  const resolvedParams = await Promise.resolve(params);
+  const article = await getArticleBySlug(resolvedParams.slug);
 
   if (!article) {
     notFound();
@@ -255,7 +343,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       ? categoryLabels[attributes.category as ArticleCategory]
       : attributes.category;
 
-  let headingIndex = 0;
+  const headingOrderByContentIndex = new Map<number, number>();
+  contentBlocks.forEach((block, index) => {
+    if (block.__component === "article.heading") {
+      headingOrderByContentIndex.set(index, headingOrderByContentIndex.size);
+    }
+  });
 
   return (
     <article className="mx-auto w-full max-w-[900px] space-y-8 px-4 py-10">
@@ -291,6 +384,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       {summaryBlock && summaryBlock.__component === "article.summary-card" ? (
         <SummaryCard
           bullets={summaryBlock.bullets ?? []}
+          description={summaryBlock.description ?? null}
           title={summaryBlock.title ?? undefined}
         />
       ) : null}
@@ -301,14 +395,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         {contentBlocks.map((block, index) => {
           if (block.__component === "article.heading") {
             const level = resolveHeadingLevel(block.level) ?? 2;
-            const anchor =
-              headingAnchors[headingIndex] ??
-              `section-${headingIndex + 1}`;
+            const headingIndex = headingOrderByContentIndex.get(index) ?? 0;
+            const anchor = headingAnchors[headingIndex] ?? `section-${headingIndex + 1}`;
             const HeadingTag =
               level === 2 ? "h2" : level === 3 ? "h3" : "h4";
             const headingText = resolveHeadingText(block, headingIndex);
-
-            headingIndex += 1;
 
             return (
               <HeadingTag
@@ -325,18 +416,22 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             return (
               <RichText
                 key={`${block.__component}-${index}`}
-                content={block.body ?? ""}
+                content={resolveRichTextContent(block)}
               />
             );
           }
 
           if (block.__component === "article.comparison-table") {
+            const props = resolveComparisonTableProps(block);
+            if (!props) {
+              return null;
+            }
             return (
               <div key={`${block.__component}-${index}`} className="pt-2">
                 <ComparisonTable
-                  caption={block.caption ?? undefined}
-                  columns={block.columns ?? []}
-                  rows={resolveComparisonRows(block)}
+                  caption={props.caption}
+                  columns={props.columns}
+                  rows={props.rows}
                 />
               </div>
             );
@@ -348,18 +443,27 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               block.type === "warn" ||
               block.type === "tip"
                 ? block.type
+                : block.type === "warning"
+                  ? "warn"
+                  : block.type === "success"
+                    ? "tip"
+                    : block.type === "danger"
+                      ? "warn"
                 : "info";
             return (
               <Callout
                 key={`${block.__component}-${index}`}
-                body={block.body ?? ""}
+                body={strapiBlocksToHtml(block.body ?? block.content ?? "")}
                 title={block.title ?? undefined}
                 variant={variant}
               />
             );
           }
 
-          if (block.__component === "article.pros-cons") {
+          if (
+            block.__component === "article.pros-cons" ||
+            block.__component === "article.pros-con"
+          ) {
             return (
               <ProsCons
                 key={`${block.__component}-${index}`}
@@ -369,7 +473,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             );
           }
 
-          if (block.__component === "article.link-cards") {
+          if (
+            block.__component === "article.link-cards" ||
+            block.__component === "article.link-card"
+          ) {
             const items = resolveLinkItems(block);
 
             if (!items.length) {
@@ -384,8 +491,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           if (block.__component === "article.cta") {
             const title = block.title?.trim() ?? "";
             const description = block.description?.trim() ?? "";
-            const buttonText = block.buttonText?.trim() ?? "";
-            const buttonUrl = block.buttonUrl?.trim() ?? "";
+            const buttonText =
+              block.buttonText?.trim() ?? block.link_text?.trim() ?? "";
+            const buttonUrl =
+              block.buttonUrl?.trim() ?? block.link_url?.trim() ?? "";
             if (!title || !description || !buttonText || !buttonUrl) {
               return null;
             }

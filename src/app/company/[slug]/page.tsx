@@ -13,25 +13,27 @@ import {
 import { companyMeta } from "../data";
 
 type CompanyTagPageProps = {
-  params: { slug: string };
-  searchParams: { page?: string };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ page?: string }>;
 };
 
 export default async function CompanyTagPage({
   params,
   searchParams,
 }: CompanyTagPageProps) {
-  const tag = await getTagBySlug(params.slug);
+  const resolvedParams = await Promise.resolve(params);
+  const resolvedSearchParams = await Promise.resolve(searchParams);
+  const tag = await getTagBySlug(resolvedParams.slug);
   const tagAttributes = getEntityAttributes(tag);
 
   if (!tagAttributes || tagAttributes.slug === "all") {
     notFound();
   }
 
-  const page = Number(searchParams.page ?? "1");
+  const page = Number(resolvedSearchParams.page ?? "1");
   const response = await getArticles({
     category: "company",
-    tagSlug: params.slug,
+    tagSlug: resolvedParams.slug,
     page: Number.isNaN(page) ? 1 : page,
     pageSize: 15,
   });
