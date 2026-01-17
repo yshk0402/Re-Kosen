@@ -208,6 +208,10 @@ const ARTICLE_POPULATE_PARAMS: Record<string, string> = {
   "populate[manualRelatedArticles][populate]": "*",
 };
 
+const ARTICLE_POPULATE_FALLBACK: Record<string, string> = {
+  populate: "*",
+};
+
 export const getEntityAttributes = <T>(
   entity: StrapiEntity<T> | T | null | undefined,
 ): T | null => {
@@ -416,7 +420,20 @@ export const getArticleBySlug = async (slug: string) => {
     },
   );
 
-  return response?.data?.[0] ?? null;
+  if (response) {
+    return response?.data?.[0] ?? null;
+  }
+
+  const fallback = await strapiFetch<StrapiCollectionResponse<StrapiArticle>>(
+    "/api/articles",
+    {
+      "filters[slug][$eq]": slug,
+      "filters[stats][$eq]": "published",
+      ...ARTICLE_POPULATE_FALLBACK,
+    },
+  );
+
+  return fallback?.data?.[0] ?? null;
 };
 
 export type ArticleQuery = {
@@ -461,7 +478,35 @@ export const getArticles = async ({
     params,
   );
 
-  return response;
+  if (response) {
+    return response;
+  }
+
+  const fallbackParams: Record<string, string | number | undefined> = {
+    "filters[stats][$eq]": "published",
+    ...ARTICLE_POPULATE_FALLBACK,
+    "pagination[page]": page,
+    "pagination[pageSize]": pageSize,
+    "sort[0]": "updatedAt:desc",
+  };
+
+  if (category) {
+    fallbackParams["filters[category][$eq]"] = category;
+  }
+
+  if (tagSlug) {
+    fallbackParams["filters[tags][slug][$eq]"] = tagSlug;
+  }
+
+  if (searchQuery) {
+    fallbackParams["filters[$or][0][title][$containsi]"] = searchQuery;
+    fallbackParams["filters[$or][1][excerpt][$containsi]"] = searchQuery;
+  }
+
+  return strapiFetch<StrapiCollectionResponse<StrapiArticle>>(
+    "/api/articles",
+    fallbackParams,
+  );
 };
 
 export const getTags = async () => {
