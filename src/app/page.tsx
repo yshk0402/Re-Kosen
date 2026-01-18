@@ -82,11 +82,11 @@ function PopularList({ items }: { items: HomeCard[] }) {
     <section className="space-y-4">
       <SectionHeader title="人気ランキング" subtitle="POPULAR" />
       {items.length ? (
-        <div className="space-y-3">
+        <div className="divide-y divide-border/60">
           {items.map((item, index) => (
             <Link
               key={item.slug}
-              className="group flex items-center gap-3 rounded-2xl border border-border bg-white p-3 transition hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-[0_12px_24px_rgba(15,23,42,0.08)]"
+              className="group flex items-center gap-3 py-3 transition"
               href={`/articles/${item.slug}`}
             >
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-soft text-xs font-semibold text-brand">
