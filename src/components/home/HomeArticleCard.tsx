@@ -17,6 +17,7 @@ export default function HomeArticleCard({
   className = "",
 }: HomeArticleCardProps) {
   const isSmall = variant === "small";
+  const paddingY = isSmall ? "py-1" : "py-2";
   const titleSize = isSmall ? "text-sm" : "text-base sm:text-lg";
   const radius = isSmall ? "rounded-lg" : "rounded-xl";
   const sizes = isSmall
@@ -25,7 +26,7 @@ export default function HomeArticleCard({
 
   return (
     <Link
-      className={`group flex h-full flex-col gap-3 transition hover:-translate-y-0.5 ${className}`}
+      className={`group flex flex-col gap-3 ${paddingY} transition ${className}`}
       href={href}
     >
       <div

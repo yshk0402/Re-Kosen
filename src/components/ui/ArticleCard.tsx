@@ -30,7 +30,9 @@ export default function ArticleCard({
 
   return (
     <Link
-      className="group grid gap-4 transition hover:-translate-y-0.5"
+      className={`group grid gap-4 transition ${
+        isCompact ? "py-1" : "py-2"
+      }`}
       href={href}
     >
       <div
