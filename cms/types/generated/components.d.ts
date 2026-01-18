@@ -137,6 +137,34 @@ export interface ArticleSummaryCard extends Struct.ComponentSchema {
   };
 }
 
+export interface HomeBanner extends Struct.ComponentSchema {
+  collectionName: 'components_home_banners';
+  info: {
+    displayName: 'Banner';
+  };
+  attributes: {
+    desktopImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    linkUrl: Schema.Attribute.String & Schema.Attribute.Required;
+    mobileImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface HomeLineCta extends Struct.ComponentSchema {
+  collectionName: 'components_home_line_ctas';
+  info: {
+    displayName: 'LineCta';
+  };
+  attributes: {
+    buttonLabel: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'無料で相談する'>;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    lineUrl: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -152,6 +180,8 @@ declare module '@strapi/strapi' {
       'article.rich-text': ArticleRichText;
       'article.seo': ArticleSeo;
       'article.summary-card': ArticleSummaryCard;
+      'home.banner': HomeBanner;
+      'home.line-cta': HomeLineCta;
     }
   }
 }
