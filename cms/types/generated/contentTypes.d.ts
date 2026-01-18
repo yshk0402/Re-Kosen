@@ -613,10 +613,6 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
       'manyToMany',
       'api::article.article'
     >;
-    pickupSmalls: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::article.article'
-    >;
     popularItems: Schema.Attribute.Relation<
       'manyToMany',
       'api::article.article'

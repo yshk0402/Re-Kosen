@@ -203,7 +203,6 @@ export type HomeLineCta = {
 
 export type StrapiHomeAttributes = {
   pickupMediums?: { data: StrapiArticle[] } | StrapiArticle[] | null;
-  pickupSmalls?: { data: StrapiArticle[] } | StrapiArticle[] | null;
   popularItems?: { data: StrapiArticle[] } | StrapiArticle[] | null;
   featuredItems?: { data: StrapiArticle[] } | StrapiArticle[] | null;
   banners?: HomeBanner[] | HomeBanner | null;
@@ -240,7 +239,6 @@ const ARTICLE_POPULATE_FALLBACK: Record<string, string> = {
 
 const HOME_POPULATE_PARAMS: Record<string, string> = {
   "populate[pickupMediums]": "*",
-  "populate[pickupSmalls]": "*",
   "populate[popularItems]": "*",
   "populate[featuredItems]": "*",
   "populate[banners]": "*",

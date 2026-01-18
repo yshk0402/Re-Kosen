@@ -41,7 +41,6 @@
 **入力項目（MVP）**
 
 - pickupMediums（最大2件）: Article relation
-- pickupSmalls（最大3件）: Article relation
 - popularItems（最大5件）: Article relation（手動ランキング）
 - featuredItems（最大6件）: Article relation（おすすめ）
 - banners（最大2件）: Banner component

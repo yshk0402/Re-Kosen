@@ -16,11 +16,6 @@
       "relation": "manyToMany",
       "target": "api::article.article"
     },
-    "pickupSmalls": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::article.article"
-    },
     "popularItems": {
       "type": "relation",
       "relation": "manyToMany",
