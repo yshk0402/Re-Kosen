@@ -241,7 +241,7 @@ export async function generateMetadata({
   params,
 }: ArticlePageProps): Promise<Metadata> {
   const resolvedParams = await Promise.resolve(params);
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
   const article = await getArticleBySlug(resolvedParams.slug, {
     preview: isEnabled,
   });
@@ -279,7 +279,7 @@ export async function generateMetadata({
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const resolvedParams = await Promise.resolve(params);
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
   const article = await getArticleBySlug(resolvedParams.slug, {
     preview: isEnabled,
   });

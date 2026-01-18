@@ -26,7 +26,8 @@ export async function GET(request: Request) {
     return NextResponse.json({ message: "Invalid slug" }, { status: 400 });
   }
 
-  draftMode().enable();
+  const draft = await draftMode();
+  draft.enable();
 
   const redirectUrl = new URL(`/articles/${encodeURIComponent(slug)}`, request.url);
   return NextResponse.redirect(redirectUrl);
