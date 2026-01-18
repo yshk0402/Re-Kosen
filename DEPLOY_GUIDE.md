@@ -64,6 +64,8 @@
 | `API_TOKEN_SALT` | ランダム文字列 | [生成ツール](https://generate-secret.vercel.app/32) |
 | `ADMIN_JWT_SECRET` | ランダム文字列 | [生成ツール](https://generate-secret.vercel.app/32) |
 | `JWT_SECRET` | ランダム文字列 | [生成ツール](https://generate-secret.vercel.app/32) |
+| `PREVIEW_URL` | VercelのURL | `https://re-kosen.vercel.app` |
+| `PREVIEW_SECRET` | ランダム文字列 | [生成ツール](https://generate-secret.vercel.app/32) |
 | `NODE_ENV` | `production` | 固定値 |
 
 ### 2.3 デプロイを確認
@@ -106,6 +108,7 @@
 | `STRAPI_URL` | RailwayのURL | `https://re-kosen-cms.up.railway.app` |
 | `STRAPI_API_TOKEN` | Step 2.5で作成したトークン | `xxxxxx...` |
 | `NEXT_PUBLIC_SITE_URL` | VercelのURL（後で更新可） | `https://re-kosen.vercel.app` |
+| `PREVIEW_SECRET` | Strapiと同じ値 | `xxxxxx...` |
 
 ### 3.3 デプロイ
 1. 「Deploy」をクリック

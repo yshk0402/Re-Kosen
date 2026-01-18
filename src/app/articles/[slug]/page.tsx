@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Metadata } from "next";
+import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import CTA from "@/components/article/CTA";
 import ArticleImage from "@/components/article/ArticleImage";
@@ -11,6 +12,7 @@ import RelatedArticles from "@/components/article/RelatedArticles";
 import RichText from "@/components/article/RichText";
 import SummaryCard from "@/components/article/SummaryCard";
 import TOC, { type TocItem } from "@/components/article/TOC";
+import StrapiPreviewBridge from "@/components/preview/StrapiPreviewBridge";
 import {
   type ArticleBlock,
   type ArticleCardData,
@@ -239,7 +241,10 @@ export async function generateMetadata({
   params,
 }: ArticlePageProps): Promise<Metadata> {
   const resolvedParams = await Promise.resolve(params);
-  const article = await getArticleBySlug(resolvedParams.slug);
+  const { isEnabled } = draftMode();
+  const article = await getArticleBySlug(resolvedParams.slug, {
+    preview: isEnabled,
+  });
 
   if (!article) {
     return {
@@ -274,7 +279,10 @@ export async function generateMetadata({
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const resolvedParams = await Promise.resolve(params);
-  const article = await getArticleBySlug(resolvedParams.slug);
+  const { isEnabled } = draftMode();
+  const article = await getArticleBySlug(resolvedParams.slug, {
+    preview: isEnabled,
+  });
 
   if (!article) {
     notFound();
@@ -352,6 +360,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <article className="mx-auto w-full max-w-[900px] space-y-8 px-4 py-10">
+      {isEnabled ? <StrapiPreviewBridge enabled /> : null}
       <header className="space-y-4">
         <div className="space-y-3">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand">

@@ -315,13 +315,24 @@ const buildQuery = (params?: Record<string, string | number | undefined>) => {
   return queryString ? `?${queryString}` : "";
 };
 
-const getFetchOptions = () => {
+type StrapiFetchOptions = {
+  preview?: boolean;
+};
+
+const getFetchOptions = (options?: StrapiFetchOptions) => {
   const headers: HeadersInit = {
     "Content-Type": "application/json",
   };
 
   if (STRAPI_TOKEN) {
     headers.Authorization = `Bearer ${STRAPI_TOKEN}`;
+  }
+
+  if (options?.preview) {
+    return {
+      headers,
+      cache: "no-store" as const,
+    };
   }
 
   return {
@@ -337,6 +348,7 @@ const getFetchOptions = () => {
 export const strapiFetch = async <T>(
   path: string,
   params?: Record<string, string | number | undefined>,
+  options?: StrapiFetchOptions,
 ): Promise<T | null> => {
   if (!STRAPI_URL) {
     return null;
@@ -345,7 +357,7 @@ export const strapiFetch = async <T>(
   const url = `${STRAPI_URL.replace(/\/$/, "")}${path}${buildQuery(params)}`;
   let response: Response;
   try {
-    response = await fetch(url, getFetchOptions());
+    response = await fetch(url, getFetchOptions(options));
   } catch {
     return null;
   }
@@ -410,27 +422,41 @@ export const getArticleSlugs = async () => {
     .filter((slug): slug is string => Boolean(slug));
 };
 
-export const getArticleBySlug = async (slug: string) => {
+export const getArticleBySlug = async (
+  slug: string,
+  options?: { preview?: boolean },
+) => {
+  const preview = Boolean(options?.preview);
+  const params: Record<string, string> = {
+    "filters[slug][$eq]": slug,
+    ...ARTICLE_POPULATE_PARAMS,
+  };
+  if (!preview) {
+    params["filters[stats][$eq]"] = "published";
+  }
+
   const response = await strapiFetch<StrapiCollectionResponse<StrapiArticle>>(
     "/api/articles",
-    {
-      "filters[slug][$eq]": slug,
-      "filters[stats][$eq]": "published",
-      ...ARTICLE_POPULATE_PARAMS,
-    },
+    params,
+    preview ? { preview: true } : undefined,
   );
 
   if (response) {
     return response?.data?.[0] ?? null;
   }
 
+  const fallbackParams: Record<string, string> = {
+    "filters[slug][$eq]": slug,
+    ...ARTICLE_POPULATE_FALLBACK,
+  };
+  if (!preview) {
+    fallbackParams["filters[stats][$eq]"] = "published";
+  }
+
   const fallback = await strapiFetch<StrapiCollectionResponse<StrapiArticle>>(
     "/api/articles",
-    {
-      "filters[slug][$eq]": slug,
-      "filters[stats][$eq]": "published",
-      ...ARTICLE_POPULATE_FALLBACK,
-    },
+    fallbackParams,
+    preview ? { preview: true } : undefined,
   );
 
   return fallback?.data?.[0] ?? null;
