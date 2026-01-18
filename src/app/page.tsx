@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import HomeArticleCard from "@/components/home/HomeArticleCard";
@@ -68,7 +69,7 @@ const toHomeCard = (card: ArticleCardData): HomeCard => ({
   image: card.coverImage ?? fallbackCoverImage,
 });
 
-function EmptyState({ children }: { children: string }) {
+function EmptyState({ children }: { children: ReactNode }) {
   return (
     <div className="rounded-2xl border border-border bg-white p-4 text-sm text-muted">
       {children}
