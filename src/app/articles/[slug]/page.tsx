@@ -359,7 +359,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   });
 
   return (
-    <article className="mx-auto w-full max-w-[900px] space-y-8 px-4 py-10">
+    <article className="mx-auto w-full max-w-[1200px] space-y-8 px-4 py-10">
       {isEnabled ? <StrapiPreviewBridge enabled /> : null}
       <header className="space-y-4">
         <div className="space-y-3">
@@ -382,7 +382,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             <Image
               alt={coverAlt}
               fill
-              sizes="(max-width: 900px) 100vw, 900px"
+              sizes="(max-width: 1200px) 100vw, 1200px"
               src={coverImageUrl}
               className="object-cover"
             />

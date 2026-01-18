@@ -1,6 +1,6 @@
 export default function AboutPage() {
   return (
-    <div className="mx-auto w-full max-w-[900px] space-y-6 px-4 py-10">
+    <div className="mx-auto w-full max-w-[1200px] space-y-6 px-4 py-10">
       <header className="space-y-3">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand">
           About

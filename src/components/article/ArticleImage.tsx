@@ -29,7 +29,7 @@ export default function ArticleImage({
             alt={alt}
             className="h-auto w-full"
             height={height ?? 0}
-            sizes="(max-width: 900px) 100vw, 900px"
+            sizes="(max-width: 1200px) 100vw, 1200px"
             src={src}
             width={width ?? 0}
           />
@@ -38,7 +38,7 @@ export default function ArticleImage({
             <Image
               alt={alt}
               fill
-              sizes="(max-width: 900px) 100vw, 900px"
+              sizes="(max-width: 1200px) 100vw, 1200px"
               src={src}
               className="object-cover"
             />
