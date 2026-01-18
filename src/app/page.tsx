@@ -269,30 +269,6 @@ export default async function Home() {
       <div className="mx-auto w-full max-w-[1200px] px-4 py-10">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
           <div className="space-y-12">
-            <header className="space-y-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand">
-                Re:Kosen
-              </p>
-              <h1 className="text-2xl font-semibold text-ink sm:text-4xl">
-                高専生の進路選択を支えるキャリアメディア
-              </h1>
-              <p className="text-sm text-muted sm:text-base">
-                業界研究、企業研究、キャリア設計まで。高専生の選択肢を広げる
-                情報を届けます。
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {categoryGroups.map((category) => (
-                  <Link
-                    key={category.key}
-                    className="rounded-full border border-border bg-white px-4 py-1.5 text-xs font-semibold text-muted transition hover:border-brand/40 hover:text-brand"
-                    href={category.href}
-                  >
-                    {category.label}
-                  </Link>
-                ))}
-              </div>
-            </header>
-
             <section className="space-y-5">
               <SectionHeader title="ピックアップ" subtitle="PICK UP" />
               {pickupMediums.length || pickupSmalls.length ? (
