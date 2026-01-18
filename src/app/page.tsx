@@ -156,15 +156,18 @@ export default async function Home() {
 
   const fallbackCards = (fallbackResponse?.data ?? []).map(mapArticleCard);
   const homeAttributes = getEntityAttributes(home);
-  const usedSlugs = new Set<string>();
 
-  const takeUnique = (source: ArticleCardData[], count: number) => {
+  const takeUnique = (
+    source: ArticleCardData[],
+    count: number,
+    seen = new Set<string>(),
+  ) => {
     const selected: ArticleCardData[] = [];
     for (const card of source) {
-      if (!card.slug || usedSlugs.has(card.slug)) {
+      if (!card.slug || seen.has(card.slug)) {
         continue;
       }
-      usedSlugs.add(card.slug);
+      seen.add(card.slug);
       selected.push(card);
       if (selected.length >= count) {
         break;
@@ -177,9 +180,12 @@ export default async function Home() {
     getRelationAttributes<StrapiArticleAttributes>(value).map(mapArticleCard);
 
   const pickWithFallback = (source: ArticleCardData[], count: number) => {
-    const selected = takeUnique(source, count);
+    const seen = new Set<string>();
+    const selected = takeUnique(source, count, seen);
     if (selected.length < count) {
-      selected.push(...takeUnique(fallbackCards, count - selected.length));
+      selected.push(
+        ...takeUnique(fallbackCards, count - selected.length, seen),
+      );
     }
     return selected;
   };
