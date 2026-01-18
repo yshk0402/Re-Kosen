@@ -194,10 +194,6 @@ export default async function Home() {
     pickFromHome(homeAttributes?.pickupMediums),
     2,
   ).map(toHomeCard);
-  const pickupSmalls = pickWithFallback(
-    pickFromHome(homeAttributes?.pickupSmalls),
-    3,
-  ).map(toHomeCard);
   const popularItems = pickWithFallback(
     pickFromHome(homeAttributes?.popularItems),
     5,
@@ -273,195 +269,188 @@ export default async function Home() {
   return (
     <div className="pb-20">
       <div className="mx-auto w-full max-w-[1200px] px-4 py-10">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
-          <div className="space-y-12">
+        <div className="space-y-12">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
             <section className="space-y-5">
               <SectionHeader title="ピックアップ" subtitle="PICK UP" />
-              {pickupMediums.length || pickupSmalls.length ? (
-                <div className="grid gap-6 lg:grid-cols-3">
-                  <div className="grid gap-6 lg:col-span-2 lg:grid-cols-2">
-                    {pickupMediums.map((item) => (
-                      <HomeArticleCard
-                        key={item.slug}
-                        href={`/articles/${item.slug}`}
-                        image={item.image}
-                        title={item.title}
-                      />
-                    ))}
-                  </div>
-                  <div className="flex gap-4 overflow-x-auto pb-2 pt-1 snap-x snap-mandatory lg:flex-col lg:overflow-visible lg:pb-0">
-                    {pickupSmalls.map((item) => (
-                      <HomeArticleCard
-                        key={item.slug}
-                        href={`/articles/${item.slug}`}
-                        image={item.image}
-                        title={item.title}
-                        variant="small"
-                        className="w-[72%] shrink-0 snap-start sm:w-[48%] lg:w-auto"
-                      />
-                    ))}
-                  </div>
+              {pickupMediums.length ? (
+                <div className="grid gap-6 sm:grid-cols-2">
+                  {pickupMediums.map((item) => (
+                    <HomeArticleCard
+                      key={item.slug}
+                      href={`/articles/${item.slug}`}
+                      image={item.image}
+                      title={item.title}
+                    />
+                  ))}
                 </div>
               ) : (
                 <EmptyState>ピックアップ記事は準備中です。</EmptyState>
               )}
             </section>
 
-            <div className="space-y-10 lg:hidden">
+            <aside className="hidden lg:block">
               <PopularList items={popularItems} />
-              {mobileBanner ? (
-                <section className="space-y-4">
-                  <SectionHeader title="おすすめバナー" subtitle="BANNER" />
-                  <BannerCard banner={mobileBanner} variant="mobile" />
-                </section>
-              ) : null}
-            </div>
-
-            <section className="space-y-5">
-              <SectionHeader
-                title="おすすめ"
-                subtitle="FEATURED"
-                href="/article"
-              />
-              {featuredItems.length ? (
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {featuredItems.map((item) => (
-                    <HomeArticleCard
-                      key={item.slug}
-                      href={`/articles/${item.slug}`}
-                      image={item.image}
-                      title={item.title}
-                    />
-                  ))}
-                </div>
-              ) : (
-                <EmptyState>おすすめ記事は準備中です。</EmptyState>
-              )}
-            </section>
-
-            <section className="space-y-5">
-              <SectionHeader
-                title="新着"
-                subtitle="LATEST"
-                href="/article"
-              />
-              {latestItems.length ? (
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {latestItems.map((item) => (
-                    <HomeArticleCard
-                      key={item.slug}
-                      href={`/articles/${item.slug}`}
-                      image={item.image}
-                      title={item.title}
-                    />
-                  ))}
-                </div>
-              ) : (
-                <EmptyState>新着記事は準備中です。</EmptyState>
-              )}
-            </section>
-
-            <section className="space-y-5">
-              <SectionHeader title="カテゴリ別" subtitle="CATEGORY" />
-              <div className="grid gap-6 lg:grid-cols-3">
-                {categoryShelves.map((category) => (
-                  <div key={category.key} className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <p className="text-base font-semibold text-ink">
-                        {category.label}
-                      </p>
-                      <Link
-                        className="text-xs font-semibold text-brand transition hover:text-brand-strong"
-                        href={category.href}
-                      >
-                        もっと見る
-                      </Link>
-                    </div>
-                    <div className="grid gap-4">
-                      {category.items.length ? (
-                        category.items.map((item) => (
-                          <HomeArticleCard
-                            key={item.slug}
-                            href={`/articles/${item.slug}`}
-                            image={item.image}
-                            title={item.title}
-                            variant="small"
-                          />
-                        ))
-                      ) : (
-                        <EmptyState>
-                          {category.label}の記事は準備中です。
-                        </EmptyState>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <section className="rounded-3xl border border-brand/20 bg-brand-soft px-6 py-7 sm:px-8">
-              <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-                <div className="space-y-2">
-                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-brand">
-                    LINE
-                  </p>
-                  <h2 className="text-xl font-semibold text-ink">
-                    {lineCta.title}
-                  </h2>
-                  <p className="text-sm text-muted sm:text-base">
-                    {lineCta.description}
-                  </p>
-                </div>
-                <Link
-                  className="inline-flex w-fit items-center justify-center rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-strong"
-                  href={lineCta.lineUrl}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  {lineCta.buttonLabel}
-                </Link>
-              </div>
-            </section>
-
-            <section className="space-y-5">
-              <SectionHeader title="安心して読める理由" subtitle="TRUST" />
-              <div className="grid gap-4 sm:grid-cols-3">
-                {trustItems.map((item) => (
-                  <Link
-                    key={item.title}
-                    className="group rounded-2xl border border-border bg-white p-5 transition hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-[0_12px_24px_rgba(15,23,42,0.08)]"
-                    href={item.href}
-                  >
-                    <p className="text-base font-semibold text-ink">
-                      {item.title}
-                    </p>
-                    <p className="mt-2 text-sm text-muted">
-                      {item.description}
-                    </p>
-                    <span className="mt-4 inline-flex text-xs font-semibold text-brand">
-                      詳しく見る →
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </section>
+            </aside>
           </div>
 
-          <aside className="hidden space-y-10 lg:block">
-            <PopularList items={popularItems} />
-            <section className="space-y-4">
-              <SectionHeader title="バナー" subtitle="BANNER" />
-              <div className="space-y-4">
-                {desktopBanners.map((banner) => (
-                  <BannerCard
-                    key={banner.id}
-                    banner={banner}
-                    variant="desktop"
-                  />
-                ))}
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+            <div className="space-y-12">
+              <div className="space-y-10 lg:hidden">
+                <PopularList items={popularItems} />
+                {mobileBanner ? (
+                  <section className="space-y-4">
+                    <SectionHeader title="おすすめバナー" subtitle="BANNER" />
+                    <BannerCard banner={mobileBanner} variant="mobile" />
+                  </section>
+                ) : null}
               </div>
-            </section>
-          </aside>
+
+              <section className="space-y-5">
+                <SectionHeader
+                  title="おすすめ"
+                  subtitle="FEATURED"
+                  href="/article"
+                />
+                {featuredItems.length ? (
+                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {featuredItems.map((item) => (
+                      <HomeArticleCard
+                        key={item.slug}
+                        href={`/articles/${item.slug}`}
+                        image={item.image}
+                        title={item.title}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <EmptyState>おすすめ記事は準備中です。</EmptyState>
+                )}
+              </section>
+
+              <section className="space-y-5">
+                <SectionHeader
+                  title="新着"
+                  subtitle="LATEST"
+                  href="/article"
+                />
+                {latestItems.length ? (
+                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {latestItems.map((item) => (
+                      <HomeArticleCard
+                        key={item.slug}
+                        href={`/articles/${item.slug}`}
+                        image={item.image}
+                        title={item.title}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <EmptyState>新着記事は準備中です。</EmptyState>
+                )}
+              </section>
+
+              <section className="space-y-5">
+                <SectionHeader title="カテゴリ別" subtitle="CATEGORY" />
+                <div className="grid gap-6 lg:grid-cols-3">
+                  {categoryShelves.map((category) => (
+                    <div key={category.key} className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <p className="text-base font-semibold text-ink">
+                          {category.label}
+                        </p>
+                        <Link
+                          className="text-xs font-semibold text-brand transition hover:text-brand-strong"
+                          href={category.href}
+                        >
+                          もっと見る
+                        </Link>
+                      </div>
+                      <div className="grid gap-4">
+                        {category.items.length ? (
+                          category.items.map((item) => (
+                            <HomeArticleCard
+                              key={item.slug}
+                              href={`/articles/${item.slug}`}
+                              image={item.image}
+                              title={item.title}
+                              variant="small"
+                            />
+                          ))
+                        ) : (
+                          <EmptyState>
+                            {category.label}の記事は準備中です。
+                          </EmptyState>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section className="rounded-3xl border border-brand/20 bg-brand-soft px-6 py-7 sm:px-8">
+                <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+                  <div className="space-y-2">
+                    <p className="text-xs font-semibold uppercase tracking-[0.28em] text-brand">
+                      LINE
+                    </p>
+                    <h2 className="text-xl font-semibold text-ink">
+                      {lineCta.title}
+                    </h2>
+                    <p className="text-sm text-muted sm:text-base">
+                      {lineCta.description}
+                    </p>
+                  </div>
+                  <Link
+                    className="inline-flex w-fit items-center justify-center rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-strong"
+                    href={lineCta.lineUrl}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    {lineCta.buttonLabel}
+                  </Link>
+                </div>
+              </section>
+
+              <section className="space-y-5">
+                <SectionHeader title="安心して読める理由" subtitle="TRUST" />
+                <div className="grid gap-4 sm:grid-cols-3">
+                  {trustItems.map((item) => (
+                    <Link
+                      key={item.title}
+                      className="group rounded-2xl border border-border bg-white p-5 transition hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-[0_12px_24px_rgba(15,23,42,0.08)]"
+                      href={item.href}
+                    >
+                      <p className="text-base font-semibold text-ink">
+                        {item.title}
+                      </p>
+                      <p className="mt-2 text-sm text-muted">
+                        {item.description}
+                      </p>
+                      <span className="mt-4 inline-flex text-xs font-semibold text-brand">
+                        詳しく見る →
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            </div>
+
+            <aside className="hidden lg:block">
+              <section className="space-y-4">
+                <SectionHeader title="バナー" subtitle="BANNER" />
+                <div className="space-y-4">
+                  {desktopBanners.map((banner) => (
+                    <BannerCard
+                      key={banner.id}
+                      banner={banner}
+                      variant="desktop"
+                    />
+                  ))}
+                </div>
+              </section>
+            </aside>
+          </div>
         </div>
       </div>
     </div>
