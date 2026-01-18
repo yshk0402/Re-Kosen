@@ -17,7 +17,6 @@ export default function HomeArticleCard({
   className = "",
 }: HomeArticleCardProps) {
   const isSmall = variant === "small";
-  const padding = isSmall ? "p-3" : "p-4";
   const titleSize = isSmall ? "text-sm" : "text-base sm:text-lg";
   const radius = isSmall ? "rounded-lg" : "rounded-xl";
   const sizes = isSmall
@@ -26,7 +25,7 @@ export default function HomeArticleCard({
 
   return (
     <Link
-      className={`group flex h-full flex-col gap-3 rounded-2xl border border-border bg-white ${padding} transition hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-[0_16px_32px_rgba(15,23,42,0.08)] ${className}`}
+      className={`group flex h-full flex-col gap-3 transition hover:-translate-y-0.5 ${className}`}
       href={href}
     >
       <div
@@ -44,7 +43,9 @@ export default function HomeArticleCard({
           <div className="absolute inset-0 bg-gradient-to-br from-brand-soft via-white to-brand/10" />
         )}
       </div>
-      <h3 className={`line-clamp-2 font-semibold text-ink ${titleSize}`}>
+      <h3
+        className={`line-clamp-2 font-semibold text-ink transition group-hover:text-brand-strong ${titleSize}`}
+      >
         {title}
       </h3>
     </Link>
