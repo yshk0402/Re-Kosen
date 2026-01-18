@@ -186,6 +186,32 @@ export type StrapiArticle = StrapiEntity<StrapiArticleAttributes>;
 
 export type StrapiArticleLike = StrapiArticle | StrapiArticleAttributes;
 
+export type HomeBanner = {
+  id?: number;
+  title?: string | null;
+  linkUrl?: string | null;
+  desktopImage?: StrapiMedia | StrapiImage | null;
+  mobileImage?: StrapiMedia | StrapiImage | null;
+};
+
+export type HomeLineCta = {
+  title?: string | null;
+  description?: string | null;
+  buttonLabel?: string | null;
+  lineUrl?: string | null;
+};
+
+export type StrapiHomeAttributes = {
+  pickupMediums?: { data: StrapiArticle[] } | StrapiArticle[] | null;
+  pickupSmalls?: { data: StrapiArticle[] } | StrapiArticle[] | null;
+  popularItems?: { data: StrapiArticle[] } | StrapiArticle[] | null;
+  featuredItems?: { data: StrapiArticle[] } | StrapiArticle[] | null;
+  banners?: HomeBanner[] | HomeBanner | null;
+  lineCta?: HomeLineCta | null;
+};
+
+export type StrapiHome = StrapiEntity<StrapiHomeAttributes>;
+
 const RAW_STRAPI_URL =
   process.env.STRAPI_URL || process.env.NEXT_PUBLIC_STRAPI_URL || "";
 const STRAPI_URL = RAW_STRAPI_URL.replace(/\/api\/?$/, "");
@@ -210,6 +236,16 @@ const ARTICLE_POPULATE_PARAMS: Record<string, string> = {
 
 const ARTICLE_POPULATE_FALLBACK: Record<string, string> = {
   populate: "*",
+};
+
+const HOME_POPULATE_PARAMS: Record<string, string> = {
+  "populate[pickupMediums]": "*",
+  "populate[pickupSmalls]": "*",
+  "populate[popularItems]": "*",
+  "populate[featuredItems]": "*",
+  "populate[banners]": "*",
+  "populate[banners][populate]": "*",
+  "populate[lineCta]": "*",
 };
 
 export const getEntityAttributes = <T>(
@@ -533,6 +569,24 @@ export const getArticles = async ({
     "/api/articles",
     fallbackParams,
   );
+};
+
+export const getHome = async () => {
+  const response = await strapiFetch<StrapiSingleResponse<StrapiHome>>(
+    "/api/home",
+    HOME_POPULATE_PARAMS,
+  );
+
+  if (response) {
+    return response.data ?? null;
+  }
+
+  const fallback = await strapiFetch<StrapiSingleResponse<StrapiHome>>(
+    "/api/home",
+    { populate: "*" },
+  );
+
+  return fallback?.data ?? null;
 };
 
 export const getTags = async () => {

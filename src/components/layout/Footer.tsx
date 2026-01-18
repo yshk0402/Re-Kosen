@@ -4,33 +4,34 @@ const footerColumns = [
   {
     title: "Contents",
     links: [
-      { href: "/industry", label: "Industry" },
-      { href: "/company", label: "Company" },
-      { href: "/career", label: "Career" },
+      { href: "/industry", label: "業界研究" },
+      { href: "/company", label: "企業研究" },
+      { href: "/career", label: "キャリア設計" },
+      { href: "/article", label: "記事一覧" },
     ],
   },
   {
     title: "About",
     links: [
-      { href: "/about", label: "About" },
-      { href: "/contact", label: "Contact" },
-      { href: "/privacy", label: "Privacy" },
+      { href: "/about", label: "運営について" },
+      { href: "/contact", label: "お問い合わせ" },
+      { href: "/privacy", label: "プライバシー" },
     ],
   },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-[#7c8087] text-white/80">
-      <div className="mx-auto w-full max-w-[1100px] px-4 py-12">
-        <div className="grid gap-10 lg:grid-cols-[2fr,1fr]">
+    <footer className="mt-16 bg-ink text-white/80">
+      <div className="mx-auto w-full max-w-[1200px] px-4 py-12">
+        <div className="grid gap-10 lg:grid-cols-[1.6fr,1fr]">
           <div className="grid gap-8 sm:grid-cols-2">
             {footerColumns.map((column) => (
               <div key={column.title} className="space-y-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/70">
                   {column.title}
                 </p>
-                <div className="flex flex-col gap-3 text-xs uppercase tracking-[0.2em]">
+                <div className="flex flex-col gap-3 text-xs">
                   {column.links.map((link) => (
                     <Link
                       key={link.href}
@@ -44,12 +45,14 @@ export default function Footer() {
               </div>
             ))}
           </div>
-          <div className="flex flex-col items-start gap-4 lg:items-end">
-            <p className="text-xs uppercase tracking-[0.3em]">Re:Kosen</p>
-            <div className="font-display text-5xl font-semibold tracking-[0.08em] text-white">
+          <div className="flex flex-col gap-4">
+            <p className="text-xs uppercase tracking-[0.3em] text-white/70">
+              Re:Kosen
+            </p>
+            <div className="text-3xl font-semibold tracking-[0.08em] text-white">
               Re:Kosen
             </div>
-            <p className="text-xs text-white/70">
+            <p className="text-sm text-white/70">
               高専生の進路選択を支えるキャリアメディア。
             </p>
           </div>

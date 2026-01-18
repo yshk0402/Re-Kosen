@@ -30,13 +30,13 @@ export default function ArticleCard({
 
   return (
     <Link
-      className={`group grid gap-4 rounded-xl border border-border bg-white transition hover:border-brand/40 ${
+      className={`group grid gap-4 rounded-2xl border border-border bg-white transition hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-[0_16px_32px_rgba(15,23,42,0.08)] ${
         isCompact ? "p-4" : "p-5"
       }`}
       href={href}
     >
       <div
-        className="relative aspect-[16/9] overflow-hidden rounded-lg border border-border bg-[#f5f1eb]"
+        className="relative aspect-[16/9] overflow-hidden rounded-xl border border-border bg-brand-soft"
       >
         {coverImage ? (
           <Image
@@ -69,7 +69,7 @@ export default function ArticleCard({
           {displayTags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-border bg-white px-2 py-1"
+              className="rounded-full border border-brand/10 bg-brand-soft px-2 py-1 text-brand-strong"
             >
               {tag}
             </span>

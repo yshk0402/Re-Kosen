@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_home_line_ctas",
+  "info": {
+    "displayName": "LineCta",
+    "icon": "chat"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "buttonLabel": {
+      "type": "string",
+      "required": true,
+      "default": "無料で相談する"
+    },
+    "lineUrl": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

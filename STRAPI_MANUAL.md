@@ -33,6 +33,29 @@
 - blocks（必須・運用ルール）: 本文ブロック
 - seo: {{TODO: SEOコンポーネントの入力項目（metaTitle等）を確認}}
 
+## 4.1 Home（トップページ / Single Type）
+
+- Content Manager の「Home」で編集
+- レイアウトは固定、並び順のみドラッグで調整
+
+**入力項目（MVP）**
+
+- pickupMediums（最大2件）: Article relation
+- pickupSmalls（最大3件）: Article relation
+- popularItems（最大5件）: Article relation（手動ランキング）
+- featuredItems（最大6件）: Article relation（おすすめ）
+- banners（最大2件）: Banner component
+  - title（任意）
+  - linkUrl（必須）
+  - desktopImage（必須）: 縦型（推奨 3:4）
+  - mobileImage（必須）: 横型（推奨 16:9）
+  - **モバイルでは先頭のバナーのみ表示**
+- lineCta: CTA component
+  - title（必須）
+  - description（必須）
+  - buttonLabel（必須 / 既定: 「無料で相談する」）
+  - lineUrl（必須）: {{TODO: LINE URL}}（未確定時は https://example.com）
+
 ## 5. blocks（本文ブロック）の使い方
 ### 5.1 Summary Card（必須）
 - 目的: 記事冒頭の結論まとめ
