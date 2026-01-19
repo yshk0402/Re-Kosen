@@ -238,12 +238,7 @@ const ARTICLE_POPULATE_FALLBACK: Record<string, string> = {
 };
 
 const HOME_POPULATE_PARAMS: Record<string, string> = {
-  "populate[pickupMediums][populate][coverImage]": "*",
-  "populate[popularItems][populate][coverImage]": "*",
-  "populate[featuredItems][populate][coverImage]": "*",
-  "populate[banners]": "*",
-  "populate[banners][populate]": "*",
-  "populate[lineCta]": "*",
+  populate: "*",
 };
 
 export const getEntityAttributes = <T>(
@@ -385,6 +380,9 @@ export const strapiFetch = async <T>(
   options?: StrapiFetchOptions,
 ): Promise<T | null> => {
   if (!STRAPI_URL) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn("[strapiFetch] STRAPI_URL is not configured", { path });
+    }
     return null;
   }
 
@@ -392,11 +390,19 @@ export const strapiFetch = async <T>(
   let response: Response;
   try {
     response = await fetch(url, getFetchOptions(options));
-  } catch {
+  } catch (error) {
+    console.warn("[strapiFetch] request failed", {
+      path,
+      message: error instanceof Error ? error.message : String(error),
+    });
     return null;
   }
 
   if (!response.ok) {
+    console.warn("[strapiFetch] non-2xx response", {
+      path,
+      status: response.status,
+    });
     return null;
   }
 
@@ -590,7 +596,7 @@ export const getArticlesBySlugs = async (
   }
 
   uniqueSlugs.forEach((slug, index) => {
-    params[`filters[$or][${index}][slug][$eq]`] = slug;
+    params[`filters[slug][$in][${index}]`] = slug;
   });
 
   const response = await strapiFetch<StrapiCollectionResponse<StrapiArticle>>(
