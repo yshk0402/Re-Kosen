@@ -569,6 +569,38 @@ export const getArticles = async ({
   );
 };
 
+export const getArticlesBySlugs = async (
+  slugs: string[],
+  options?: { includeUnpublished?: boolean },
+) => {
+  const uniqueSlugs = Array.from(
+    new Set(slugs.map((slug) => slug.trim()).filter(Boolean)),
+  );
+  if (!uniqueSlugs.length) {
+    return [];
+  }
+
+  const params: Record<string, string | number | undefined> = {
+    ...ARTICLE_POPULATE_PARAMS,
+    "pagination[pageSize]": uniqueSlugs.length,
+  };
+
+  if (!options?.includeUnpublished) {
+    params["filters[stats][$eq]"] = "published";
+  }
+
+  uniqueSlugs.forEach((slug, index) => {
+    params[`filters[$or][${index}][slug][$eq]`] = slug;
+  });
+
+  const response = await strapiFetch<StrapiCollectionResponse<StrapiArticle>>(
+    "/api/articles",
+    params,
+  );
+
+  return response?.data ?? [];
+};
+
 export const getHome = async () => {
   const response = await strapiFetch<StrapiSingleResponse<StrapiHome>>(
     "/api/home",

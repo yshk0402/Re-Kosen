@@ -5,6 +5,7 @@ import HomeArticleCard from "@/components/home/HomeArticleCard";
 import SectionHeader from "@/components/home/SectionHeader";
 import {
   getArticles,
+  getArticlesBySlugs,
   getEntityAttributes,
   getHome,
   getRelationAttributes,
@@ -68,6 +69,33 @@ const toHomeCard = (card: ArticleCardData): HomeCard => ({
   title: card.title,
   image: card.coverImage ?? fallbackCoverImage,
 });
+
+const hydrateCoverImages = async (cards: ArticleCardData[]) => {
+  const missingSlugs = cards
+    .filter((card) => !card.coverImage && card.slug)
+    .map((card) => card.slug);
+
+  if (!missingSlugs.length) {
+    return cards;
+  }
+
+  const fetched = await getArticlesBySlugs(missingSlugs);
+  if (!fetched.length) {
+    return cards;
+  }
+
+  const coverBySlug = new Map(
+    fetched.map(mapArticleCard).map((card) => [card.slug, card.coverImage]),
+  );
+
+  return cards.map((card) => {
+    if (card.coverImage) {
+      return card;
+    }
+    const coverImage = coverBySlug.get(card.slug);
+    return coverImage ? { ...card, coverImage } : card;
+  });
+};
 
 function EmptyState({ children }: { children: ReactNode }) {
   return (
@@ -193,16 +221,27 @@ export default async function Home() {
   const pickupMediums = pickWithFallback(
     pickFromHome(homeAttributes?.pickupMediums),
     2,
-  ).map(toHomeCard);
+  );
   const popularItems = pickWithFallback(
     pickFromHome(homeAttributes?.popularItems),
     5,
-  ).map(toHomeCard);
+  );
   const featuredItems = pickWithFallback(
     pickFromHome(homeAttributes?.featuredItems),
     6,
-  ).map(toHomeCard);
+  );
   const latestItems = takeUnique(fallbackCards, 6).map(toHomeCard);
+
+  const [hydratedPickup, hydratedPopular, hydratedFeatured] =
+    await Promise.all([
+      hydrateCoverImages(pickupMediums),
+      hydrateCoverImages(popularItems),
+      hydrateCoverImages(featuredItems),
+    ]);
+
+  const pickupCards = hydratedPickup.map(toHomeCard);
+  const popularCards = hydratedPopular.map(toHomeCard);
+  const featuredCards = hydratedFeatured.map(toHomeCard);
 
   const bannerItems = normalizeBanners(homeAttributes?.banners).map(
     (banner, index) => ({
@@ -273,9 +312,9 @@ export default async function Home() {
           <div className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
             <section className="space-y-5">
               <SectionHeader title="ピックアップ" subtitle="PICK UP" />
-              {pickupMediums.length ? (
+              {pickupCards.length ? (
                 <div className="grid gap-6 sm:grid-cols-2">
-                  {pickupMediums.map((item) => (
+                  {pickupCards.map((item) => (
                     <HomeArticleCard
                       key={item.slug}
                       href={`/articles/${item.slug}`}
@@ -290,14 +329,14 @@ export default async function Home() {
             </section>
 
             <aside className="hidden lg:block">
-              <PopularList items={popularItems} />
+              <PopularList items={popularCards} />
             </aside>
           </div>
 
           <div className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
             <div className="space-y-12">
               <div className="space-y-10 lg:hidden">
-                <PopularList items={popularItems} />
+                <PopularList items={popularCards} />
                 {mobileBanner ? (
                   <section className="space-y-4">
                     <SectionHeader title="おすすめバナー" subtitle="BANNER" />
@@ -312,9 +351,9 @@ export default async function Home() {
                   subtitle="FEATURED"
                   href="/article"
                 />
-                {featuredItems.length ? (
+                {featuredCards.length ? (
                   <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                    {featuredItems.map((item) => (
+                    {featuredCards.map((item) => (
                       <HomeArticleCard
                         key={item.slug}
                         href={`/articles/${item.slug}`}
