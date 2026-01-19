@@ -92,7 +92,7 @@ function PopularList({ items }: { items: HomeCard[] }) {
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-soft text-xs font-semibold text-brand">
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-lg bg-brand-soft">
+              <div className="relative aspect-[16/9] w-20 shrink-0 overflow-hidden rounded-lg bg-brand-soft">
                 <Image
                   alt={item.title}
                   fill
@@ -137,6 +137,7 @@ function BannerCard({
           fill
           sizes={variant === "mobile" ? "100vw" : "320px"}
           src={image}
+          unoptimized
           className="object-cover transition duration-300 group-hover:scale-[1.03]"
         />
       </div>
