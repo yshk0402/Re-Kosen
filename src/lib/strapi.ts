@@ -238,12 +238,9 @@ const ARTICLE_POPULATE_FALLBACK: Record<string, string> = {
 };
 
 const HOME_POPULATE_PARAMS: Record<string, string> = {
-  "populate[pickupMediums]": "*",
-  "populate[pickupMediums][populate]": "coverImage",
-  "populate[popularItems]": "*",
-  "populate[popularItems][populate]": "coverImage",
-  "populate[featuredItems]": "*",
-  "populate[featuredItems][populate]": "coverImage",
+  "populate[pickupMediums][populate][coverImage]": "*",
+  "populate[popularItems][populate][coverImage]": "*",
+  "populate[featuredItems][populate][coverImage]": "*",
   "populate[banners]": "*",
   "populate[banners][populate]": "*",
   "populate[lineCta]": "*",
