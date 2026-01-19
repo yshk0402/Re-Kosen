@@ -5,7 +5,6 @@ import HomeArticleCard from "@/components/home/HomeArticleCard";
 import SectionHeader from "@/components/home/SectionHeader";
 import {
   getArticles,
-  getArticlesBySlugs,
   getEntityAttributes,
   getHome,
   getRelationAttributes,
@@ -69,33 +68,6 @@ const toHomeCard = (card: ArticleCardData): HomeCard => ({
   title: card.title,
   image: card.coverImage ?? fallbackCoverImage,
 });
-
-const hydrateCoverImages = async (cards: ArticleCardData[]) => {
-  const missingSlugs = cards
-    .filter((card) => !card.coverImage && card.slug)
-    .map((card) => card.slug);
-
-  if (!missingSlugs.length) {
-    return cards;
-  }
-
-  const fetched = await getArticlesBySlugs(missingSlugs);
-  if (!fetched.length) {
-    return cards;
-  }
-
-  const coverBySlug = new Map(
-    fetched.map(mapArticleCard).map((card) => [card.slug, card.coverImage]),
-  );
-
-  return cards.map((card) => {
-    if (card.coverImage) {
-      return card;
-    }
-    const coverImage = coverBySlug.get(card.slug);
-    return coverImage ? { ...card, coverImage } : card;
-  });
-};
 
 function EmptyState({ children }: { children: ReactNode }) {
   return (
@@ -232,16 +204,9 @@ export default async function Home() {
   );
   const latestItems = takeUnique(fallbackCards, 6).map(toHomeCard);
 
-  const [hydratedPickup, hydratedPopular, hydratedFeatured] =
-    await Promise.all([
-      hydrateCoverImages(pickupMediums),
-      hydrateCoverImages(popularItems),
-      hydrateCoverImages(featuredItems),
-    ]);
-
-  const pickupCards = hydratedPickup.map(toHomeCard);
-  const popularCards = hydratedPopular.map(toHomeCard);
-  const featuredCards = hydratedFeatured.map(toHomeCard);
+  const pickupCards = pickupMediums.map(toHomeCard);
+  const popularCards = popularItems.map(toHomeCard);
+  const featuredCards = featuredItems.map(toHomeCard);
 
   const bannerItems = normalizeBanners(homeAttributes?.banners).map(
     (banner, index) => ({

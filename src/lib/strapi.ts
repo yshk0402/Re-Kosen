@@ -237,9 +237,6 @@ const ARTICLE_POPULATE_FALLBACK: Record<string, string> = {
   populate: "*",
 };
 
-const HOME_POPULATE_PARAMS: Record<string, string> = {
-  populate: "*",
-};
 
 export const getEntityAttributes = <T>(
   entity: StrapiEntity<T> | T | null | undefined,
@@ -444,22 +441,40 @@ export const mapArticleCard = (article: StrapiArticleLike): ArticleCardData => {
 };
 
 export const getArticleSlugs = async () => {
-  const response = await strapiFetch<StrapiCollectionResponse<StrapiArticle>>(
-    "/api/articles",
-    {
-      "fields[0]": "slug",
-      "filters[stats][$eq]": "published",
-      "pagination[pageSize]": 200,
-    },
-  );
+  const pageSize = 100;
+  const slugs: string[] = [];
+  let page = 1;
 
-  if (!response) {
-    return [];
+  while (true) {
+    const response =
+      await strapiFetch<StrapiCollectionResponse<StrapiArticle>>(
+        "/api/articles",
+        {
+          "fields[0]": "slug",
+          "filters[stats][$eq]": "published",
+          "pagination[page]": page,
+          "pagination[pageSize]": pageSize,
+        },
+      );
+
+    if (!response) {
+      break;
+    }
+
+    slugs.push(
+      ...response.data
+        .map((item) => getEntityAttributes<StrapiArticleAttributes>(item)?.slug)
+        .filter((slug): slug is string => Boolean(slug)),
+    );
+
+    const pageCount = response.meta.pagination?.pageCount ?? 1;
+    if (page >= pageCount) {
+      break;
+    }
+    page += 1;
   }
 
-  return response.data
-    .map((item) => getEntityAttributes<StrapiArticleAttributes>(item)?.slug)
-    .filter((slug): slug is string => Boolean(slug));
+  return slugs;
 };
 
 export const getArticleBySlug = async (
@@ -575,43 +590,9 @@ export const getArticles = async ({
   );
 };
 
-export const getArticlesBySlugs = async (
-  slugs: string[],
-  options?: { includeUnpublished?: boolean },
-) => {
-  const uniqueSlugs = Array.from(
-    new Set(slugs.map((slug) => slug.trim()).filter(Boolean)),
-  );
-  if (!uniqueSlugs.length) {
-    return [];
-  }
-
-  const params: Record<string, string | number | undefined> = {
-    ...ARTICLE_POPULATE_PARAMS,
-    "pagination[pageSize]": uniqueSlugs.length,
-  };
-
-  if (!options?.includeUnpublished) {
-    params["filters[stats][$eq]"] = "published";
-  }
-
-  uniqueSlugs.forEach((slug, index) => {
-    params[`filters[slug][$in][${index}]`] = slug;
-  });
-
-  const response = await strapiFetch<StrapiCollectionResponse<StrapiArticle>>(
-    "/api/articles",
-    params,
-  );
-
-  return response?.data ?? [];
-};
-
 export const getHome = async () => {
-  const response = await strapiFetch<StrapiSingleResponse<StrapiHome>>(
-    "/api/home",
-    HOME_POPULATE_PARAMS,
-  );
+  const response =
+    await strapiFetch<StrapiSingleResponse<StrapiHome>>("/api/home");
 
   if (response) {
     return response.data ?? null;
@@ -626,15 +607,34 @@ export const getHome = async () => {
 };
 
 export const getTags = async () => {
-  const response = await strapiFetch<StrapiCollectionResponse<StrapiTag>>(
-    "/api/tags",
-    {
-      "pagination[pageSize]": 200,
-      "sort[0]": "priority:asc",
-    },
-  );
+  const pageSize = 100;
+  const tags: StrapiTag[] = [];
+  let page = 1;
 
-  return response?.data ?? [];
+  while (true) {
+    const response = await strapiFetch<StrapiCollectionResponse<StrapiTag>>(
+      "/api/tags",
+      {
+        "pagination[page]": page,
+        "pagination[pageSize]": pageSize,
+        "sort[0]": "priority:asc",
+      },
+    );
+
+    if (!response) {
+      break;
+    }
+
+    tags.push(...response.data);
+
+    const pageCount = response.meta.pagination?.pageCount ?? 1;
+    if (page >= pageCount) {
+      break;
+    }
+    page += 1;
+  }
+
+  return tags;
 };
 
 export type TagOption = {

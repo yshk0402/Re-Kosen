@@ -34,7 +34,6 @@ export default factories.createCoreController('api::home.home', () => ({
       },
     };
 
-    // @ts-expect-error Strapi controller typing does not include super
     return await super.find(ctx);
   },
 }));
