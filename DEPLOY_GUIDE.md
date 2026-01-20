@@ -42,6 +42,12 @@
 
 ---
 
+### 1.3 Supabase Storage（画像）を準備
+1. Supabase の「Storage」でバケットを作成（**Public** 推奨）
+2. Storage の設定画面で **S3 endpoint** を確認
+3. **S3 Access Keys** を作成して Access Key / Secret を控える
+4. バケットの **Public URL** を控える（例: `https://<project-ref>.supabase.co/storage/v1/object/public/<bucket>`）
+
 ## Step 2: Railway で Strapi をデプロイ（15分）
 
 ### 2.1 プロジェクト作成
@@ -67,6 +73,13 @@
 | `PREVIEW_URL` | VercelのURL | `https://re-kosen.vercel.app` |
 | `PREVIEW_SECRET` | ランダム文字列 | [生成ツール](https://generate-secret.vercel.app/32) |
 | `NODE_ENV` | `production` | 固定値 |
+| `S3_ENDPOINT` | SupabaseのS3 endpoint | Step 1.3で確認 |
+| `S3_REGION` | Supabaseのリージョン | Step 1.3で確認 |
+| `S3_BUCKET` | バケット名 | Step 1.3で作成 |
+| `S3_ACCESS_KEY_ID` | Access Key | Step 1.3で作成 |
+| `S3_ACCESS_KEY_SECRET` | Secret Key | Step 1.3で作成 |
+| `S3_BASE_URL` | バケットのPublic URL | Step 1.3で確認 |
+| `S3_ACL` | `public-read` | 固定値（公開バケット前提） |
 
 ### 2.3 デプロイを確認
 1. 「Deployments」タブでデプロイ状況を確認
@@ -108,6 +121,7 @@
 | `STRAPI_URL` | RailwayのURL | `https://re-kosen-cms.up.railway.app` |
 | `STRAPI_API_TOKEN` | Step 2.5で作成したトークン | `xxxxxx...` |
 | `NEXT_PUBLIC_SITE_URL` | VercelのURL（後で更新可） | `https://re-kosen.vercel.app` |
+| `NEXT_PUBLIC_MEDIA_URL` | 画像配信URL | `https://<project-ref>.supabase.co/storage/v1/object/public/<bucket>` |
 | `PREVIEW_SECRET` | Strapiと同じ値 | `xxxxxx...` |
 
 ### 3.3 デプロイ
