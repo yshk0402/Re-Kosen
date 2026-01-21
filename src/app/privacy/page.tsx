@@ -9,8 +9,8 @@ export default function PrivacyPage() {
           プライバシーポリシー
         </h1>
       </header>
-      <div className="space-y-6">
-        <section className="rounded-xl border border-border bg-white p-6">
+      <div className="space-y-10">
+        <section className="space-y-2">
           <h2 className="font-display text-lg font-semibold text-ink">
             基本方針
           </h2>
@@ -31,7 +31,7 @@ export default function PrivacyPage() {
           </dl>
         </section>
 
-        <section className="rounded-xl border border-border bg-white p-6">
+        <section className="space-y-2">
           <h2 className="font-display text-lg font-semibold text-ink">
             取得する情報
           </h2>
@@ -50,7 +50,7 @@ export default function PrivacyPage() {
           </ul>
         </section>
 
-        <section className="rounded-xl border border-border bg-white p-6">
+        <section className="space-y-2">
           <h2 className="font-display text-lg font-semibold text-ink">
             利用目的
           </h2>
@@ -62,7 +62,7 @@ export default function PrivacyPage() {
           </ul>
         </section>
 
-        <section className="rounded-xl border border-border bg-white p-6">
+        <section className="space-y-2">
           <h2 className="font-display text-lg font-semibold text-ink">
             第三者提供・委託
           </h2>
@@ -79,7 +79,7 @@ export default function PrivacyPage() {
           </ul>
         </section>
 
-        <section className="rounded-xl border border-border bg-white p-6">
+        <section className="space-y-2">
           <h2 className="font-display text-lg font-semibold text-ink">
             Cookie等の利用
           </h2>
@@ -90,7 +90,7 @@ export default function PrivacyPage() {
           </p>
         </section>
 
-        <section className="rounded-xl border border-border bg-white p-6">
+        <section className="space-y-2">
           <h2 className="font-display text-lg font-semibold text-ink">
             安全管理
           </h2>
@@ -100,7 +100,7 @@ export default function PrivacyPage() {
           </p>
         </section>
 
-        <section className="rounded-xl border border-border bg-white p-6">
+        <section className="space-y-2">
           <h2 className="font-display text-lg font-semibold text-ink">
             開示・訂正・削除等
           </h2>
@@ -110,7 +110,7 @@ export default function PrivacyPage() {
           </p>
         </section>
 
-        <section className="rounded-xl border border-border bg-white p-6">
+        <section className="space-y-2">
           <h2 className="font-display text-lg font-semibold text-ink">
             お問い合わせ窓口
           </h2>
@@ -126,7 +126,7 @@ export default function PrivacyPage() {
           </dl>
         </section>
 
-        <section className="rounded-xl border border-border bg-white p-6">
+        <section className="space-y-2">
           <h2 className="font-display text-lg font-semibold text-ink">改定</h2>
           <p className="mt-2 text-sm text-muted">
             本ポリシーの内容は適宜見直し、重要な変更がある場合は当サイト上で

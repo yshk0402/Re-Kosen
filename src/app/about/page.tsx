@@ -9,8 +9,8 @@ export default function AboutPage() {
           高専ジョブについて
         </h1>
       </header>
-      <div className="space-y-6">
-        <section className="rounded-xl border border-border bg-white p-6">
+      <div className="space-y-10">
+        <section className="space-y-2">
           <h2 className="font-display text-lg font-semibold text-ink">
             運営概要
           </h2>
@@ -20,7 +20,7 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <section className="rounded-xl border border-border bg-white p-6">
+        <section className="space-y-2">
           <h2 className="font-display text-lg font-semibold text-ink">
             編集方針
           </h2>
@@ -36,7 +36,7 @@ export default function AboutPage() {
           </ul>
         </section>
 
-        <section className="rounded-xl border border-border bg-white p-6">
+        <section className="space-y-2">
           <h2 className="font-display text-lg font-semibold text-ink">
             正確性と更新
           </h2>
@@ -46,7 +46,7 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <section className="rounded-xl border border-border bg-white p-6">
+        <section className="space-y-2">
           <h2 className="font-display text-lg font-semibold text-ink">
             広告・タイアップ
           </h2>
@@ -57,7 +57,7 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <section className="rounded-xl border border-border bg-white p-6">
+        <section className="space-y-2">
           <h2 className="font-display text-lg font-semibold text-ink">
             運営者情報
           </h2>
