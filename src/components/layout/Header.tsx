@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -22,10 +23,17 @@ export default function Header() {
     <header className="sticky top-0 z-30 border-b border-border/70 bg-white/90 backdrop-blur">
       <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-4 py-4">
         <Link
-          className="text-lg font-semibold tracking-[0.08em] text-ink"
+          className="flex items-center"
           href="/"
         >
-          Re:Kosen
+          <Image
+            alt="Re:Kosen"
+            className="h-7 w-auto"
+            height={28}
+            priority
+            src="/icon.png"
+            width={82}
+          />
         </Link>
         <nav className="hidden items-center gap-6 text-sm font-medium text-muted lg:flex">
           {navItems.map((item) => {

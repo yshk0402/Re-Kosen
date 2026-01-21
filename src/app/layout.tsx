@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   },
   description: "高専生向けキャリアメディア。業界研究、企業研究、キャリア設計の情報を発信。",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://re-kosen.vercel.app"),
+  icons: {
+    icon: "/favicon.png",
+  },
   openGraph: {
     title: "Re:Kosen",
     description: "高専生向けキャリアメディア",

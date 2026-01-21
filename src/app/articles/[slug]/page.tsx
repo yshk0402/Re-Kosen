@@ -262,6 +262,7 @@ export async function generateMetadata({
   const title = seo?.metaTitle ?? attributes.title;
   const description = seo?.metaDescription ?? attributes.excerpt ?? undefined;
   const ogImage = resolveMediaUrl(seo?.ogImage ?? attributes.coverImage);
+  const socialImages = ogImage ? [{ url: ogImage, alt: title }] : undefined;
 
   return {
     title,
@@ -272,7 +273,13 @@ export async function generateMetadata({
       title,
       description,
       type: "article",
-      images: ogImage ? [{ url: ogImage }] : undefined,
+      images: socialImages,
+    },
+    twitter: {
+      card: ogImage ? "summary_large_image" : "summary",
+      title,
+      description,
+      images: ogImage ? [ogImage] : undefined,
     },
   };
 }

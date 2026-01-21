@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const footerColumns = [
@@ -47,10 +48,23 @@ export default function Footer() {
           </div>
           <div className="flex flex-col gap-4">
             <p className="text-xs uppercase tracking-[0.3em] text-white/70">
-              Re:Kosen
+              <Image
+                alt=""
+                aria-hidden="true"
+                className="block h-4 w-auto"
+                height={16}
+                src="/icon.png"
+                width={47}
+              />
             </p>
             <div className="text-3xl font-semibold tracking-[0.08em] text-white">
-              Re:Kosen
+              <Image
+                alt="Re:Kosen"
+                className="block h-10 w-auto"
+                height={40}
+                src="/icon.png"
+                width={116}
+              />
             </div>
             <p className="text-sm text-white/70">
               高専生の進路選択を支えるキャリアメディア。
