@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 const GOOGLE_FORM_URL = process.env.NEXT_PUBLIC_GOOGLE_FORM_URL || "#";
+const LINE_URL = "https://lin.ee/46Ad4lO";
 
 export default function ContactPage() {
   return (
@@ -13,7 +14,7 @@ export default function ContactPage() {
           お問い合わせ
         </h1>
         <p className="text-sm text-muted sm:text-base">
-          Re:Kosenへのお問い合わせは、以下のフォームよりお願いいたします。
+          高専ジョブへのお問い合わせは、以下のフォームよりお願いいたします。
         </p>
       </header>
 
@@ -26,10 +27,10 @@ export default function ContactPage() {
             進路相談、記事へのご意見・ご要望、取材のご依頼など、お気軽にお問い合わせください。
           </p>
           <Link
-            href={GOOGLE_FORM_URL}
+            href={LINE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-ink/90"
+            className="mt-4 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-strong"
           >
             お問い合わせフォーム
             <svg

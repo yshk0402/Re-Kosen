@@ -15,7 +15,7 @@ type ArticleListItem = {
 export const articleMeta = {
   eyebrow: "Articles",
   title: "記事一覧",
-  description: "Re:Kosenで公開している記事をまとめて確認できます。",
+  description: "高専ジョブで公開している記事をまとめて確認できます。",
   basePath: "/article",
 };
 

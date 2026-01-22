@@ -13,7 +13,7 @@ const navItems = [
   { href: "/about", label: "運営について" },
 ];
 
-const LINE_FALLBACK_URL = "https://example.com";
+const LINE_URL = "https://lin.ee/FpUh8Cfy";
 
 export default function Header() {
   const pathname = usePathname();
@@ -27,7 +27,7 @@ export default function Header() {
           href="/"
         >
           <Image
-            alt="Re:Kosen"
+            alt="高専ジョブ"
             className="h-7 w-auto"
             height={28}
             priority
@@ -55,7 +55,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <Link
             className="hidden rounded-full bg-brand px-4 py-2 text-xs font-semibold text-white transition hover:bg-brand-strong lg:inline-flex"
-            href={LINE_FALLBACK_URL}
+            href={LINE_URL}
             rel="noreferrer"
             target="_blank"
           >
@@ -96,7 +96,7 @@ export default function Header() {
             })}
             <Link
               className="mt-2 inline-flex w-fit rounded-full bg-brand px-4 py-2 text-xs font-semibold text-white"
-              href={LINE_FALLBACK_URL}
+              href={LINE_URL}
               rel="noreferrer"
               target="_blank"
               onClick={() => setMenuOpen(false)}

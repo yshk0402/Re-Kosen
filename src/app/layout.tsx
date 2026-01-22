@@ -8,8 +8,8 @@ const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 export const metadata: Metadata = {
   title: {
-    default: "Re:Kosen",
-    template: "%s | Re:Kosen",
+    default: "高専ジョブ",
+    template: "%s | 高専ジョブ",
   },
   description: "高専生向けキャリアメディア。業界研究、企業研究、キャリア設計の情報を発信。",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://re-kosen.vercel.app"),
@@ -20,11 +20,11 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Re:Kosen",
+    title: "高専ジョブ",
     description: "高専生向けキャリアメディア",
     type: "website",
     locale: "ja_JP",
-    siteName: "Re:Kosen",
+    siteName: "高専ジョブ",
   },
   twitter: {
     card: "summary_large_image",

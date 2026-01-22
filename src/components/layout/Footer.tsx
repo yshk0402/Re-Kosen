@@ -59,7 +59,7 @@ export default function Footer() {
             </p>
             <div className="text-3xl font-semibold tracking-[0.08em] text-white">
               <Image
-                alt="Re:Kosen"
+                alt="高専ジョブ"
                 className="block h-10 w-auto"
                 height={40}
                 src="/icon.png"
@@ -72,7 +72,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-10 text-xs text-white/50">
-          © 2026 Re:Kosen. All rights reserved.
+          © 2026 高専ジョブ. All rights reserved.
         </div>
       </div>
     </footer>
