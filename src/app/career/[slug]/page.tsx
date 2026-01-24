@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import ArticleCard from "@/components/ui/ArticleCard";
+import ArticleGridWithMore from "@/components/ui/ArticleGridWithMore";
 import Pagination from "@/components/ui/Pagination";
 import TagFilter from "@/components/ui/TagFilter";
 import {
@@ -63,7 +64,7 @@ export default async function CareerTagPage({
       </header>
 
       {articles.length ? (
-        <div className="grid gap-5 lg:grid-cols-3 [&>*:nth-child(n+6)]:hidden lg:[&>*:nth-child(n+6)]:grid lg:[&>*:nth-child(n+16)]:hidden">
+        <ArticleGridWithMore itemCount={articles.length}>
           {articles.map((article) => {
             const card = mapArticleCard(article);
             return (
@@ -78,7 +79,7 @@ export default async function CareerTagPage({
               />
             );
           })}
-        </div>
+        </ArticleGridWithMore>
       ) : (
         <div className="rounded-xl border border-border bg-white p-6 text-sm text-muted">
           該当の記事は準備中です。
