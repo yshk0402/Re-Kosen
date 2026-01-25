@@ -3,9 +3,9 @@
 import { useState, type ReactNode } from "react";
 
 const MOBILE_VISIBLE_COUNT = 5;
-const DESKTOP_VISIBLE_COUNT = 15;
+const DESKTOP_VISIBLE_COUNT = 9;
 const COLLAPSED_CLASSES =
-  "[&>*:nth-child(n+6)]:hidden lg:[&>*:nth-child(n+16)]:hidden";
+  "[&>*:nth-child(n+6)]:hidden lg:[&>*:nth-child(n+6)]:grid lg:[&>*:nth-child(n+10)]:hidden";
 
 type ArticleGridWithMoreProps = {
   itemCount: number;
