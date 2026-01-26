@@ -32,41 +32,47 @@ export default function CompanyMeetupLandingPage() {
           </a>
         </header>
 
-        <section className="mt-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="space-y-6">
-            <div className="space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1A54C0]">
-                Company Meetup
-              </p>
-              <h1 className="text-3xl font-bold leading-tight text-[#1A2B4C] sm:text-5xl">
-                高専生との少人数交流会
-                <br />
-                参加企業を募集しています
-              </h1>
-              <p className="text-base text-[#3B4A68] sm:text-lg">
-                採用前提なし。業界・職種不問。<br />
-                <span className={`${marker} ${markerAfter}`}>
-                  仕事観・意思決定について対話する交流会
-                </span>
-                です。
-              </p>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-3">
-              {[
-                "説明会・選考ではありません",
-                "スライド・資料は不要です",
-                "若手社員の参加も歓迎します",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-2xl border border-dashed border-[#1A54C0] px-4 py-3 text-sm font-semibold text-[#1A2B4C]"
-                >
-                  {item}
-                </div>
-              ))}
-            </div>
+        <section className="mt-10 space-y-6">
+          <div className="space-y-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1A54C0]">
+              Company Meetup
+            </p>
+            <h1 className="text-3xl font-bold leading-tight text-[#1A2B4C] sm:text-5xl">
+              高専生との少人数交流会
+              <br />
+              参加企業を募集しています
+            </h1>
+            <p className="text-base text-[#3B4A68] sm:text-lg">
+              採用前提なし。業界・職種不問。
+              <span className={`${marker} ${markerAfter}`}>
+                仕事観・意思決定について対話する交流会
+              </span>
+              です。
+            </p>
           </div>
+          <a
+            href={ctaHref}
+            className="inline-flex w-full items-center justify-center rounded-full bg-[#1A54C0] px-6 py-3 text-sm font-semibold text-white sm:w-auto"
+          >
+            ▶ 交流会に参加する
+          </a>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {[
+              "説明会・選考ではありません",
+              "スライド・資料は不要です",
+              "若手社員の参加も歓迎します",
+            ].map((item) => (
+              <div
+                key={item}
+                className="rounded-2xl border border-dashed border-[#1A54C0] px-4 py-3 text-sm font-semibold text-[#1A2B4C]"
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+        </section>
 
+        <section className="mt-12 grid gap-6 lg:grid-cols-2">
           <div className="rounded-3xl border border-dashed border-[#1A54C0] bg-white p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1A54C0]">
               交流会の概要
@@ -85,18 +91,15 @@ export default function CompanyMeetupLandingPage() {
                 履歴書提出・選考誘導は一切なし
               </li>
             </ul>
-            <div className="mt-6 rounded-2xl bg-[#F3F7FF] p-4 text-sm text-[#1A2B4C]">
-              <p className="font-semibold">話題例（自由）</p>
-              <p className="mt-2 text-[#3B4A68]">
-                なぜ今の仕事を選んだのか / 働く中で価値観が変わった経験
-              </p>
-            </div>
-            <a
-              href={ctaHref}
-              className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#1A54C0] px-6 py-3 text-sm font-semibold text-white"
-            >
-              ▶ 交流会に参加する
-            </a>
+          </div>
+          <div className="rounded-3xl border border-dashed border-[#1A54C0] bg-[#F3F7FF] p-6 text-sm text-[#1A2B4C]">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1A54C0]">
+              話題例（自由）
+            </p>
+            <p className="mt-3 font-semibold">なぜ今の仕事を選んだのか</p>
+            <p className="mt-2 text-[#3B4A68]">
+              働く中で価値観が変わった経験 など
+            </p>
           </div>
         </section>
 
