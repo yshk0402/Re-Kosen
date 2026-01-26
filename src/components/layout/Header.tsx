@@ -19,6 +19,10 @@ export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  if (pathname === "/1" || pathname.startsWith("/1/")) {
+    return null;
+  }
+
   return (
     <header className="sticky top-0 z-30 border-b border-border/70 bg-white/90 backdrop-blur">
       <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-4 py-4">
