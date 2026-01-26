@@ -162,7 +162,7 @@ export default function CompanyMeetupLandingPage() {
       </div>
 
       <div className="mx-auto flex w-full max-w-[980px] flex-col gap-16 px-5 pb-20 pt-14 font-[var(--lp-body)] sm:px-8">
-        <header className="rounded-[28px] border border-[var(--lp-border)] bg-white/70 p-8 text-center shadow-[0_25px_80px_rgba(32,29,24,0.12)] backdrop-blur sm:p-12">
+        <header className="min-h-screen border-b border-[var(--lp-border)] py-14 text-center sm:py-20">
           <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[var(--lp-teal)]">
             交流会プログラム
           </p>
@@ -186,7 +186,7 @@ export default function CompanyMeetupLandingPage() {
             {keyBullets.map((item) => (
               <div
                 key={item}
-                className="rounded-full border border-[var(--lp-border)] bg-white/80 px-4 py-2"
+                className="border-b border-[var(--lp-border)] px-4 py-2"
               >
                 {item}
               </div>
@@ -194,7 +194,7 @@ export default function CompanyMeetupLandingPage() {
           </div>
         </header>
 
-        <section className="text-center">
+        <section className="min-h-screen border-b border-[var(--lp-border)] py-14 text-center sm:py-20">
           <p className="text-sm font-semibold text-[var(--lp-ember)]">
             交流会でよくある課題
           </p>
@@ -205,9 +205,9 @@ export default function CompanyMeetupLandingPage() {
             {painPoints.map((item) => (
               <div
                 key={item.title}
-                className="rounded-[24px] border border-[var(--lp-border)] bg-white/80 px-4 py-6 text-sm shadow-[0_20px_50px_rgba(32,29,24,0.08)]"
+                className="border-b border-[var(--lp-border)] px-4 py-6 text-sm"
               >
-                <div className="mx-auto mb-4 h-12 w-12 rounded-full border border-[var(--lp-border)] bg-[rgba(155,178,155,0.25)]" />
+                <div className="mx-auto mb-4 h-12 w-12 border border-[var(--lp-border)] bg-[rgba(155,178,155,0.25)]" />
                 <p className="font-semibold text-[var(--lp-ink)]">
                   {item.title}
                 </p>
@@ -219,7 +219,7 @@ export default function CompanyMeetupLandingPage() {
           </div>
         </section>
 
-        <section className="rounded-[28px] border border-[var(--lp-border)] bg-white/70 p-8 shadow-[0_25px_70px_rgba(32,29,24,0.1)]">
+        <section className="min-h-screen border-b border-[var(--lp-border)] py-14 sm:py-20">
           <div className="text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[var(--lp-teal)]">
               Features
@@ -232,7 +232,7 @@ export default function CompanyMeetupLandingPage() {
             {features.map((item) => (
               <div
                 key={item.title}
-                className="rounded-[22px] border border-[var(--lp-border)] bg-white/90 p-6 shadow-[0_18px_40px_rgba(32,29,24,0.08)]"
+                className="border-b border-[var(--lp-border)] p-6"
               >
                 <p className="text-base font-semibold text-[var(--lp-ink)]">
                   {item.title}
@@ -245,7 +245,7 @@ export default function CompanyMeetupLandingPage() {
           </div>
         </section>
 
-        <section className="text-center">
+        <section className="min-h-screen border-b border-[var(--lp-border)] py-14 text-center sm:py-20">
           <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[var(--lp-ember)]">
             Results
           </p>
@@ -256,7 +256,7 @@ export default function CompanyMeetupLandingPage() {
             {metrics.map((item) => (
               <div
                 key={item.label}
-                className="rounded-[20px] border border-[var(--lp-border)] bg-white/90 p-5"
+                className="border-b border-[var(--lp-border)] p-5"
               >
                 <p className="text-xs text-[var(--lp-ink-soft)]">{item.label}</p>
                 <p className="mt-2 text-2xl font-semibold text-[var(--lp-ink)]">
@@ -270,7 +270,7 @@ export default function CompanyMeetupLandingPage() {
           </div>
         </section>
 
-        <section className="rounded-[28px] border border-[var(--lp-border)] bg-white/70 p-8 text-center shadow-[0_25px_70px_rgba(32,29,24,0.1)]">
+        <section className="min-h-screen border-b border-[var(--lp-border)] py-14 text-center sm:py-20">
           <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[var(--lp-teal)]">
             Clients
           </p>
@@ -281,7 +281,7 @@ export default function CompanyMeetupLandingPage() {
             {logos.map((logo) => (
               <div
                 key={logo}
-                className="rounded-full border border-[var(--lp-border)] bg-white/90 px-4 py-2"
+                className="border-b border-[var(--lp-border)] px-4 py-2"
               >
                 {logo}
               </div>
@@ -289,7 +289,7 @@ export default function CompanyMeetupLandingPage() {
           </div>
         </section>
 
-        <section className="rounded-[28px] border border-[var(--lp-border)] bg-white/70 p-8 shadow-[0_25px_70px_rgba(32,29,24,0.1)]">
+        <section className="min-h-screen border-b border-[var(--lp-border)] py-14 sm:py-20">
           <div className="text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[var(--lp-ember)]">
               Pricing
@@ -302,10 +302,10 @@ export default function CompanyMeetupLandingPage() {
             {plans.map((plan, index) => (
               <div
                 key={plan.name}
-                className={`rounded-[22px] border border-[var(--lp-border)] p-6 shadow-[0_18px_40px_rgba(32,29,24,0.08)] ${
+                className={`border-b border-[var(--lp-border)] p-6 ${
                   index === 1
                     ? "bg-[var(--lp-teal)] text-white"
-                    : "bg-white/90 text-[var(--lp-ink)]"
+                    : "text-[var(--lp-ink)]"
                 }`}
               >
                 <p className="text-sm font-semibold uppercase tracking-[0.3em]">
@@ -327,7 +327,7 @@ export default function CompanyMeetupLandingPage() {
           </div>
         </section>
 
-        <section>
+        <section className="min-h-screen border-b border-[var(--lp-border)] py-14 sm:py-20">
           <div className="text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[var(--lp-teal)]">
               Team
@@ -342,11 +342,11 @@ export default function CompanyMeetupLandingPage() {
               return (
                 <div
                   key={member.name}
-                  className="grid items-center gap-6 rounded-[26px] border border-[var(--lp-border)] bg-white/80 p-6 shadow-[0_20px_50px_rgba(32,29,24,0.08)] sm:grid-cols-[1.2fr_0.8fr]"
+                  className="grid items-center gap-6 border-b border-[var(--lp-border)] p-6 sm:grid-cols-[1.2fr_0.8fr]"
                 >
                   <div className={isReversed ? "sm:order-2" : ""}>
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--lp-ember)]">
-                    {member.role}
+                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--lp-ember)]">
+                      {member.role}
                   </p>
                   <h3 className="mt-2 text-lg font-semibold text-[var(--lp-ink)]">
                     {member.name}
@@ -356,7 +356,7 @@ export default function CompanyMeetupLandingPage() {
                   </p>
                 </div>
                 <div
-                  className={`h-44 w-full rounded-[20px] border border-[var(--lp-border)] bg-[linear-gradient(135deg,rgba(155,178,155,0.35),rgba(224,139,99,0.35))] ${
+                  className={`h-44 w-full border border-[var(--lp-border)] bg-[linear-gradient(135deg,rgba(155,178,155,0.35),rgba(224,139,99,0.35))] ${
                     isReversed ? "sm:order-1" : ""
                   }`}
                 />
@@ -366,7 +366,7 @@ export default function CompanyMeetupLandingPage() {
           </div>
         </section>
 
-        <section className="rounded-[28px] border border-[var(--lp-border)] bg-white/80 p-8 shadow-[0_25px_70px_rgba(32,29,24,0.12)]">
+        <section className="min-h-screen border-b border-[var(--lp-border)] py-14 sm:py-20">
           <div className="text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[var(--lp-ember)]">
               Contact
@@ -394,7 +394,7 @@ export default function CompanyMeetupLandingPage() {
                 <label key={label} className="block text-xs text-[var(--lp-ink-soft)]">
                   {label}
                   <input
-                    className="mt-2 w-full rounded-full border border-[var(--lp-border)] bg-white/90 px-4 py-2 text-sm text-[var(--lp-ink)]"
+                    className="mt-2 w-full border-b border-[var(--lp-border)] bg-transparent px-1 py-2 text-sm text-[var(--lp-ink)]"
                     placeholder={label}
                   />
                 </label>
@@ -402,12 +402,12 @@ export default function CompanyMeetupLandingPage() {
               <label className="block text-xs text-[var(--lp-ink-soft)]">
                 相談内容
                 <textarea
-                  className="mt-2 min-h-[120px] w-full rounded-[18px] border border-[var(--lp-border)] bg-white/90 px-4 py-3 text-sm text-[var(--lp-ink)]"
+                  className="mt-2 min-h-[120px] w-full border-b border-[var(--lp-border)] bg-transparent px-1 py-3 text-sm text-[var(--lp-ink)]"
                   placeholder="採用課題や交流会の目的など"
                 />
               </label>
               <Link
-                className="block rounded-full bg-[var(--lp-teal)] px-6 py-3 text-center text-sm font-semibold text-white shadow-[0_12px_30px_rgba(13,76,92,0.35)] transition hover:-translate-y-0.5 hover:bg-[#0a3d4a]"
+                className="block border border-[var(--lp-teal)] px-6 py-3 text-center text-sm font-semibold text-[var(--lp-teal)] transition hover:-translate-y-0.5 hover:bg-[rgba(13,76,92,0.08)]"
                 href={GOOGLE_FORMS_URL}
                 rel="noreferrer"
                 target="_blank"
@@ -418,7 +418,7 @@ export default function CompanyMeetupLandingPage() {
           </div>
         </section>
 
-        <section className="rounded-[32px] border border-[var(--lp-border)] bg-[var(--lp-teal)] px-8 py-10 text-white shadow-[0_30px_80px_rgba(13,76,92,0.35)]">
+        <section className="min-h-screen border-b border-[var(--lp-border)] bg-[var(--lp-teal)] px-8 py-14 text-white sm:py-20">
           <div className="text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.4em] text-white/70">
               Get in Touch
