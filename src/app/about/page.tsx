@@ -52,7 +52,7 @@ export default function AboutPage() {
           </h2>
           <p className="mt-2 text-sm text-muted">
             広告・タイアップ・アフィリエイトの実施有無は
-            {"{{TODO: 未確定}}"}です。実施する場合は記事内に明記し、編集内容は
+            有りです。実施する場合は記事内に明記し、編集内容は
             運営方針に基づき独立して判断します。
           </p>
         </section>
@@ -64,15 +64,17 @@ export default function AboutPage() {
           <dl className="mt-3 grid gap-3 text-sm text-muted">
             <div className="grid gap-1 sm:grid-cols-[120px_1fr]">
               <dt className="font-semibold text-ink">運営者</dt>
-              <dd>{"{{TODO: 運営者名}}"}</dd>
+              <dd>佐藤善彦</dd>
             </div>
             <div className="grid gap-1 sm:grid-cols-[120px_1fr]">
               <dt className="font-semibold text-ink">所在地</dt>
-              <dd>{"{{TODO: 所在地}}"}</dd>
+              <dd>請求をいただければ遅滞なく開示いたします。</dd>
             </div>
             <div className="grid gap-1 sm:grid-cols-[120px_1fr]">
               <dt className="font-semibold text-ink">連絡先</dt>
-              <dd>{"{{TODO: 連絡先}}"}</dd>
+              <dd>
+                メール（y.sugar0402@gmail.com）電話（請求をいただければ遅滞なく開示いたします。）
+              </dd>
             </div>
           </dl>
         </section>

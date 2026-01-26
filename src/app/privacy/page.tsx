@@ -22,7 +22,7 @@ export default function PrivacyPage() {
           <dl className="mt-4 grid gap-3 text-sm text-muted">
             <div className="grid gap-1 sm:grid-cols-[120px_1fr]">
               <dt className="font-semibold text-ink">制定日</dt>
-              <dd>{"{{TODO: YYYY-MM-DD}}"}</dd>
+              <dd>2026/01/25</dd>
             </div>
             <div className="grid gap-1 sm:grid-cols-[120px_1fr]">
               <dt className="font-semibold text-ink">最終改定日</dt>
@@ -72,10 +72,10 @@ export default function PrivacyPage() {
             監督します。
           </p>
           <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-muted">
-            <li>ホスティング：{"{{TODO: 事業者名}}"}</li>
-            <li>CMS/メディア管理：{"{{TODO: 事業者名}}"}</li>
-            <li>アクセス解析：{"{{TODO: 事業者名}}"}</li>
-            <li>お問い合わせフォーム：{"{{TODO: 事業者名}}"}</li>
+            <li>ホスティング：Vercel</li>
+            <li>CMS/メディア管理：佐藤善彦</li>
+            <li>アクセス解析：GA4</li>
+            <li>お問い合わせフォーム：Google Form</li>
           </ul>
         </section>
 
@@ -86,7 +86,7 @@ export default function PrivacyPage() {
           <p className="mt-2 text-sm text-muted">
             当サイトはCookie等を利用する場合があります。ブラウザ設定で無効化
             できますが、機能に影響が出る場合があります。
-            （{"{{TODO: Cookie同意取得の有無}}"}）
+            （同意取得は行っていません）
           </p>
         </section>
 
@@ -106,7 +106,7 @@ export default function PrivacyPage() {
           </h2>
           <p className="mt-2 text-sm text-muted">
             ご本人からの開示・訂正・削除・利用停止等のご請求は、
-            {"{{TODO: 受付窓口}}"}にて受け付けます。
+            contactページにて受け付けます。
           </p>
         </section>
 
@@ -117,11 +117,13 @@ export default function PrivacyPage() {
           <dl className="mt-3 grid gap-3 text-sm text-muted">
             <div className="grid gap-1 sm:grid-cols-[120px_1fr]">
               <dt className="font-semibold text-ink">運営者</dt>
-              <dd>{"{{TODO: 運営者名}}"}</dd>
+              <dd>佐藤善彦</dd>
             </div>
             <div className="grid gap-1 sm:grid-cols-[120px_1fr]">
               <dt className="font-semibold text-ink">連絡先</dt>
-              <dd>{"{{TODO: 連絡先}}"}</dd>
+              <dd>
+                メール（y.sugar0402@gmail.com）電話（請求をいただければ遅滞なく開示いたします。）
+              </dd>
             </div>
           </dl>
         </section>
