@@ -86,7 +86,8 @@ export const renderMarkdown = (
 
   const tokens = marked.lexer(markdown);
   const headingTokens = tokens.filter(
-    (token): token is marked.Tokens.Heading => token.type === "heading",
+    (token): token is { type: "heading"; depth?: number; text?: string } =>
+      token.type === "heading",
   );
 
   const headingIds: string[] = [];
