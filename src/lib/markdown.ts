@@ -85,20 +85,18 @@ export const renderMarkdown = (
   }
 
   const tokens = marked.lexer(markdown);
-  const headingTokens = tokens.filter(
-    (token): token is { type: "heading"; depth?: number; text?: string } =>
-      token.type === "heading",
-  );
+  const headingTokens = tokens.filter((token) => token.type === "heading");
 
   const headingIds: string[] = [];
   const headings: MarkdownHeading[] = headingTokens.map((token, index) => {
-    const text = normalizeHeadingText(token.text ?? "");
+    const headingToken = token as { depth?: number; text?: string };
+    const text = normalizeHeadingText(headingToken.text ?? "");
     const id = createAnchor(text, `md-section-${index + 1}`);
     headingIds.push(id);
     return {
       id,
       text: text || `Section ${index + 1}`,
-      level: normalizeHeadingLevel(token.depth ?? 2),
+      level: normalizeHeadingLevel(headingToken.depth ?? 2),
     };
   });
 
