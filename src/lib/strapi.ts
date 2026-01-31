@@ -70,6 +70,11 @@ export type RichTextBlock = {
   content?: unknown;
 };
 
+export type MarkdownBlock = {
+  __component: "article.markdown";
+  content?: string | null;
+};
+
 export type SummaryCardBlock = {
   __component: "article.summary-card";
   title?: string | null;
@@ -144,6 +149,7 @@ export type ImageBlock = {
 export type ArticleBlock =
   | HeadingBlock
   | RichTextBlock
+  | MarkdownBlock
   | SummaryCardBlock
   | CalloutBlock
   | ProsConsBlock

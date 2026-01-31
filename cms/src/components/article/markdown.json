@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_article_markdowns",
+  "info": {
+    "displayName": "Markdown"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "text",
+      "required": true
+    }
+  },
+  "config": {}
+}

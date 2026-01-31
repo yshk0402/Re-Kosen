@@ -7,6 +7,7 @@ import ArticleImage from "@/components/article/ArticleImage";
 import Callout from "@/components/article/Callout";
 import ComparisonTable from "@/components/article/ComparisonTable";
 import LinkCards from "@/components/article/LinkCards";
+import Markdown from "@/components/article/Markdown";
 import ProsCons from "@/components/article/ProsCons";
 import RelatedArticles from "@/components/article/RelatedArticles";
 import RichText from "@/components/article/RichText";
@@ -14,7 +15,6 @@ import SummaryCard from "@/components/article/SummaryCard";
 import TOC, { type TocItem } from "@/components/article/TOC";
 import StrapiPreviewBridge from "@/components/preview/StrapiPreviewBridge";
 import {
-  type ArticleBlock,
   type ArticleCardData,
   type ArticleCategory,
   type ComparisonTableBlock,
@@ -37,6 +37,7 @@ import {
   resolveMediaUrl,
   scoreRelatedArticles,
 } from "@/lib/strapi";
+import { renderMarkdown, type MarkdownRenderResult } from "@/lib/markdown";
 import { strapiBlocksToHtml, strapiBlocksToPlainText } from "@/lib/strapiBlocks";
 
 type ArticlePageProps = {
@@ -54,9 +55,6 @@ const categoryLabels: Record<ArticleCategory, string> = {
   company: "企業研究",
   career: "キャリア設計",
 };
-
-const isHeadingBlock = (block: ArticleBlock): block is HeadingBlock =>
-  block.__component === "article.heading";
 
 const createAnchorId = (text: string, fallback: string) => {
   const slug = text
@@ -307,7 +305,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     (block) => block.__component !== "article.summary-card",
   );
 
-  const headingBlocks = contentBlocks.filter(isHeadingBlock);
   const resolveHeadingText = (block: HeadingBlock, index: number) =>
     block.text ?? block.title ?? `Section ${index + 1}`;
   const resolveHeadingLevel = (
@@ -324,22 +321,65 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     }
     return null;
   };
-  const headingAnchors = headingBlocks.map((block, index) =>
-    block.anchor ??
-    createAnchorId(resolveHeadingText(block, index), `section-${index + 1}`),
-  );
-  const tocItems: TocItem[] = headingBlocks.flatMap((block, index) => {
-    const level = resolveHeadingLevel(block.level);
-    if (level !== 2 && level !== 3) {
-      return [];
+  const usedAnchors = new Set<string>();
+  contentBlocks.forEach((block) => {
+    if (block.__component === "article.heading" && block.anchor) {
+      usedAnchors.add(block.anchor);
     }
-    return [
-      {
-        id: headingAnchors[index],
-        text: resolveHeadingText(block, index),
-        level,
-      },
-    ];
+  });
+  const createUniqueAnchor = (text: string, fallback: string) => {
+    const base = createAnchorId(text, fallback);
+    let anchor = base;
+    let suffix = 2;
+    while (usedAnchors.has(anchor)) {
+      anchor = `${base}-${suffix}`;
+      suffix += 1;
+    }
+    usedAnchors.add(anchor);
+    return anchor;
+  };
+
+  const headingInfoByIndex = new Map<
+    number,
+    { text: string; level: 2 | 3 | 4; anchor: string }
+  >();
+  const markdownByIndex = new Map<number, MarkdownRenderResult>();
+  const tocItems: TocItem[] = [];
+  let headingCounter = 0;
+
+  contentBlocks.forEach((block, index) => {
+    if (block.__component === "article.heading") {
+      const text = resolveHeadingText(block, headingCounter);
+      const level = resolveHeadingLevel(block.level) ?? 2;
+      const anchor =
+        block.anchor ?? createUniqueAnchor(text, `section-${headingCounter + 1}`);
+
+      headingInfoByIndex.set(index, { text, level, anchor });
+
+      if (level === 2 || level === 3) {
+        tocItems.push({ id: anchor, text, level });
+      }
+
+      headingCounter += 1;
+      return;
+    }
+
+    if (block.__component === "article.markdown") {
+      const content = block.content ?? "";
+      const rendered = renderMarkdown(content, createUniqueAnchor);
+      if (rendered.html) {
+        markdownByIndex.set(index, rendered);
+      }
+      rendered.headings.forEach((heading) => {
+        if (heading.level === 2 || heading.level === 3) {
+          tocItems.push({
+            id: heading.id,
+            text: heading.text,
+            level: heading.level,
+          });
+        }
+      });
+    }
   });
 
   const coverImageUrl = resolveMediaUrl(attributes.coverImage ?? undefined);
@@ -357,13 +397,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     attributes.category in categoryLabels
       ? categoryLabels[attributes.category as ArticleCategory]
       : attributes.category;
-
-  const headingOrderByContentIndex = new Map<number, number>();
-  contentBlocks.forEach((block, index) => {
-    if (block.__component === "article.heading") {
-      headingOrderByContentIndex.set(index, headingOrderByContentIndex.size);
-    }
-  });
 
   return (
     <article className="mx-auto w-full max-w-[1200px] space-y-8 px-4 py-10">
@@ -410,12 +443,15 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <section className="space-y-6">
         {contentBlocks.map((block, index) => {
           if (block.__component === "article.heading") {
-            const level = resolveHeadingLevel(block.level) ?? 2;
-            const headingIndex = headingOrderByContentIndex.get(index) ?? 0;
-            const anchor = headingAnchors[headingIndex] ?? `section-${headingIndex + 1}`;
+            const info = headingInfoByIndex.get(index);
+            const level = info?.level ?? resolveHeadingLevel(block.level) ?? 2;
+            const anchor =
+              info?.anchor ??
+              block.anchor ??
+              createAnchorId(resolveHeadingText(block, 0), `section-${index + 1}`);
             const HeadingTag =
               level === 2 ? "h2" : level === 3 ? "h3" : "h4";
-            const headingText = resolveHeadingText(block, headingIndex);
+            const headingText = info?.text ?? resolveHeadingText(block, 0);
 
             return (
               <HeadingTag
@@ -434,6 +470,16 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 key={`${block.__component}-${index}`}
                 content={resolveRichTextContent(block)}
               />
+            );
+          }
+
+          if (block.__component === "article.markdown") {
+            const rendered = markdownByIndex.get(index);
+            if (!rendered?.html) {
+              return null;
+            }
+            return (
+              <Markdown key={`${block.__component}-${index}`} html={rendered.html} />
             );
           }
 

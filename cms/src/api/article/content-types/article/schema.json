@@ -76,6 +76,7 @@
         "article.summary-card",
         "article.seo",
         "article.rich-text",
+        "article.markdown",
         "article.pros-con",
         "article.link-card",
         "article.link-card-item",
