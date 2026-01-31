@@ -60,8 +60,6 @@ const normalizeHeadingLevel = (level: number): 2 | 3 | 4 => {
 const normalizeHeadingText = (value: string) => {
   const parsed = marked.parseInline(value, {
     gfm: true,
-    mangle: false,
-    headerIds: false,
   });
   const html = typeof parsed === "string" ? parsed : value;
   return stripHtml(html).replace(/\s+/g, " ").trim();
@@ -118,8 +116,6 @@ export const renderMarkdown = (
     renderer,
     gfm: true,
     breaks: true,
-    mangle: false,
-    headerIds: false,
   });
 
   const html = typeof rawHtml === "string" ? sanitize(rawHtml) : "";
