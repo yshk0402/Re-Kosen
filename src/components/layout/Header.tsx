@@ -68,10 +68,8 @@ export default function Header() {
               return (
                 <Link
                   key={item.href}
-                  className={`inline-flex items-center rounded-full border-2 px-3 py-1 transition-colors ${
-                    isActive
-                      ? "border-brand text-brand"
-                      : "border-transparent text-muted hover:text-brand"
+                  className={`transition hover:text-ink ${
+                    isActive ? "text-ink" : "text-muted"
                   }`}
                   href={item.href}
                 >
@@ -149,7 +147,7 @@ export default function Header() {
               return (
                 <Link
                   key={item.href}
-                  className={`rounded-2xl px-4 py-3 transition-colors hover:bg-brand-soft hover:text-brand ${
+                  className={`rounded-2xl px-4 py-3 transition hover:bg-brand-soft ${
                     isActive ? "text-brand" : "text-ink"
                   }`}
                   href={item.href}
