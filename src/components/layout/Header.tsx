@@ -80,9 +80,10 @@ export default function Header() {
           </nav>
           <div className="flex items-center gap-2">
             <Link
-              className="hidden rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-[#fff] transition hover:bg-brand-strong lg:inline-flex"
+              className="hidden rounded-full bg-brand px-5 py-2.5 text-sm font-semibold transition hover:bg-brand-strong lg:inline-flex"
               href={LINE_URL}
               rel="noreferrer"
+              style={{ color: "#fff" }}
               target="_blank"
             >
               無料で相談する
@@ -158,9 +159,10 @@ export default function Header() {
               );
             })}
             <Link
-              className="mt-4 inline-flex w-fit rounded-full bg-brand px-6 py-3 text-sm font-semibold text-[#fff]"
+              className="mt-4 inline-flex w-fit rounded-full bg-brand px-6 py-3 text-sm font-semibold"
               href={LINE_URL}
               rel="noreferrer"
+              style={{ color: "#fff" }}
               target="_blank"
               onClick={() => setMenuOpen(false)}
             >

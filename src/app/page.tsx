@@ -439,9 +439,10 @@ export default async function Home() {
                     </p>
                   </div>
                   <Link
-                    className="inline-flex w-fit items-center justify-center rounded-full bg-brand px-6 py-3 text-sm font-semibold text-[#fff] transition hover:bg-brand-strong"
+                    className="inline-flex w-fit items-center justify-center rounded-full bg-brand px-6 py-3 text-sm font-semibold transition hover:bg-brand-strong"
                     href={lineCta.lineUrl}
                     rel="noreferrer"
+                    style={{ color: "#fff" }}
                     target="_blank"
                   >
                     {lineCta.buttonLabel}
