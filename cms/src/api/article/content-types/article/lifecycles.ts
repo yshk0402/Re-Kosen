@@ -3,16 +3,39 @@ const ARTICLE_UID = "api::article.article";
 const normalizeBlocks = (blocks: unknown) =>
   Array.isArray(blocks) ? blocks : [];
 
+type UnknownRecord = Record<string, unknown>;
+
+const getComponent = (block: unknown) => {
+  if (!block || typeof block !== "object") {
+    return null;
+  }
+  const component = (block as UnknownRecord).__component;
+  return typeof component === "string" ? component : null;
+};
+
+const getImageAlt = (block: unknown) => {
+  if (!block || typeof block !== "object") {
+    return "";
+  }
+  const record = block as UnknownRecord;
+  const alt =
+    typeof record.alt === "string"
+      ? record.alt
+      : typeof record.alt_text === "string"
+        ? record.alt_text
+        : "";
+  return alt.trim();
+};
+
 const hasSummaryCard = (blocks: unknown[]) =>
-  blocks.some((block) => block && block.__component === "article.summary-card");
+  blocks.some((block) => getComponent(block) === "article.summary-card");
 
 const hasMissingImageAlt = (blocks: unknown[]) =>
   blocks.some((block) => {
-    if (!block || block.__component !== "article.image") {
+    if (getComponent(block) !== "article.image") {
       return false;
     }
-    const alt = (block.alt ?? block.alt_text ?? "").trim();
-    return !alt;
+    return !getImageAlt(block);
   });
 
 const resolveTagCount = (value: unknown, fallback: number) => {
@@ -44,7 +67,7 @@ const resolveText = (value: unknown, fallback: string) =>
   typeof value === "string" ? value : fallback;
 
 const resolveSeo = (value: unknown, fallback: Record<string, unknown>) =>
-  value && typeof value === "object" ? value : fallback;
+  value && typeof value === "object" ? (value as UnknownRecord) : fallback;
 
 const resolveMedia = (value: unknown, fallback: unknown) =>
   value !== undefined ? value : fallback;
