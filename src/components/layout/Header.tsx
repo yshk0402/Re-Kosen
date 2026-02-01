@@ -54,7 +54,7 @@ export default function Header() {
           <Link className="flex items-center" href="/">
             <Image
               alt="高専ジョブ"
-              className="h-7 w-auto"
+              className="h-7 w-auto lg:h-8"
               height={28}
               priority
               src="/icon.png"
@@ -120,7 +120,7 @@ export default function Header() {
             >
               <Image
                 alt="高専ジョブ"
-                className="h-7 w-auto"
+                className="h-7 w-auto lg:h-8"
                 height={28}
                 priority
                 src="/icon.png"
