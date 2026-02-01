@@ -158,7 +158,7 @@ export type ArticleBlock =
   | CTABlock
   | ImageBlock;
 
-export type ArticleCategory = "industry" | "company" | "career";
+export type ArticleCategory = "industry" | "company" | "career" | "job";
 
 export type StrapiSeo = {
   metaTitle?: string | null;

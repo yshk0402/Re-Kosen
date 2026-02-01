@@ -21,13 +21,13 @@ export default function SectionHeader({
             {subtitle}
           </p>
         ) : null}
-        <h2 className="mt-1 text-xl font-semibold text-ink sm:text-2xl">
+        <h2 className="mt-1 text-2xl font-semibold text-ink sm:text-3xl">
           {title}
         </h2>
       </div>
       {href ? (
         <Link
-          className="text-xs font-semibold text-brand transition hover:text-brand-strong"
+          className="text-sm font-semibold text-brand transition hover:text-brand-strong"
           href={href}
         >
           {linkLabel}

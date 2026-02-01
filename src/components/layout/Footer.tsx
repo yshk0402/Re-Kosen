@@ -7,6 +7,7 @@ const footerColumns = [
     links: [
       { href: "/industry", label: "業界研究" },
       { href: "/company", label: "企業研究" },
+      { href: "/job", label: "職種研究" },
       { href: "/career", label: "キャリア設計" },
       { href: "/article", label: "記事一覧" },
     ],
@@ -29,10 +30,10 @@ export default function Footer() {
           <div className="grid gap-8 sm:grid-cols-2">
             {footerColumns.map((column) => (
               <div key={column.title} className="space-y-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/70">
+                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/70">
                   {column.title}
                 </p>
-                <div className="flex flex-col gap-3 text-xs">
+                <div className="flex flex-col gap-3 text-sm">
                   {column.links.map((link) => (
                     <Link
                       key={link.href}
@@ -47,7 +48,7 @@ export default function Footer() {
             ))}
           </div>
           <div className="flex flex-col gap-4">
-            <p className="text-xs uppercase tracking-[0.3em] text-white/70">
+            <p className="text-sm uppercase tracking-[0.3em] text-white/70">
               <Image
                 alt=""
                 aria-hidden="true"
@@ -66,12 +67,12 @@ export default function Footer() {
                 width={116}
               />
             </div>
-            <p className="text-sm text-white/70">
+            <p className="text-base text-white/70">
               高専生の進路選択を支えるキャリアメディア。
             </p>
           </div>
         </div>
-        <div className="mt-10 text-xs text-white/50">
+        <div className="mt-10 text-sm text-white/50">
           © 2026 高専ジョブ. All rights reserved.
         </div>
       </div>

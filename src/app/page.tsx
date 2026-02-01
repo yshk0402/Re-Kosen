@@ -21,6 +21,7 @@ const LINE_FALLBACK_URL = "https://example.com";
 const categoryGroups = [
   { key: "industry", label: "業界研究", href: "/industry" },
   { key: "company", label: "企業研究", href: "/company" },
+  { key: "job", label: "職種研究", href: "/job" },
   { key: "career", label: "キャリア設計", href: "/career" },
 ];
 
@@ -80,7 +81,7 @@ function EmptyState({ children }: { children: ReactNode }) {
 function PopularList({ items }: { items: HomeCard[] }) {
   return (
     <section className="space-y-4">
-      <SectionHeader title="人気ランキング" subtitle="POPULAR" />
+      <SectionHeader title="人気ランキング" />
       {items.length ? (
         <div className="divide-y divide-border/60">
           {items.map((item, index) => (
@@ -101,7 +102,7 @@ function PopularList({ items }: { items: HomeCard[] }) {
                   className="object-cover"
                 />
               </div>
-              <p className="text-xs font-semibold text-ink line-clamp-2 transition group-hover:text-brand-strong">
+              <p className="text-sm font-semibold text-ink line-clamp-2 transition group-hover:text-brand-strong">
                 {item.title}
               </p>
             </Link>
@@ -146,12 +147,13 @@ function BannerCard({
 }
 
 export default async function Home() {
-  const [home, fallbackResponse, industryResponse, companyResponse, careerResponse] =
+  const [home, fallbackResponse, industryResponse, companyResponse, jobResponse, careerResponse] =
     await Promise.all([
       getHome(),
       getArticles({ pageSize: 24 }),
       getArticles({ category: "industry", pageSize: 3 }),
       getArticles({ category: "company", pageSize: 3 }),
+      getArticles({ category: "job", pageSize: 3 }),
       getArticles({ category: "career", pageSize: 3 }),
     ]);
 
@@ -197,7 +199,7 @@ export default async function Home() {
   );
   const popularItems = pickWithFallback(
     pickFromHome(homeAttributes?.popularItems),
-    5,
+    3,
   );
   const featuredItems = pickWithFallback(
     pickFromHome(homeAttributes?.featuredItems),
@@ -267,6 +269,10 @@ export default async function Home() {
     },
     {
       ...categoryGroups[2],
+      items: (jobResponse?.data ?? []).map(mapArticleCard).map(toHomeCard),
+    },
+    {
+      ...categoryGroups[3],
       items: (careerResponse?.data ?? []).map(mapArticleCard).map(toHomeCard),
     },
   ];
@@ -277,7 +283,7 @@ export default async function Home() {
         <div className="space-y-12">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
             <section className="space-y-5">
-              <SectionHeader title="ピックアップ" subtitle="PICK UP" />
+              <SectionHeader title="ピックアップ" />
               {pickupCards.length ? (
                 <div className="grid gap-6 sm:grid-cols-2">
                   {pickupCards.map((item) => (
@@ -305,59 +311,77 @@ export default async function Home() {
                 <PopularList items={popularCards} />
                 {mobileBanner ? (
                   <section className="space-y-4">
-                    <SectionHeader title="おすすめバナー" subtitle="BANNER" />
+                    <SectionHeader title="おすすめバナー" />
                     <BannerCard banner={mobileBanner} variant="mobile" />
                   </section>
                 ) : null}
               </div>
 
               <section className="space-y-5">
-                <SectionHeader
-                  title="おすすめ"
-                  subtitle="FEATURED"
-                  href="/article"
-                />
+                <SectionHeader title="おすすめ" href="/article" />
                 {featuredCards.length ? (
-                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                    {featuredCards.map((item) => (
-                      <HomeArticleCard
-                        key={item.slug}
-                        href={`/articles/${item.slug}`}
-                        image={item.image}
-                        title={item.title}
-                      />
-                    ))}
-                  </div>
+                  <>
+                    <div className="hidden gap-6 lg:grid lg:grid-cols-3">
+                      {featuredCards.map((item) => (
+                        <HomeArticleCard
+                          key={item.slug}
+                          href={`/articles/${item.slug}`}
+                          image={item.image}
+                          title={item.title}
+                        />
+                      ))}
+                    </div>
+                    <div className="grid gap-4 lg:hidden">
+                      {featuredCards.map((item) => (
+                        <HomeArticleCard
+                          key={item.slug}
+                          href={`/articles/${item.slug}`}
+                          image={item.image}
+                          title={item.title}
+                          variant="small"
+                        />
+                      ))}
+                    </div>
+                  </>
                 ) : (
                   <EmptyState>おすすめ記事は準備中です。</EmptyState>
                 )}
               </section>
 
               <section className="space-y-5">
-                <SectionHeader
-                  title="新着"
-                  subtitle="LATEST"
-                  href="/article"
-                />
+                <SectionHeader title="新着" href="/article" />
                 {latestItems.length ? (
-                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                    {latestItems.map((item) => (
-                      <HomeArticleCard
-                        key={item.slug}
-                        href={`/articles/${item.slug}`}
-                        image={item.image}
-                        title={item.title}
-                      />
-                    ))}
-                  </div>
+                  <>
+                    <div className="hidden gap-6 lg:grid lg:grid-cols-3">
+                      {latestItems.map((item) => (
+                        <HomeArticleCard
+                          key={item.slug}
+                          href={`/articles/${item.slug}`}
+                          image={item.image}
+                          title={item.title}
+                        />
+                      ))}
+                    </div>
+                    <div className="grid gap-4 lg:hidden">
+                      {latestItems.map((item) => (
+                        <HomeArticleCard
+                          key={item.slug}
+                          href={`/articles/${item.slug}`}
+                          image={item.image}
+                          title={item.title}
+                          variant="small"
+                        />
+                      ))}
+                    </div>
+                  </>
                 ) : (
                   <EmptyState>新着記事は準備中です。</EmptyState>
                 )}
               </section>
 
               <section className="space-y-5">
-                <SectionHeader title="カテゴリ別" subtitle="CATEGORY" />
-                <div className="grid gap-6 lg:grid-cols-3">
+                <SectionHeader title="カテゴリ別" />
+                <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
                   {categoryShelves.map((category) => (
                     <div key={category.key} className="space-y-4">
                       <div className="flex items-center justify-between">
@@ -418,7 +442,7 @@ export default async function Home() {
               </section>
 
               <section className="space-y-5">
-                <SectionHeader title="安心して読める理由" subtitle="TRUST" />
+                <SectionHeader title="安心して読める理由" />
                 <div className="grid gap-4 sm:grid-cols-3">
                   {trustItems.map((item) => (
                     <Link
@@ -443,7 +467,7 @@ export default async function Home() {
 
             <aside className="hidden lg:block">
               <section className="space-y-4">
-                <SectionHeader title="バナー" subtitle="BANNER" />
+                <SectionHeader title="バナー" />
                 <div className="space-y-4">
                   {desktopBanners.map((banner) => (
                     <BannerCard

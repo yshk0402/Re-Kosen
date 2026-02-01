@@ -1,20 +1,53 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500;700&family=Noto+Serif+JP:wght@500;600;700&display=swap");
 @import "tailwindcss";
 
+@font-face {
+  font-family: "LINE Seed JP";
+  src: url("/fonts/line-seed-jp/LINESeedJP-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "LINE Seed JP";
+  src: url("/fonts/line-seed-jp/LINESeedJP-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "LINE Seed JP";
+  src: url("/fonts/line-seed-jp/LINESeedJP-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "LINE Seed JP";
+  src: url("/fonts/line-seed-jp/LINESeedJP-ExtraBold.ttf")
+    format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --background: #f8fafc;
+  --background: #f6f7fb;
   --surface: #ffffff;
-  --ink: #0f172a;
-  --muted: #475569;
-  --brand: #3b82f6;
-  --brand-strong: #1d4ed8;
-  --brand-soft: #dbeafe;
+  --ink: #0b1324;
+  --muted: #4b5b75;
+  --brand: #2563eb;
+  --brand-strong: #1e40af;
+  --brand-soft: #e0e7ff;
   --border: #e2e8f0;
-  --ring: #93c5fd;
+  --ring: #a5b4fc;
   --shadow-soft: 0 12px 28px rgba(15, 23, 42, 0.08);
-  --font-sans: "Noto Sans JP";
-  --font-display: "Noto Sans JP";
+  --font-sans: "LINE Seed JP", "Noto Sans JP", "Noto Sans CJK JP", system-ui,
+    -apple-system, sans-serif;
+  --font-display: "LINE Seed JP", "Noto Sans JP", "Noto Sans CJK JP",
+    system-ui, -apple-system, sans-serif;
 }
 
 @theme inline {
@@ -44,7 +77,7 @@ body {
 }
 
 ::selection {
-  background: rgba(59, 130, 246, 0.2);
+  background: rgba(37, 99, 235, 0.2);
 }
 
 a {

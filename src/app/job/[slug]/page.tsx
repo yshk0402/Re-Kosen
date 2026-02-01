@@ -1,28 +1,45 @@
+import { notFound } from "next/navigation";
 import ArticleCard from "@/components/ui/ArticleCard";
+import ArticleGridWithMore from "@/components/ui/ArticleGridWithMore";
 import Pagination from "@/components/ui/Pagination";
-import { getArticles, mapArticleCard } from "@/lib/strapi";
-import { articleMeta } from "./data";
+import TagFilter from "@/components/ui/TagFilter";
+import {
+  buildTagOptions,
+  getArticles,
+  getEntityAttributes,
+  getTagBySlug,
+  getTags,
+  mapArticleCard,
+} from "@/lib/strapi";
+import { jobMeta } from "../data";
 
-type ArticleIndexPageProps = {
+type JobTagPageProps = {
+  params: Promise<{ slug: string }>;
   searchParams: Promise<{ page?: string }>;
 };
 
-const categoryLabels: Record<string, string> = {
-  industry: "業界研究",
-  company: "企業研究",
-  job: "職種研究",
-  career: "キャリア設計",
-};
-
-export default async function ArticleIndexPage({
+export default async function JobTagPage({
+  params,
   searchParams,
-}: ArticleIndexPageProps) {
+}: JobTagPageProps) {
+  const resolvedParams = await Promise.resolve(params);
   const resolvedSearchParams = await Promise.resolve(searchParams);
+  const tag = await getTagBySlug(resolvedParams.slug);
+  const tagAttributes = getEntityAttributes(tag);
+
+  if (!tagAttributes || tagAttributes.slug === "all") {
+    notFound();
+  }
+
   const page = Number(resolvedSearchParams.page ?? "1");
   const response = await getArticles({
+    category: "job",
+    tagSlug: resolvedParams.slug,
     page: Number.isNaN(page) ? 1 : page,
     pageSize: 15,
   });
+  const tags = await getTags();
+  const tagOptions = buildTagOptions(tags, "すべて");
   const articles = response?.data ?? [];
   const pagination = response?.meta.pagination;
 
@@ -30,26 +47,29 @@ export default async function ArticleIndexPage({
     <div className="mx-auto w-full max-w-[1200px] space-y-8 px-4 py-10">
       <header className="space-y-3">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand">
-          {articleMeta.eyebrow}
+          {jobMeta.eyebrow}
         </p>
         <h1 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
-          {articleMeta.title}
+          {jobMeta.title} / {tagAttributes.name}
         </h1>
         <p className="text-sm text-muted sm:text-base">
-          {articleMeta.description}
+          「{tagAttributes.name}」に関連する記事をまとめています。
         </p>
+        <TagFilter
+          label="タグで絞り込み"
+          options={tagOptions}
+          defaultValue={tagAttributes.slug}
+          basePath={jobMeta.basePath}
+        />
       </header>
 
       {articles.length ? (
-        <div className="grid gap-5 lg:grid-cols-3">
+        <ArticleGridWithMore itemCount={articles.length}>
           {articles.map((article) => {
             const card = mapArticleCard(article);
             return (
               <ArticleCard
                 key={card.slug}
-                category={
-                  card.category ? categoryLabels[card.category] ?? card.category : undefined
-                }
                 coverImage={card.coverImage}
                 date={card.date}
                 excerpt={card.excerpt}
@@ -59,15 +79,15 @@ export default async function ArticleIndexPage({
               />
             );
           })}
-        </div>
+        </ArticleGridWithMore>
       ) : (
         <div className="rounded-xl border border-border bg-white p-6 text-sm text-muted">
-          記事は準備中です。
+          該当の記事は準備中です。
         </div>
       )}
 
       <Pagination
-        basePath={articleMeta.basePath}
+        basePath={`${jobMeta.basePath}/${tagAttributes.slug}`}
         currentPage={pagination?.page ?? 1}
         totalPages={pagination?.pageCount ?? 1}
       />

@@ -1,28 +1,24 @@
 import ArticleCard from "@/components/ui/ArticleCard";
+import ArticleGridWithMore from "@/components/ui/ArticleGridWithMore";
 import Pagination from "@/components/ui/Pagination";
-import { getArticles, mapArticleCard } from "@/lib/strapi";
-import { articleMeta } from "./data";
+import TagFilter from "@/components/ui/TagFilter";
+import { buildTagOptions, getArticles, getTags, mapArticleCard } from "@/lib/strapi";
+import { jobMeta } from "./data";
 
-type ArticleIndexPageProps = {
+type JobPageProps = {
   searchParams: Promise<{ page?: string }>;
 };
 
-const categoryLabels: Record<string, string> = {
-  industry: "業界研究",
-  company: "企業研究",
-  job: "職種研究",
-  career: "キャリア設計",
-};
-
-export default async function ArticleIndexPage({
-  searchParams,
-}: ArticleIndexPageProps) {
+export default async function JobPage({ searchParams }: JobPageProps) {
   const resolvedSearchParams = await Promise.resolve(searchParams);
   const page = Number(resolvedSearchParams.page ?? "1");
   const response = await getArticles({
+    category: "job",
     page: Number.isNaN(page) ? 1 : page,
     pageSize: 15,
   });
+  const tags = await getTags();
+  const tagOptions = buildTagOptions(tags, "すべて");
   const articles = response?.data ?? [];
   const pagination = response?.meta.pagination;
 
@@ -30,26 +26,28 @@ export default async function ArticleIndexPage({
     <div className="mx-auto w-full max-w-[1200px] space-y-8 px-4 py-10">
       <header className="space-y-3">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand">
-          {articleMeta.eyebrow}
+          {jobMeta.eyebrow}
         </p>
         <h1 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
-          {articleMeta.title}
+          {jobMeta.title}
         </h1>
         <p className="text-sm text-muted sm:text-base">
-          {articleMeta.description}
+          {jobMeta.description}
         </p>
+        <TagFilter
+          label="タグで絞り込み"
+          options={tagOptions}
+          basePath={jobMeta.basePath}
+        />
       </header>
 
       {articles.length ? (
-        <div className="grid gap-5 lg:grid-cols-3">
+        <ArticleGridWithMore itemCount={articles.length}>
           {articles.map((article) => {
             const card = mapArticleCard(article);
             return (
               <ArticleCard
                 key={card.slug}
-                category={
-                  card.category ? categoryLabels[card.category] ?? card.category : undefined
-                }
                 coverImage={card.coverImage}
                 date={card.date}
                 excerpt={card.excerpt}
@@ -59,7 +57,7 @@ export default async function ArticleIndexPage({
               />
             );
           })}
-        </div>
+        </ArticleGridWithMore>
       ) : (
         <div className="rounded-xl border border-border bg-white p-6 text-sm text-muted">
           記事は準備中です。
@@ -67,7 +65,7 @@ export default async function ArticleIndexPage({
       )}
 
       <Pagination
-        basePath={articleMeta.basePath}
+        basePath={jobMeta.basePath}
         currentPage={pagination?.page ?? 1}
         totalPages={pagination?.pageCount ?? 1}
       />

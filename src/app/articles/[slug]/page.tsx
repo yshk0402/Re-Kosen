@@ -53,6 +53,7 @@ const headingStyles: Record<2 | 3 | 4, string> = {
 const categoryLabels: Record<ArticleCategory, string> = {
   industry: "業界研究",
   company: "企業研究",
+  job: "職種研究",
   career: "キャリア設計",
 };
 
