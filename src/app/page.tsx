@@ -87,7 +87,7 @@ function PopularList({ items }: { items: HomeCard[] }) {
 
   return (
     <section className="flex h-full flex-col gap-4">
-      <SectionHeader title="人気ランキング" />
+      <SectionHeader title="人気ランキング" titleTone="brand" />
       {items.length ? (
         <div className="flex flex-1 flex-col justify-between divide-y divide-border/60">
           {items.map((item, index) => (
@@ -291,7 +291,7 @@ export default async function Home() {
         <div className="space-y-12">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
             <section className="space-y-5">
-              <SectionHeader title="ピックアップ" />
+              <SectionHeader title="ピックアップ" titleTone="brand" />
               {pickupCards.length ? (
                 <div className="grid gap-6 sm:grid-cols-2">
                   {pickupCards.map((item) => (
@@ -326,7 +326,7 @@ export default async function Home() {
               </div>
 
               <section className="space-y-5">
-                <SectionHeader title="おすすめ" href="/article" />
+                <SectionHeader title="おすすめ" href="/article" titleTone="brand" />
                 {featuredCards.length ? (
                   <>
                     <div className="hidden gap-6 lg:grid lg:grid-cols-3">
@@ -357,7 +357,7 @@ export default async function Home() {
               </section>
 
               <section className="space-y-5">
-                <SectionHeader title="新着" href="/article" />
+                <SectionHeader title="新着" href="/article" titleTone="brand" />
                 {latestItems.length ? (
                   <>
                     <div className="hidden gap-6 lg:grid lg:grid-cols-3">
@@ -388,7 +388,7 @@ export default async function Home() {
               </section>
 
               <section className="space-y-5">
-                <SectionHeader title="カテゴリ別" />
+                <SectionHeader title="カテゴリ別" titleTone="brand" />
                 <div className="grid gap-6 lg:grid-cols-2">
                   {categoryShelves.map((category) => (
                     <div key={category.key} className="space-y-4">
@@ -451,7 +451,7 @@ export default async function Home() {
               </section>
 
               <section className="space-y-5">
-                <SectionHeader title="安心して読める理由" />
+                <SectionHeader title="安心して読める理由" titleTone="brand" />
                 <div className="grid gap-4 sm:grid-cols-3">
                   {trustItems.map((item) => (
                     <Link

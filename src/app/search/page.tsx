@@ -25,10 +25,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   return (
     <div className="mx-auto w-full max-w-[1440px] space-y-8 px-4 py-10">
       <header className="space-y-3 rounded-xl border border-border bg-white p-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand">
-          Search
-        </p>
-        <h1 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
+        <h1 className="font-display text-3xl font-semibold text-brand sm:text-4xl">
           検索結果
         </h1>
         <p className="text-sm text-muted sm:text-base">

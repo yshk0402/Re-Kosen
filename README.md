@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Re:Kosen
 
-## Getting Started
+高専生向けキャリアメディア（モバイル最適化優先）。
 
-First, run the development server:
+## ドキュメント
+
+- `REQUIREMENTS.md`：要件・KPI・ブロック仕様
+- `AGENTS.md`：AIエージェント向け作業指針
+- `STRAPI_MANUAL.md`：Strapi運用手順
+- `DEPLOY_GUIDE.md`：デプロイ手順と環境変数
+
+## 構成
+
+- Frontend：Next.js（App Router） + Tailwind CSS
+- CMS：Strapi（Dynamic Zone）
+- Hosting：Vercel（Web） / Railway（Strapi） / Supabase（DB・Media）
+
+## クイックスタート（Web）
+
+1. 依存関係をインストール（npm / yarn / pnpm のいずれでも可）
+2. `.env.local` を作成
+3. 開発サーバーを起動
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# 例: pnpm
+pnpm install
 pnpm dev
-# or
-bun dev
+
+# 例: npm
+npm install
+npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+開発サーバー起動後、`http://localhost:3000` にアクセスします。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## CMS（Strapi）
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Strapiはホスト済みの管理画面にアクセスして運用します。
+- 管理画面URLは `STRAPI_URL` が分かる場合は `${STRAPI_URL}/admin` です。
+- ローカルで触る場合は `cms/` を使用し、詳細は `STRAPI_MANUAL.md` と
+  `DEPLOY_GUIDE.md` を参照してください。
 
-## Learn More
+## 環境変数（例）
 
-To learn more about Next.js, take a look at the following resources:
+| 変数名 | 用途 |
+| --- | --- |
+| `STRAPI_URL` | StrapiのベースURL（`/api` なし） |
+| `STRAPI_API_TOKEN` | Strapi API Token |
+| `STRAPI_REVALIDATE_SECONDS` | ISRの再生成間隔（任意、既定300） |
+| `NEXT_PUBLIC_SITE_URL` | サイトURL |
+| `NEXT_PUBLIC_MEDIA_URL` | 画像配信URL |
+| `NEXT_PUBLIC_GOOGLE_FORM_URL` | `/contact` のGoogle Forms URL |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | GA4 測定ID |
+| `PREVIEW_SECRET` | Strapiプレビュー用 |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 主要スクリプト
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `dev`：開発サーバー起動
+- `build`：本番ビルド
+- `start`：本番起動
+- `lint`：Lint
 
-## Deploy on Vercel
+## リポジトリ構成
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `src/`：Next.js アプリケーション
+- `cms/`：Strapi プロジェクト
+- `public/`：静的アセット
+- `Pencil/`：デザイン資産

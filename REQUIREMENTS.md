@@ -6,7 +6,7 @@
 
 * プロジェクト名：**Re:Kosen**
 * 種別：高専生向けキャリアメディア（モバイル最適化優先）
-* 構成：Strapi（CMS） + Next.js（Web）
+* 構成：Strapi（CMS, Railway） + Supabase（DB・Media） + Next.js（Web, Vercel）
 * 目的：
 
   * 高専生が「何を選べばいいか」を判断できる情報構造を提供
@@ -21,9 +21,10 @@
 * 行動：記事→関連記事回遊率、滞在時間
 * CV：
 
-  * 問い合わせクリック（**メール**）
-  * CTAクリック
-  * 登録（**LINE**）
+* 問い合わせクリック（**Google Forms**）
+* CTAクリック
+* 登録（**LINE**）
+  - 計測はLINE公式アカウントのWebアプリで実施
 
 ### 2.2 非ゴール（初期）
 
@@ -204,6 +205,7 @@
 * 対象：title / excerpt / blocksのplain text
 * 表示：関連度順 + 新着補正
 * UI：検索窓をヘッダー常設（モバイルはアイコン→展開）
+* 実装担当（Strapi側 or Next側）は未定
 
 ### 9.2 関連記事（MVP）
 
@@ -230,7 +232,7 @@
 
 * Strapi管理：2FA推奨、IP制限できれば
 * ロールで公開権限分離（Editor/Publisher）
-* フォーム（/contact）はスパム対策（reCAPTCHA等）
+* フォーム（/contact）はGoogle Formsを使用（スパム対策はGoogle Forms側に準拠）
 * XSS：RichText 許可タグ制限
 
 ## 11. 運用
@@ -248,12 +250,10 @@
 * 記事ごとOGP
 * sitemap/robots生成
 * GA/SC導入
-* 問い合わせ導線（メール）と登録導線（LINE）が機能
+* 問い合わせ導線（Google Forms）と登録導線（LINE）が機能
 
 ## 13. 未確定（TODO）
 
-* {{TODO: Strapi のホスティング方式（Vercel外）とDB/ストレージの選定}}
-* {{TODO: /contact の実装（mailto か フォーム送信か、送信先/通知方法）}}
-* {{TODO: LINE登録の導線（公式アカウントURL、計測方法）}}
+* {{TODO: 検索の実装担当（Strapi側 or Next側）}}
 * {{TODO: 記事の公開頻度・ISRの再生成間隔}}
 * {{TODO: 解析ツール（GA4以外の併用有無）}}

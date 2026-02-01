@@ -13,8 +13,7 @@
 
   * Frontend：Next.js（App Router 想定） + Tailwind CSS
   * CMS：Strapi（Dynamic Zone によるブロック編集）
-  * Hosting：Vercel（Next.js）
-  * {{TODO: Strapi のホスティング / DB / メディアストレージ方針}}
+  * Hosting：Vercel（Next.js） / Railway（Strapi） / Supabase（DB・Media）
 
 ## 1. 目的（MVP）
 
@@ -112,10 +111,11 @@ MVP 対象ブロック（9種）：
 
 * 登録：LINE
 
-  * {{TODO: LINE公式アカウントURL・計測方法}}
-* 問い合わせ：メール
+  * LINE公式アカウントURLは接続済み（実値はコード/Strapi設定に準拠）
+  * 計測：LINE公式アカウントのWebアプリ
+* 問い合わせ：Google Forms
 
-  * {{TODO: /contact は mailto か フォームか、スパム対策有無}}
+  * `/contact` はGoogle Formsに接続（`NEXT_PUBLIC_GOOGLE_FORM_URL`）
 
 ## 9. 計測・SEO運用
 
@@ -146,11 +146,9 @@ MVP 対象ブロック（9種）：
 2. Next.js：ルーティング / 一覧・詳細 / ブロックレンダラー / 目次 / 関連記事
 3. 検索：簡易全文検索 + UI
 4. SEO：メタ情報 / OGP / sitemap / robots
-5. 導線：LINE 登録 / メール問い合わせ
+5. 導線：LINE 登録 / Google Forms 問い合わせ
 6. 仕上げ：モバイルUI / 表スクロール / アクセシビリティ
 
 ## 12. 未確定事項（対話で解消）
 
-* {{TODO: Strapi ホスティング / DB / メディアストレージ}}
-* {{TODO: 問い合わせ実装詳細}}
-* {{TODO: LINE 登録導線の仕様}}
+* {{TODO: 検索の実装担当（Strapi側 or Next側）}}

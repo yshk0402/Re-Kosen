@@ -407,7 +407,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand">
             {categoryLabel}
           </p>
-          <h1 className="font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+          <h1 className="font-display text-3xl font-semibold leading-tight text-brand sm:text-4xl">
             {attributes.title}
           </h1>
           <p className="text-sm text-muted sm:text-base">

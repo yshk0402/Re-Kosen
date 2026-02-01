@@ -2,10 +2,7 @@ export default function AboutPage() {
   return (
     <div className="mx-auto w-full max-w-[1440px] space-y-6 px-4 py-10">
       <header className="space-y-3">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand">
-          About
-        </p>
-        <h1 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
+        <h1 className="font-display text-3xl font-semibold text-brand sm:text-4xl">
           高専ジョブについて
         </h1>
       </header>

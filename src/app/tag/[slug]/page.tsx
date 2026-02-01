@@ -36,10 +36,7 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
   return (
     <div className="mx-auto w-full max-w-[960px] space-y-8 px-4 py-10">
       <header className="space-y-3">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand">
-          Tag
-        </p>
-        <h1 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
+        <h1 className="font-display text-3xl font-semibold text-brand sm:text-4xl">
           タグ: {tagAttributes.name}
         </h1>
         <p className="text-sm text-muted sm:text-base">
