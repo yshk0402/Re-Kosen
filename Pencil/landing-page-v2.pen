@@ -2759,6 +2759,199 @@
       "children": [
         {
           "type": "frame",
+          "id": "TlwFG",
+          "x": 0,
+          "y": 2880,
+          "name": "lpFooterMobile",
+          "reusable": true,
+          "width": "fill_container(390)",
+          "height": 420,
+          "fill": "#0F172A",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            16,
+            48
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "eerLI",
+              "name": "footerMobileCol1",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "F2MwV",
+                  "name": "footerMobileCol1Title",
+                  "fill": "#FFFFFFB3",
+                  "textGrowth": "fixed-width",
+                  "width": 120,
+                  "content": "Contents",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 11,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "qVbCF",
+                  "name": "footerMobileCol1Link1",
+                  "fill": "#FFFFFFCC",
+                  "textGrowth": "fixed-width",
+                  "width": 120,
+                  "content": "業界研究",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "lRWks",
+                  "name": "footerMobileCol1Link2",
+                  "fill": "#FFFFFFCC",
+                  "textGrowth": "fixed-width",
+                  "width": 120,
+                  "content": "企業研究",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "mRjHY",
+                  "name": "footerMobileCol1Link3",
+                  "fill": "#FFFFFFCC",
+                  "textGrowth": "fixed-width",
+                  "width": 120,
+                  "content": "キャリア設計",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "MWZcd",
+                  "name": "footerMobileCol1Link4",
+                  "fill": "#FFFFFFCC",
+                  "textGrowth": "fixed-width",
+                  "width": 120,
+                  "content": "記事一覧",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "4m3ZK",
+              "name": "footerMobileCol2",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "AyN5X",
+                  "name": "footerMobileCol2Title",
+                  "fill": "#FFFFFFB3",
+                  "textGrowth": "fixed-width",
+                  "width": 120,
+                  "content": "About",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 11,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "d3UmI",
+                  "name": "footerMobileCol2Link1",
+                  "fill": "#FFFFFFCC",
+                  "textGrowth": "fixed-width",
+                  "width": 140,
+                  "content": "運営について",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "VtIHc",
+                  "name": "footerMobileCol2Link2",
+                  "fill": "#FFFFFFCC",
+                  "textGrowth": "fixed-width",
+                  "width": 120,
+                  "content": "お問い合わせ",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "3HNzB",
+                  "name": "footerMobileCol2Link3",
+                  "fill": "#FFFFFFCC",
+                  "textGrowth": "fixed-width",
+                  "width": 120,
+                  "content": "プライバシー",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "kjMqS",
+              "name": "footerMobileBrand",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "lHnak",
+                  "name": "footerMobileBrandTitle",
+                  "fill": "#FFFFFF",
+                  "textGrowth": "fixed-width",
+                  "width": 140,
+                  "content": "高専ジョブ",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 24,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "FTbrB",
+                  "name": "footerMobileBrandDesc",
+                  "fill": "#FFFFFFB3",
+                  "textGrowth": "fixed-width",
+                  "width": 300,
+                  "content": "高専生の進路選択を支えるキャリアメディア。",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "C1A4x",
+              "name": "footerMobileBottom",
+              "fill": "#FFFFFF80",
+              "textGrowth": "fixed-width",
+              "width": 260,
+              "content": "© 2026 高専ジョブ. All rights reserved.",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 12,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "frame",
           "id": "isJHt",
           "x": 352,
           "y": 249,
@@ -4575,199 +4768,6 @@
       "fill": "#CCCCCC",
       "width": 26,
       "height": 662
-    },
-    {
-      "type": "frame",
-      "id": "TlwFG",
-      "x": 1680,
-      "y": 5460,
-      "name": "lpFooterMobile",
-      "reusable": true,
-      "width": "fill_container(390)",
-      "height": 420,
-      "fill": "#0F172A",
-      "layout": "vertical",
-      "gap": 24,
-      "padding": [
-        16,
-        48
-      ],
-      "children": [
-        {
-          "type": "frame",
-          "id": "eerLI",
-          "name": "footerMobileCol1",
-          "width": "fill_container",
-          "layout": "vertical",
-          "gap": 10,
-          "children": [
-            {
-              "type": "text",
-              "id": "F2MwV",
-              "name": "footerMobileCol1Title",
-              "fill": "#FFFFFFB3",
-              "textGrowth": "fixed-width",
-              "width": 120,
-              "content": "Contents",
-              "fontFamily": "LINE Seed JP",
-              "fontSize": 11,
-              "fontWeight": "600"
-            },
-            {
-              "type": "text",
-              "id": "qVbCF",
-              "name": "footerMobileCol1Link1",
-              "fill": "#FFFFFFCC",
-              "textGrowth": "fixed-width",
-              "width": 120,
-              "content": "業界研究",
-              "fontFamily": "LINE Seed JP",
-              "fontSize": 12,
-              "fontWeight": "500"
-            },
-            {
-              "type": "text",
-              "id": "lRWks",
-              "name": "footerMobileCol1Link2",
-              "fill": "#FFFFFFCC",
-              "textGrowth": "fixed-width",
-              "width": 120,
-              "content": "企業研究",
-              "fontFamily": "LINE Seed JP",
-              "fontSize": 12,
-              "fontWeight": "500"
-            },
-            {
-              "type": "text",
-              "id": "mRjHY",
-              "name": "footerMobileCol1Link3",
-              "fill": "#FFFFFFCC",
-              "textGrowth": "fixed-width",
-              "width": 120,
-              "content": "キャリア設計",
-              "fontFamily": "LINE Seed JP",
-              "fontSize": 12,
-              "fontWeight": "500"
-            },
-            {
-              "type": "text",
-              "id": "MWZcd",
-              "name": "footerMobileCol1Link4",
-              "fill": "#FFFFFFCC",
-              "textGrowth": "fixed-width",
-              "width": 120,
-              "content": "記事一覧",
-              "fontFamily": "LINE Seed JP",
-              "fontSize": 12,
-              "fontWeight": "500"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "4m3ZK",
-          "name": "footerMobileCol2",
-          "width": "fill_container",
-          "layout": "vertical",
-          "gap": 10,
-          "children": [
-            {
-              "type": "text",
-              "id": "AyN5X",
-              "name": "footerMobileCol2Title",
-              "fill": "#FFFFFFB3",
-              "textGrowth": "fixed-width",
-              "width": 120,
-              "content": "About",
-              "fontFamily": "LINE Seed JP",
-              "fontSize": 11,
-              "fontWeight": "600"
-            },
-            {
-              "type": "text",
-              "id": "d3UmI",
-              "name": "footerMobileCol2Link1",
-              "fill": "#FFFFFFCC",
-              "textGrowth": "fixed-width",
-              "width": 140,
-              "content": "運営について",
-              "fontFamily": "LINE Seed JP",
-              "fontSize": 12,
-              "fontWeight": "500"
-            },
-            {
-              "type": "text",
-              "id": "VtIHc",
-              "name": "footerMobileCol2Link2",
-              "fill": "#FFFFFFCC",
-              "textGrowth": "fixed-width",
-              "width": 120,
-              "content": "お問い合わせ",
-              "fontFamily": "LINE Seed JP",
-              "fontSize": 12,
-              "fontWeight": "500"
-            },
-            {
-              "type": "text",
-              "id": "3HNzB",
-              "name": "footerMobileCol2Link3",
-              "fill": "#FFFFFFCC",
-              "textGrowth": "fixed-width",
-              "width": 120,
-              "content": "プライバシー",
-              "fontFamily": "LINE Seed JP",
-              "fontSize": 12,
-              "fontWeight": "500"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "kjMqS",
-          "name": "footerMobileBrand",
-          "width": "fill_container",
-          "layout": "vertical",
-          "gap": 8,
-          "children": [
-            {
-              "type": "text",
-              "id": "lHnak",
-              "name": "footerMobileBrandTitle",
-              "fill": "#FFFFFF",
-              "textGrowth": "fixed-width",
-              "width": 140,
-              "content": "高専ジョブ",
-              "fontFamily": "LINE Seed JP",
-              "fontSize": 24,
-              "fontWeight": "600"
-            },
-            {
-              "type": "text",
-              "id": "FTbrB",
-              "name": "footerMobileBrandDesc",
-              "fill": "#FFFFFFB3",
-              "textGrowth": "fixed-width",
-              "width": 300,
-              "content": "高専生の進路選択を支えるキャリアメディア。",
-              "fontFamily": "LINE Seed JP",
-              "fontSize": 14,
-              "fontWeight": "500"
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "C1A4x",
-          "name": "footerMobileBottom",
-          "fill": "#FFFFFF80",
-          "textGrowth": "fixed-width",
-          "width": 260,
-          "content": "© 2026 高専ジョブ. All rights reserved.",
-          "fontFamily": "LINE Seed JP",
-          "fontSize": 12,
-          "fontWeight": "500"
-        }
-      ]
     }
   ]
 }
