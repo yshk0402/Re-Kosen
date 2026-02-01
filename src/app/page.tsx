@@ -96,21 +96,23 @@ function PopularList({ items }: { items: HomeCard[] }) {
               className="group flex items-start gap-4 py-4 transition"
               href={`/articles/${item.slug}`}
             >
-              <span
-                className={`inline-flex shrink-0 items-center justify-center rounded-lg px-3 py-1 text-xs font-semibold ${rankStyles[index] ?? "bg-brand-soft text-brand"}`}
-              >
-                No.{index + 1}
-              </span>
-              <div className="relative aspect-[16/9] w-28 shrink-0 overflow-hidden rounded-lg bg-brand-soft sm:w-32">
-                <Image
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 640px) 112px, 128px"
-                  src={item.image}
-                  className="object-cover"
-                />
+              <div className="flex shrink-0 flex-col items-start gap-2">
+                <span
+                  className={`inline-flex items-center justify-center rounded-lg px-3 py-1 text-xs font-semibold ${rankStyles[index] ?? "bg-brand-soft text-brand"}`}
+                >
+                  No.{index + 1}
+                </span>
+                <div className="relative aspect-[16/9] w-32 overflow-hidden rounded-lg bg-brand-soft sm:w-40">
+                  <Image
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 640px) 128px, 160px"
+                    src={item.image}
+                    className="object-cover"
+                  />
+                </div>
               </div>
-              <p className="text-sm font-semibold text-ink transition group-hover:text-brand-strong">
+              <p className="flex-1 text-sm font-semibold text-ink transition group-hover:text-brand-strong">
                 {item.title}
               </p>
             </Link>
