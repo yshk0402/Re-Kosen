@@ -1,0 +1,3155 @@
+{
+  "version": "2.6",
+  "children": [
+    {
+      "type": "frame",
+      "id": "Aanhb",
+      "x": 0,
+      "y": 0,
+      "name": "Landing Page / Desktop",
+      "width": 1440,
+      "fill": "#F5F1EB",
+      "layout": "vertical",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "U8X46",
+          "name": "lpHeaderDesktop",
+          "width": "fill_container",
+          "height": 76,
+          "fill": "#F5F1EB",
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "#E3D8CA"
+          },
+          "gap": 24,
+          "padding": [
+            24,
+            16
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "oDuB2",
+              "name": "lpHeaderLeft",
+              "width": "fill_container",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "BBt3d",
+                  "name": "lpHeaderLogo",
+                  "fill": "#1F2937",
+                  "textGrowth": "fixed-width",
+                  "width": 120,
+                  "content": "高専ジョブ",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "M82s2",
+                  "name": "lpHeaderTag",
+                  "fill": "#B45309",
+                  "textGrowth": "fixed-width",
+                  "width": 110,
+                  "content": "企業向け交流会",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "fKxOT",
+              "name": "lpHeaderRight",
+              "width": "fill_container",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "yPIkM",
+                  "name": "lpHeaderButton",
+                  "width": "fill_container",
+                  "fill": "#F97316",
+                  "cornerRadius": 999,
+                  "padding": [
+                    18,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "5JN2V",
+                      "name": "lpHeaderButtonText",
+                      "fill": "#FFFFFF",
+                      "textGrowth": "fixed-width",
+                      "width": 120,
+                      "content": "交流会に参加する",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ZsunE",
+          "name": "lpMainDesktop",
+          "width": 1200,
+          "layout": "vertical",
+          "gap": 48,
+          "padding": [
+            24,
+            40
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "zAfKA",
+              "name": "lpHeroRow",
+              "width": "fill_container",
+              "gap": 40,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "XGnDW",
+                  "name": "lpHeroLeft",
+                  "width": 640,
+                  "layout": "vertical",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "hYTr1",
+                      "name": "lpHeroPills",
+                      "width": "fill_container",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "siolf",
+                          "name": "lpPill",
+                          "width": "fill_container",
+                          "fill": "#FFF7ED",
+                          "cornerRadius": 999,
+                          "padding": [
+                            12,
+                            6
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "z9Su0",
+                              "name": "lpPillText",
+                              "fill": "#C2410C",
+                              "textGrowth": "fixed-width",
+                              "width": 80,
+                              "content": "採用前提なし",
+                              "fontFamily": "LINE Seed JP",
+                              "fontSize": 11,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "1fQMk",
+                          "name": "lpPill",
+                          "width": "fill_container",
+                          "fill": "#FFF7ED",
+                          "cornerRadius": 999,
+                          "padding": [
+                            12,
+                            6
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "5Rl8T",
+                              "name": "lpPillText",
+                              "fill": "#C2410C",
+                              "textGrowth": "fixed-width",
+                              "width": 80,
+                              "content": "少人数",
+                              "fontFamily": "LINE Seed JP",
+                              "fontSize": 11,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "QtVaT",
+                          "name": "lpPill",
+                          "width": "fill_container",
+                          "fill": "#FFF7ED",
+                          "cornerRadius": 999,
+                          "padding": [
+                            12,
+                            6
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "5NABe",
+                              "name": "lpPillText",
+                              "fill": "#C2410C",
+                              "textGrowth": "fixed-width",
+                              "width": 80,
+                              "content": "業界不問",
+                              "fontFamily": "LINE Seed JP",
+                              "fontSize": 11,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "S1jD7",
+                      "name": "lpHeroTitle",
+                      "fill": "#111827",
+                      "textGrowth": "fixed-width",
+                      "width": 620,
+                      "content": "高専生と、\n「意思決定の話」をする交流会",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 34,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "nc95l",
+                      "name": "lpHeroSub",
+                      "fill": "#374151",
+                      "textGrowth": "fixed-width",
+                      "width": 620,
+                      "content": "会社説明ではなく、仕事観や選択のリアルを共有する場。",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 16,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "dibsj",
+                      "name": "lpHeroCtaRow",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "dWjKO",
+                          "name": "lpHeroPrimaryCta",
+                          "width": "fill_container",
+                          "fill": "#F97316",
+                          "cornerRadius": 999,
+                          "padding": [
+                            22,
+                            12
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "QGeQK",
+                              "name": "lpHeroPrimaryCtaText",
+                              "fill": "#FFFFFF",
+                              "textGrowth": "fixed-width",
+                              "width": 150,
+                              "content": "▶ 交流会に参加する",
+                              "fontFamily": "LINE Seed JP",
+                              "fontSize": 14,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "LvbWH",
+                          "name": "lpHeroNote",
+                          "fill": "#6B7280",
+                          "textGrowth": "fixed-width",
+                          "width": 180,
+                          "content": "スライド不要 / 勧誘禁止",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 12,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "8Z7Ty",
+                  "name": "lpHeroRight",
+                  "width": 480,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 20,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E5E7EB"
+                  },
+                  "layout": "vertical",
+                  "gap": 10,
+                  "padding": 18,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "coJjV",
+                      "name": "lpHeroCardTitle",
+                      "fill": "#111827",
+                      "textGrowth": "fixed-width",
+                      "width": 200,
+                      "content": "実施概要",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "YcTUL",
+                      "name": "lpMiniRow",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Mpqey",
+                          "name": "lpMiniLabel",
+                          "fill": "#6B7280",
+                          "textGrowth": "fixed-width",
+                          "width": 120,
+                          "content": "対象",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "z39I0",
+                          "name": "lpMiniValue",
+                          "fill": "#111827",
+                          "textGrowth": "fixed-width",
+                          "width": 360,
+                          "content": "全国の高専生（学年不問）",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "wajcw",
+                      "name": "lpMiniRow",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ZnA8q",
+                          "name": "lpMiniLabel",
+                          "fill": "#6B7280",
+                          "textGrowth": "fixed-width",
+                          "width": 120,
+                          "content": "形式",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Qxqv2",
+                          "name": "lpMiniValue",
+                          "fill": "#111827",
+                          "textGrowth": "fixed-width",
+                          "width": 360,
+                          "content": "少人数・業界混合",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "TgzJ8",
+                      "name": "lpMiniRow",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "jyeAi",
+                          "name": "lpMiniLabel",
+                          "fill": "#6B7280",
+                          "textGrowth": "fixed-width",
+                          "width": 120,
+                          "content": "開催",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "3k4tE",
+                          "name": "lpMiniValue",
+                          "fill": "#111827",
+                          "textGrowth": "fixed-width",
+                          "width": 360,
+                          "content": "オンライン / オフライン",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "3cB3j",
+                      "name": "lpMiniRow",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "5URnb",
+                          "name": "lpMiniLabel",
+                          "fill": "#6B7280",
+                          "textGrowth": "fixed-width",
+                          "width": 120,
+                          "content": "所要時間",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "mP07S",
+                          "name": "lpMiniValue",
+                          "fill": "#111827",
+                          "textGrowth": "fixed-width",
+                          "width": 360,
+                          "content": "約90分",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "r7AZO",
+                      "name": "lpMiniRow",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "WyIyj",
+                          "name": "lpMiniLabel",
+                          "fill": "#6B7280",
+                          "textGrowth": "fixed-width",
+                          "width": 120,
+                          "content": "準備",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "lym1W",
+                          "name": "lpMiniValue",
+                          "fill": "#111827",
+                          "textGrowth": "fixed-width",
+                          "width": 360,
+                          "content": "なし（スライド不要）",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Ql4Ip",
+              "name": "lpSectionConcept",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "iv0CL",
+                  "name": "lpSectionConceptTitle",
+                  "fill": "#111827",
+                  "textGrowth": "fixed-width",
+                  "width": 720,
+                  "content": "この交流会で得られること",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "tTfei",
+                  "name": "lpSectionConceptRow",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "jBQSp",
+                      "name": "lpCard",
+                      "width": 360,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 16,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E5E7EB"
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "4p581",
+                          "name": "lpCardTitle",
+                          "fill": "#111827",
+                          "textGrowth": "fixed-width",
+                          "width": 320,
+                          "content": "意思決定の実例",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "1iI5Z",
+                          "name": "lpCardBody",
+                          "fill": "#374151",
+                          "textGrowth": "fixed-width",
+                          "width": 320,
+                          "content": "キャリア選択の背景と判断基準を共有。",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "1C243",
+                      "name": "lpCard",
+                      "width": 360,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 16,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E5E7EB"
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "AqZDZ",
+                          "name": "lpCardTitle",
+                          "fill": "#111827",
+                          "textGrowth": "fixed-width",
+                          "width": 320,
+                          "content": "素の反応",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "HjoJX",
+                          "name": "lpCardBody",
+                          "fill": "#374151",
+                          "textGrowth": "fixed-width",
+                          "width": 320,
+                          "content": "就活モードではない率直な意見が見える。",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "5wlNZ",
+                      "name": "lpCard",
+                      "width": 360,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 16,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E5E7EB"
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "zuF1K",
+                          "name": "lpCardTitle",
+                          "fill": "#111827",
+                          "textGrowth": "fixed-width",
+                          "width": 320,
+                          "content": "記憶に残る接点",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "mrgJD",
+                          "name": "lpCardBody",
+                          "fill": "#374151",
+                          "textGrowth": "fixed-width",
+                          "width": 320,
+                          "content": "採用前の認知形成に効く。",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "HyDAt",
+              "name": "lpSectionAgenda",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ve3Pv",
+                  "name": "lpSectionAgendaTitle",
+                  "fill": "#111827",
+                  "textGrowth": "fixed-width",
+                  "width": 720,
+                  "content": "当日の流れ",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "V7bsy",
+                  "name": "lpAgendaRow",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Uzsjt",
+                      "name": "lpCard",
+                      "width": 360,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 16,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E5E7EB"
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "um3nY",
+                          "name": "lpCardTitle",
+                          "fill": "#111827",
+                          "textGrowth": "fixed-width",
+                          "width": 320,
+                          "content": "少人数の対話",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "9pcVp",
+                          "name": "lpCardBody",
+                          "fill": "#374151",
+                          "textGrowth": "fixed-width",
+                          "width": 320,
+                          "content": "1テーブル数名で会話",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "yar2n",
+                      "name": "lpCard",
+                      "width": 360,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 16,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E5E7EB"
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "uOjRN",
+                          "name": "lpCardTitle",
+                          "fill": "#111827",
+                          "textGrowth": "fixed-width",
+                          "width": 320,
+                          "content": "自己紹介のみ",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "A60m5",
+                          "name": "lpCardBody",
+                          "fill": "#374151",
+                          "textGrowth": "fixed-width",
+                          "width": 320,
+                          "content": "企業紹介は最小限",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "7b5Mo",
+                      "name": "lpCard",
+                      "width": 360,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 16,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E5E7EB"
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "7Ubxm",
+                          "name": "lpCardTitle",
+                          "fill": "#111827",
+                          "textGrowth": "fixed-width",
+                          "width": 320,
+                          "content": "話題は自由",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Anj73",
+                          "name": "lpCardBody",
+                          "fill": "#374151",
+                          "textGrowth": "fixed-width",
+                          "width": 320,
+                          "content": "技術/意思決定/働き方",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "yY7Pi",
+              "name": "lpSectionFit",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "BCbZy",
+                  "name": "lpSectionFitTitle",
+                  "fill": "#111827",
+                  "textGrowth": "fixed-width",
+                  "width": 720,
+                  "content": "向いている企業",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "fVNNF",
+                  "name": "lpFitRow",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "KpsVo",
+                      "name": "lpFitCard",
+                      "width": 560,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 16,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E5E7EB"
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "cszCb",
+                          "name": "lpFitCardTitle",
+                          "fill": "#111827",
+                          "textGrowth": "fixed-width",
+                          "width": 200,
+                          "content": "向いている",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "juEGG",
+                          "name": "lpFitCardItem1",
+                          "fill": "#374151",
+                          "textGrowth": "fixed-width",
+                          "width": 520,
+                          "content": "・仕事の話ができる",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "1mRsi",
+                          "name": "lpFitCardItem2",
+                          "fill": "#374151",
+                          "textGrowth": "fixed-width",
+                          "width": 520,
+                          "content": "・若手に裁量がある",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "aHdK2",
+                          "name": "lpFitCardItem3",
+                          "fill": "#374151",
+                          "textGrowth": "fixed-width",
+                          "width": 520,
+                          "content": "・長期目線で採用を考える",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "t7j2C",
+                      "name": "lpFitCard",
+                      "width": 560,
+                      "fill": "#FFF7ED",
+                      "cornerRadius": 16,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#FED7AA"
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "gQwm5",
+                          "name": "lpFitCardTitle",
+                          "fill": "#9A3412",
+                          "textGrowth": "fixed-width",
+                          "width": 200,
+                          "content": "向いていない",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "2gPff",
+                          "name": "lpFitCardItem1",
+                          "fill": "#9A3412",
+                          "textGrowth": "fixed-width",
+                          "width": 520,
+                          "content": "・会社説明が主目的",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "HwHbi",
+                          "name": "lpFitCardItem2",
+                          "fill": "#9A3412",
+                          "textGrowth": "fixed-width",
+                          "width": 520,
+                          "content": "・学生を囲い込みたい",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "R7i2w",
+                          "name": "lpFitCardItem3",
+                          "fill": "#9A3412",
+                          "textGrowth": "fixed-width",
+                          "width": 520,
+                          "content": "・短期の採用成果のみ重視",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "p47pu",
+              "name": "lpSectionSteps",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ZnINN",
+                  "name": "lpSectionStepsTitle",
+                  "fill": "#111827",
+                  "textGrowth": "fixed-width",
+                  "width": 720,
+                  "content": "参加までの流れ",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "MXCd4",
+                  "name": "lpStepsRow",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Mit0p",
+                      "name": "lpStepCard",
+                      "width": 360,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 16,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E5E7EB"
+                      },
+                      "layout": "vertical",
+                      "gap": 10,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "nBeZp",
+                          "name": "lpStepBadge",
+                          "width": 34,
+                          "height": 34,
+                          "fill": "#111827",
+                          "cornerRadius": 17,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "jZpUL",
+                              "name": "lpStepNumber",
+                              "fill": "#FFFFFF",
+                              "textGrowth": "fixed-width",
+                              "width": 20,
+                              "content": "1",
+                              "fontFamily": "LINE Seed JP",
+                              "fontSize": 13,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "b5BES",
+                          "name": "lpStepText",
+                          "fill": "#374151",
+                          "textGrowth": "fixed-width",
+                          "width": 320,
+                          "content": "フォームから参加希望を送信",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "2R1su",
+                      "name": "lpStepCard",
+                      "width": 360,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 16,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E5E7EB"
+                      },
+                      "layout": "vertical",
+                      "gap": 10,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "RPVBf",
+                          "name": "lpStepBadge",
+                          "width": 34,
+                          "height": 34,
+                          "fill": "#111827",
+                          "cornerRadius": 17,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "fAxr0",
+                              "name": "lpStepNumber",
+                              "fill": "#FFFFFF",
+                              "textGrowth": "fixed-width",
+                              "width": 20,
+                              "content": "2",
+                              "fontFamily": "LINE Seed JP",
+                              "fontSize": 13,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "Ffx9D",
+                          "name": "lpStepText",
+                          "fill": "#374151",
+                          "textGrowth": "fixed-width",
+                          "width": 320,
+                          "content": "運営より確認のご連絡",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "zGkQJ",
+                      "name": "lpStepCard",
+                      "width": 360,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 16,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E5E7EB"
+                      },
+                      "layout": "vertical",
+                      "gap": 10,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "sEHzZ",
+                          "name": "lpStepBadge",
+                          "width": 34,
+                          "height": 34,
+                          "fill": "#111827",
+                          "cornerRadius": 17,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "SzwdU",
+                              "name": "lpStepNumber",
+                              "fill": "#FFFFFF",
+                              "textGrowth": "fixed-width",
+                              "width": 20,
+                              "content": "3",
+                              "fontFamily": "LINE Seed JP",
+                              "fontSize": 13,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "mxjI0",
+                          "name": "lpStepText",
+                          "fill": "#374151",
+                          "textGrowth": "fixed-width",
+                          "width": 320,
+                          "content": "交流会に参加",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "4RdTy",
+              "name": "lpSectionTrust",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 16,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E5E7EB"
+              },
+              "layout": "vertical",
+              "gap": 10,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "yqzX9",
+                  "name": "lpTrustTitle",
+                  "fill": "#111827",
+                  "textGrowth": "fixed-width",
+                  "width": 300,
+                  "content": "運営について",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "Q2kRl",
+                  "name": "lpTrustBody",
+                  "fill": "#374151",
+                  "textGrowth": "fixed-width",
+                  "width": 1040,
+                  "content": "高専生向けキャリア支援を行う高専ジョブが運営。安心して参加できる運用ルールを設定しています。",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "41QF4",
+              "name": "lpFinalCta",
+              "width": "fill_container",
+              "fill": "#0B1B2B",
+              "cornerRadius": 24,
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 28,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "nDZ8d",
+                  "name": "lpFinalCtaTitle",
+                  "fill": "#FFFFFF",
+                  "textGrowth": "fixed-width",
+                  "width": 720,
+                  "content": "まずは交流会で、高専生と対話しませんか。",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "BL42M",
+                  "name": "lpFinalCtaButton",
+                  "width": "fill_container",
+                  "fill": "#F97316",
+                  "cornerRadius": 999,
+                  "padding": [
+                    24,
+                    12
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "POrPR",
+                      "name": "lpFinalCtaButtonText",
+                      "fill": "#FFFFFF",
+                      "textGrowth": "fixed-width",
+                      "width": 140,
+                      "content": "▶ 参加を申し込む",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "HZbIt",
+          "type": "ref",
+          "ref": "q0tjl",
+          "width": "fill_container",
+          "height": 360,
+          "name": "lpFooterDesktop"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "8neLX",
+      "x": 1680,
+      "y": 0,
+      "name": "Landing Page / Mobile",
+      "width": 390,
+      "fill": "#F5F1EB",
+      "layout": "vertical",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "4LsLB",
+          "name": "lpHeaderMobile",
+          "width": "fill_container",
+          "height": 64,
+          "fill": "#F5F1EB",
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "#E3D8CA"
+          },
+          "gap": 12,
+          "padding": [
+            16,
+            12
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "RdTMj",
+              "name": "lpHeaderMobileLogo",
+              "fill": "#1F2937",
+              "textGrowth": "fixed-width",
+              "width": 100,
+              "content": "高専ジョブ",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 14,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "1tceM",
+              "name": "lpHeaderMobileButton",
+              "width": "fill_container",
+              "fill": "#F97316",
+              "cornerRadius": 999,
+              "padding": [
+                12,
+                8
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "0Dygf",
+                  "name": "lpHeaderMobileButtonText",
+                  "fill": "#FFFFFF",
+                  "textGrowth": "fixed-width",
+                  "width": 36,
+                  "content": "参加",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "dAm8Y",
+          "name": "lpMainMobile",
+          "width": 358,
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            16,
+            28
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "uXP6O",
+              "name": "lpHeroMobile",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "nZb73",
+                  "name": "lpHeroMobilePills",
+                  "width": "fill_container",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Tm8R8",
+                      "name": "lpPill",
+                      "width": "fill_container",
+                      "fill": "#FFF7ED",
+                      "cornerRadius": 999,
+                      "padding": [
+                        12,
+                        6
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "8LNan",
+                          "name": "lpPillText",
+                          "fill": "#C2410C",
+                          "textGrowth": "fixed-width",
+                          "width": 80,
+                          "content": "採用前提なし",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 11,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "LNTbA",
+                      "name": "lpPill",
+                      "width": "fill_container",
+                      "fill": "#FFF7ED",
+                      "cornerRadius": 999,
+                      "padding": [
+                        12,
+                        6
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "bblBs",
+                          "name": "lpPillText",
+                          "fill": "#C2410C",
+                          "textGrowth": "fixed-width",
+                          "width": 80,
+                          "content": "少人数",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 11,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "P58f5",
+                  "name": "lpHeroMobileTitle",
+                  "fill": "#111827",
+                  "textGrowth": "fixed-width",
+                  "width": 320,
+                  "content": "高専生と\n「意思決定の話」をする交流会",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 22,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "pHSP6",
+                  "name": "lpHeroMobileSub",
+                  "fill": "#374151",
+                  "textGrowth": "fixed-width",
+                  "width": 320,
+                  "content": "会社説明ではなく、仕事観を共有する場。",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "frame",
+                  "id": "aXRj1",
+                  "name": "lpHeroMobileCta",
+                  "width": "fill_container",
+                  "fill": "#F97316",
+                  "cornerRadius": 999,
+                  "padding": [
+                    18,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "kA3Va",
+                      "name": "lpHeroMobileCtaText",
+                      "fill": "#FFFFFF",
+                      "textGrowth": "fixed-width",
+                      "width": 140,
+                      "content": "▶ 交流会に参加する",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "qliPh",
+              "name": "lpHeroCardMobile",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 16,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E5E7EB"
+              },
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "YYgOT",
+                  "name": "lpHeroCardMobileTitle",
+                  "fill": "#111827",
+                  "textGrowth": "fixed-width",
+                  "width": 200,
+                  "content": "実施概要",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 14,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "f9jSx",
+                  "name": "lpHeroCardMobileItem1",
+                  "fill": "#374151",
+                  "textGrowth": "fixed-width",
+                  "width": 300,
+                  "content": "対象：全国の高専生",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "xNumY",
+                  "name": "lpHeroCardMobileItem2",
+                  "fill": "#374151",
+                  "textGrowth": "fixed-width",
+                  "width": 300,
+                  "content": "形式：少人数・業界混合",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "ZerLR",
+                  "name": "lpHeroCardMobileItem3",
+                  "fill": "#374151",
+                  "textGrowth": "fixed-width",
+                  "width": 300,
+                  "content": "開催：オンライン/オフライン",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "RD7o3",
+                  "name": "lpHeroCardMobileItem4",
+                  "fill": "#111827",
+                  "textGrowth": "fixed-width",
+                  "width": 300,
+                  "content": "所要：約90分 / 準備なし",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "o5EOU",
+              "name": "lpMobileConcept",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "bVO5c",
+                  "name": "lpMobileConceptTitle",
+                  "fill": "#111827",
+                  "textGrowth": "fixed-width",
+                  "width": 300,
+                  "content": "この交流会で得られること",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "PWZnO",
+                  "name": "lpCard",
+                  "width": 360,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E5E7EB"
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "TmcMK",
+                      "name": "lpCardTitle",
+                      "fill": "#111827",
+                      "textGrowth": "fixed-width",
+                      "width": 320,
+                      "content": "意思決定の実例",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "3RhLY",
+                      "name": "lpCardBody",
+                      "fill": "#374151",
+                      "textGrowth": "fixed-width",
+                      "width": 320,
+                      "content": "キャリアの選択軸を共有。",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "3pxLP",
+                  "name": "lpCard",
+                  "width": 360,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E5E7EB"
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "RXc7f",
+                      "name": "lpCardTitle",
+                      "fill": "#111827",
+                      "textGrowth": "fixed-width",
+                      "width": 320,
+                      "content": "素の反応",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "dMaEu",
+                      "name": "lpCardBody",
+                      "fill": "#374151",
+                      "textGrowth": "fixed-width",
+                      "width": 320,
+                      "content": "率直な感想が見える。",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "4xdng",
+                  "name": "lpCard",
+                  "width": 360,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E5E7EB"
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "87byx",
+                      "name": "lpCardTitle",
+                      "fill": "#111827",
+                      "textGrowth": "fixed-width",
+                      "width": 320,
+                      "content": "記憶に残る接点",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Uttey",
+                      "name": "lpCardBody",
+                      "fill": "#374151",
+                      "textGrowth": "fixed-width",
+                      "width": 320,
+                      "content": "認知形成に効く。",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "stTaR",
+              "name": "lpMobileAgenda",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "fbhsK",
+                  "name": "lpMobileAgendaTitle",
+                  "fill": "#111827",
+                  "textGrowth": "fixed-width",
+                  "width": 300,
+                  "content": "当日の流れ",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "OvbVS",
+                  "name": "lpCard",
+                  "width": 360,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E5E7EB"
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "sYn0l",
+                      "name": "lpCardTitle",
+                      "fill": "#111827",
+                      "textGrowth": "fixed-width",
+                      "width": 320,
+                      "content": "少人数の対話",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "kJU46",
+                      "name": "lpCardBody",
+                      "fill": "#374151",
+                      "textGrowth": "fixed-width",
+                      "width": 320,
+                      "content": "1テーブル数名",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "fOuiw",
+                  "name": "lpCard",
+                  "width": 360,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E5E7EB"
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "SgQra",
+                      "name": "lpCardTitle",
+                      "fill": "#111827",
+                      "textGrowth": "fixed-width",
+                      "width": 320,
+                      "content": "自己紹介のみ",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "UgQdi",
+                      "name": "lpCardBody",
+                      "fill": "#374151",
+                      "textGrowth": "fixed-width",
+                      "width": 320,
+                      "content": "企業紹介は最小限",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Nc88M",
+                  "name": "lpCard",
+                  "width": 360,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E5E7EB"
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "5cQpG",
+                      "name": "lpCardTitle",
+                      "fill": "#111827",
+                      "textGrowth": "fixed-width",
+                      "width": 320,
+                      "content": "話題は自由",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "a7JK7",
+                      "name": "lpCardBody",
+                      "fill": "#374151",
+                      "textGrowth": "fixed-width",
+                      "width": 320,
+                      "content": "技術/意思決定/働き方",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "1MCa6",
+              "name": "lpMobileFit",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "F5fXB",
+                  "name": "lpFitCardMobile",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E5E7EB"
+                  },
+                  "layout": "vertical",
+                  "gap": 6,
+                  "padding": 14,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "WhA6R",
+                      "name": "lpFitCardMobileTitle",
+                      "fill": "#111827",
+                      "textGrowth": "fixed-width",
+                      "width": 260,
+                      "content": "向いている企業",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "SS2KM",
+                      "name": "lpFitCardMobileItem1",
+                      "fill": "#374151",
+                      "textGrowth": "fixed-width",
+                      "width": 300,
+                      "content": "・仕事の話ができる",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "hpEGF",
+                      "name": "lpFitCardMobileItem2",
+                      "fill": "#374151",
+                      "textGrowth": "fixed-width",
+                      "width": 300,
+                      "content": "・若手に裁量がある",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "QjrPv",
+                  "name": "lpFitCardMobile",
+                  "width": "fill_container",
+                  "fill": "#FFF7ED",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#FED7AA"
+                  },
+                  "layout": "vertical",
+                  "gap": 6,
+                  "padding": 14,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "yTBCy",
+                      "name": "lpFitCardMobileTitle",
+                      "fill": "#9A3412",
+                      "textGrowth": "fixed-width",
+                      "width": 260,
+                      "content": "向いていない企業",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "uVU3U",
+                      "name": "lpFitCardMobileItem1",
+                      "fill": "#9A3412",
+                      "textGrowth": "fixed-width",
+                      "width": 300,
+                      "content": "・会社説明が主目的",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "oIalS",
+                      "name": "lpFitCardMobileItem2",
+                      "fill": "#9A3412",
+                      "textGrowth": "fixed-width",
+                      "width": 300,
+                      "content": "・短期の採用成果のみ重視",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "oDp0K",
+              "name": "lpMobileSteps",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "zYrvN",
+                  "name": "lpMobileStepsTitle",
+                  "fill": "#111827",
+                  "textGrowth": "fixed-width",
+                  "width": 300,
+                  "content": "参加までの流れ",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "tKqEb",
+                  "name": "lpStepCard",
+                  "width": 360,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E5E7EB"
+                  },
+                  "layout": "vertical",
+                  "gap": 10,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "UTHg4",
+                      "name": "lpStepBadge",
+                      "width": 34,
+                      "height": 34,
+                      "fill": "#111827",
+                      "cornerRadius": 17,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "x3Mpo",
+                          "name": "lpStepNumber",
+                          "fill": "#FFFFFF",
+                          "textGrowth": "fixed-width",
+                          "width": 20,
+                          "content": "1",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "m8zmp",
+                      "name": "lpStepText",
+                      "fill": "#374151",
+                      "textGrowth": "fixed-width",
+                      "width": 320,
+                      "content": "フォーム送信",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "rPkEH",
+                  "name": "lpStepCard",
+                  "width": 360,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E5E7EB"
+                  },
+                  "layout": "vertical",
+                  "gap": 10,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "FnpIj",
+                      "name": "lpStepBadge",
+                      "width": 34,
+                      "height": 34,
+                      "fill": "#111827",
+                      "cornerRadius": 17,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Mje5B",
+                          "name": "lpStepNumber",
+                          "fill": "#FFFFFF",
+                          "textGrowth": "fixed-width",
+                          "width": 20,
+                          "content": "2",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "DsAUz",
+                      "name": "lpStepText",
+                      "fill": "#374151",
+                      "textGrowth": "fixed-width",
+                      "width": 320,
+                      "content": "運営から連絡",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "fugSb",
+                  "name": "lpStepCard",
+                  "width": 360,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E5E7EB"
+                  },
+                  "layout": "vertical",
+                  "gap": 10,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "e3Pjz",
+                      "name": "lpStepBadge",
+                      "width": 34,
+                      "height": 34,
+                      "fill": "#111827",
+                      "cornerRadius": 17,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "khE2s",
+                          "name": "lpStepNumber",
+                          "fill": "#FFFFFF",
+                          "textGrowth": "fixed-width",
+                          "width": 20,
+                          "content": "3",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 13,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "gueXp",
+                      "name": "lpStepText",
+                      "fill": "#374151",
+                      "textGrowth": "fixed-width",
+                      "width": 320,
+                      "content": "交流会に参加",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "o2Wtb",
+              "name": "lpMobileTrust",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 16,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E5E7EB"
+              },
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "RuUbJ",
+                  "name": "lpMobileTrustTitle",
+                  "fill": "#111827",
+                  "textGrowth": "fixed-width",
+                  "width": 300,
+                  "content": "運営について",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 14,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "J2egs",
+                  "name": "lpMobileTrustBody",
+                  "fill": "#374151",
+                  "textGrowth": "fixed-width",
+                  "width": 300,
+                  "content": "高専ジョブが運営。安心して参加できる運用ルールを設定。",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "3e6Cm",
+              "name": "lpMobileFinalCta",
+              "width": "fill_container",
+              "fill": "#0B1B2B",
+              "cornerRadius": 20,
+              "layout": "vertical",
+              "gap": 10,
+              "padding": 20,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "VmJQV",
+                  "name": "lpMobileFinalCtaTitle",
+                  "fill": "#FFFFFF",
+                  "textGrowth": "fixed-width",
+                  "width": 300,
+                  "content": "まずは交流会で対話しませんか。",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 14,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "WW6dp",
+                  "name": "lpMobileFinalCtaButton",
+                  "width": "fill_container",
+                  "fill": "#F97316",
+                  "cornerRadius": 999,
+                  "padding": [
+                    18,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Ukhyi",
+                      "name": "lpMobileFinalCtaButtonText",
+                      "fill": "#FFFFFF",
+                      "textGrowth": "fixed-width",
+                      "width": 120,
+                      "content": "▶ 参加を申し込む",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "TlwFG",
+          "type": "ref",
+          "ref": "wca8z",
+          "width": "fill_container",
+          "height": 420,
+          "name": "lpFooterMobile"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "Dc2Yb",
+      "x": 2600,
+      "y": 0,
+      "name": "Component/Header Desktop",
+      "reusable": true,
+      "width": 1440,
+      "height": 60,
+      "fill": "#FFFFFFE6",
+      "stroke": {
+        "align": "inside",
+        "thickness": {
+          "bottom": 1
+        },
+        "fill": "#E2E8F0B3"
+      },
+      "gap": 24,
+      "padding": 16,
+      "justifyContent": "space_between",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "9JHQg",
+          "name": "headerDesktopLeft",
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "LpBDg",
+              "name": "headerDesktopLogo",
+              "fill": "#0F172A",
+              "textGrowth": "fixed-width",
+              "width": 120,
+              "content": "高専ジョブ",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 16,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "DByVU",
+          "name": "headerDesktopNav",
+          "gap": 24,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "6dHay",
+              "name": "headerDesktopNav1",
+              "fill": "#475569",
+              "textGrowth": "fixed-width",
+              "width": 60,
+              "content": "業界研究",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 14,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "FARE1",
+              "name": "headerDesktopNav2",
+              "fill": "#475569",
+              "textGrowth": "fixed-width",
+              "width": 60,
+              "content": "企業研究",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 14,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "PwBzK",
+              "name": "headerDesktopNav3",
+              "fill": "#475569",
+              "textGrowth": "fixed-width",
+              "width": 80,
+              "content": "キャリア設計",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 14,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "EIAXh",
+              "name": "headerDesktopNav4",
+              "fill": "#475569",
+              "textGrowth": "fixed-width",
+              "width": 60,
+              "content": "記事一覧",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 14,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "Lw4fd",
+              "name": "headerDesktopNav5",
+              "fill": "#475569",
+              "textGrowth": "fixed-width",
+              "width": 80,
+              "content": "運営について",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 14,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "xaoub",
+          "name": "headerDesktopRight",
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "vFwKV",
+              "name": "headerDesktopButton",
+              "fill": "#3B82F6",
+              "cornerRadius": 999,
+              "padding": [
+                16,
+                8
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "pnTWg",
+                  "name": "headerDesktopButtonText",
+                  "fill": "#FFFFFF",
+                  "textGrowth": "fixed-width",
+                  "width": 96,
+                  "content": "無料で相談する",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "iHNyC",
+      "x": 2600,
+      "y": 140,
+      "name": "Component/Header Mobile",
+      "reusable": true,
+      "width": 390,
+      "height": 60,
+      "fill": "#FFFFFFE6",
+      "stroke": {
+        "align": "inside",
+        "thickness": {
+          "bottom": 1
+        },
+        "fill": "#E2E8F0B3"
+      },
+      "gap": 12,
+      "padding": 16,
+      "justifyContent": "space_between",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "LicXH",
+          "name": "headerMobileLeft",
+          "gap": 8,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "61THQ",
+              "name": "headerMobileLogo",
+              "fill": "#0F172A",
+              "textGrowth": "fixed-width",
+              "width": 100,
+              "content": "高専ジョブ",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 14,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "SxXWw",
+          "name": "headerMobileRight",
+          "gap": 8,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "SdpaC",
+              "name": "headerMobileButton",
+              "fill": "#FFFFFF",
+              "cornerRadius": 999,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E2E8F0"
+              },
+              "padding": [
+                12,
+                8
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Ntd1w",
+                  "name": "headerMobileButtonText",
+                  "fill": "#475569",
+                  "textGrowth": "fixed-width",
+                  "width": 40,
+                  "content": "Menu",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "q0tjl",
+      "x": 2600,
+      "y": 260,
+      "name": "Component/Footer Desktop",
+      "reusable": true,
+      "width": 1440,
+      "height": 360,
+      "fill": "#0F172A",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": [
+        16,
+        48
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "gzXPy",
+          "name": "footerDesktopTop",
+          "width": "fill_container",
+          "gap": 40,
+          "children": [
+            {
+              "type": "frame",
+              "id": "HCkJZ",
+              "name": "footerDesktopCols",
+              "gap": 32,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "641vb",
+                  "name": "footerDesktopCol1",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "0TXge",
+                      "name": "footerDesktopCol1Title",
+                      "fill": "#FFFFFFB3",
+                      "textGrowth": "fixed-width",
+                      "width": 120,
+                      "content": "Contents",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "3Ds4p",
+                      "name": "footerDesktopCol1Link1",
+                      "fill": "#FFFFFFCC",
+                      "textGrowth": "fixed-width",
+                      "width": 120,
+                      "content": "業界研究",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "09WeG",
+                      "name": "footerDesktopCol1Link2",
+                      "fill": "#FFFFFFCC",
+                      "textGrowth": "fixed-width",
+                      "width": 120,
+                      "content": "企業研究",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "bnPDt",
+                      "name": "footerDesktopCol1Link3",
+                      "fill": "#FFFFFFCC",
+                      "textGrowth": "fixed-width",
+                      "width": 120,
+                      "content": "キャリア設計",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "mSfn9",
+                      "name": "footerDesktopCol1Link4",
+                      "fill": "#FFFFFFCC",
+                      "textGrowth": "fixed-width",
+                      "width": 120,
+                      "content": "記事一覧",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "wly5p",
+                  "name": "footerDesktopCol2",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "LXMwC",
+                      "name": "footerDesktopCol2Title",
+                      "fill": "#FFFFFFB3",
+                      "textGrowth": "fixed-width",
+                      "width": 120,
+                      "content": "About",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "S4EZE",
+                      "name": "footerDesktopCol2Link1",
+                      "fill": "#FFFFFFCC",
+                      "textGrowth": "fixed-width",
+                      "width": 140,
+                      "content": "運営について",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "XNopE",
+                      "name": "footerDesktopCol2Link2",
+                      "fill": "#FFFFFFCC",
+                      "textGrowth": "fixed-width",
+                      "width": 120,
+                      "content": "お問い合わせ",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "VHvFc",
+                      "name": "footerDesktopCol2Link3",
+                      "fill": "#FFFFFFCC",
+                      "textGrowth": "fixed-width",
+                      "width": 120,
+                      "content": "プライバシー",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "5dLnC",
+              "name": "footerDesktopBrand",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "2zXXD",
+                  "name": "footerDesktopBrandTitle",
+                  "fill": "#FFFFFF",
+                  "textGrowth": "fixed-width",
+                  "width": 140,
+                  "content": "高専ジョブ",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 24,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "AZmOA",
+                  "name": "footerDesktopBrandDesc",
+                  "fill": "#FFFFFFB3",
+                  "textGrowth": "fixed-width",
+                  "width": 240,
+                  "content": "高専生の進路選択を支えるキャリアメディア。",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "LpiYR",
+          "name": "footerDesktopBottom",
+          "fill": "#FFFFFF80",
+          "textGrowth": "fixed-width",
+          "width": 260,
+          "content": "© 2026 高専ジョブ. All rights reserved.",
+          "fontFamily": "LINE Seed JP",
+          "fontSize": 12,
+          "fontWeight": "500"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "wca8z",
+      "x": 2600,
+      "y": 680,
+      "name": "Component/Footer Mobile",
+      "reusable": true,
+      "width": 390,
+      "height": 420,
+      "fill": "#0F172A",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": [
+        16,
+        48
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "KHTqU",
+          "name": "footerMobileCol1",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "children": [
+            {
+              "type": "text",
+              "id": "CEltg",
+              "name": "footerMobileCol1Title",
+              "fill": "#FFFFFFB3",
+              "textGrowth": "fixed-width",
+              "width": 120,
+              "content": "Contents",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 11,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "9EKsM",
+              "name": "footerMobileCol1Link1",
+              "fill": "#FFFFFFCC",
+              "textGrowth": "fixed-width",
+              "width": 120,
+              "content": "業界研究",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 12,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "3JboX",
+              "name": "footerMobileCol1Link2",
+              "fill": "#FFFFFFCC",
+              "textGrowth": "fixed-width",
+              "width": 120,
+              "content": "企業研究",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 12,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "jOy65",
+              "name": "footerMobileCol1Link3",
+              "fill": "#FFFFFFCC",
+              "textGrowth": "fixed-width",
+              "width": 120,
+              "content": "キャリア設計",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 12,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "vHtZo",
+              "name": "footerMobileCol1Link4",
+              "fill": "#FFFFFFCC",
+              "textGrowth": "fixed-width",
+              "width": 120,
+              "content": "記事一覧",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 12,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "oyMNL",
+          "name": "footerMobileCol2",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "children": [
+            {
+              "type": "text",
+              "id": "2fbNs",
+              "name": "footerMobileCol2Title",
+              "fill": "#FFFFFFB3",
+              "textGrowth": "fixed-width",
+              "width": 120,
+              "content": "About",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 11,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "kHeSz",
+              "name": "footerMobileCol2Link1",
+              "fill": "#FFFFFFCC",
+              "textGrowth": "fixed-width",
+              "width": 140,
+              "content": "運営について",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 12,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "mhZgy",
+              "name": "footerMobileCol2Link2",
+              "fill": "#FFFFFFCC",
+              "textGrowth": "fixed-width",
+              "width": 120,
+              "content": "お問い合わせ",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 12,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "CYXNg",
+              "name": "footerMobileCol2Link3",
+              "fill": "#FFFFFFCC",
+              "textGrowth": "fixed-width",
+              "width": 120,
+              "content": "プライバシー",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 12,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ZOgJv",
+          "name": "footerMobileBrand",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "type": "text",
+              "id": "n1w83",
+              "name": "footerMobileBrandTitle",
+              "fill": "#FFFFFF",
+              "textGrowth": "fixed-width",
+              "width": 140,
+              "content": "高専ジョブ",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 24,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "47G8E",
+              "name": "footerMobileBrandDesc",
+              "fill": "#FFFFFFB3",
+              "textGrowth": "fixed-width",
+              "width": 300,
+              "content": "高専生の進路選択を支えるキャリアメディア。",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 14,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "bl5kE",
+          "name": "footerMobileBottom",
+          "fill": "#FFFFFF80",
+          "textGrowth": "fixed-width",
+          "width": 260,
+          "content": "© 2026 高専ジョブ. All rights reserved.",
+          "fontFamily": "LINE Seed JP",
+          "fontSize": 12,
+          "fontWeight": "500"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "lvehc",
+      "x": 2600,
+      "y": 1150,
+      "name": "Component/Article Card",
+      "reusable": true,
+      "width": 320,
+      "fill": "#FFFFFF00",
+      "stroke": {
+        "align": "inside",
+        "thickness": 0,
+        "fill": "#E2E8F000"
+      },
+      "layout": "vertical",
+      "gap": 16,
+      "children": [
+        {
+          "type": "rectangle",
+          "cornerRadius": 12,
+          "id": "jB89Q",
+          "name": "articleCardImage",
+          "fill": "#DBEAFE",
+          "width": "fill_container",
+          "height": 180
+        },
+        {
+          "type": "frame",
+          "id": "lVlZC",
+          "name": "articleCardContent",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "type": "text",
+              "id": "FubSv",
+              "name": "articleCardTitle",
+              "fill": "#0F172A",
+              "textGrowth": "fixed-width",
+              "width": 280,
+              "content": "記事タイトルが入ります",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 18,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "qvErj",
+              "name": "articleCardExcerpt",
+              "fill": "#475569",
+              "textGrowth": "fixed-width",
+              "width": 280,
+              "content": "記事の概要テキスト（2行程度）",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 14,
+              "fontWeight": "500"
+            },
+            {
+              "type": "frame",
+              "id": "tCHON",
+              "name": "articleCardTags",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "oQION",
+                  "name": "articleCardTag1",
+                  "fill": "#DBEAFE",
+                  "cornerRadius": 999,
+                  "padding": [
+                    8,
+                    4
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "srw4d",
+                      "name": "articleCardTag1Text",
+                      "fill": "#1D4ED8",
+                      "textGrowth": "fixed-width",
+                      "width": 24,
+                      "content": "タグ",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "lAYQv",
+                  "name": "articleCardTag2",
+                  "fill": "#DBEAFE",
+                  "cornerRadius": 999,
+                  "padding": [
+                    8,
+                    4
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "bReZL",
+                      "name": "articleCardTag2Text",
+                      "fill": "#1D4ED8",
+                      "textGrowth": "fixed-width",
+                      "width": 24,
+                      "content": "タグ",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "ahoJ1",
+              "name": "articleCardDate",
+              "fill": "#94A3B8",
+              "textGrowth": "fixed-width",
+              "width": 120,
+              "content": "更新日 2026/01/20",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 12,
+              "fontWeight": "500"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "u0zw8",
+      "x": 2600,
+      "y": 1500,
+      "name": "Component/Section Placeholder",
+      "reusable": true,
+      "width": 1200,
+      "fill": "#FFFFFF",
+      "cornerRadius": 16,
+      "stroke": {
+        "align": "inside",
+        "thickness": 1,
+        "fill": "#E2E8F0"
+      },
+      "layout": "vertical",
+      "gap": 6,
+      "padding": 20,
+      "children": [
+        {
+          "type": "text",
+          "id": "6rT9j",
+          "name": "sectionPlaceholderTitle",
+          "fill": "#0F172A",
+          "textGrowth": "fixed-width",
+          "width": 400,
+          "content": "セクションタイトル",
+          "fontFamily": "LINE Seed JP",
+          "fontSize": 16,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "ED7x5",
+          "name": "sectionPlaceholderDesc",
+          "fill": "#475569",
+          "textGrowth": "fixed-width",
+          "width": 520,
+          "content": "このセクションの内容をここに配置",
+          "fontFamily": "LINE Seed JP",
+          "fontSize": 12,
+          "fontWeight": "500"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "kUdrZ",
+      "x": 2600,
+      "y": 1660,
+      "name": "Component/Section Placeholder Mobile",
+      "reusable": true,
+      "width": 342,
+      "fill": "#FFFFFF",
+      "cornerRadius": 16,
+      "stroke": {
+        "align": "inside",
+        "thickness": 1,
+        "fill": "#E2E8F0"
+      },
+      "layout": "vertical",
+      "gap": 6,
+      "padding": 16,
+      "children": [
+        {
+          "type": "text",
+          "id": "QyVRo",
+          "name": "sectionPlaceholderMobileTitle",
+          "fill": "#0F172A",
+          "textGrowth": "fixed-width",
+          "width": 300,
+          "content": "セクションタイトル",
+          "fontFamily": "LINE Seed JP",
+          "fontSize": 14,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "kFrZH",
+          "name": "sectionPlaceholderMobileDesc",
+          "fill": "#475569",
+          "textGrowth": "fixed-width",
+          "width": 300,
+          "content": "このセクションの内容をここに配置",
+          "fontFamily": "LINE Seed JP",
+          "fontSize": 11,
+          "fontWeight": "500"
+        }
+      ]
+    }
+  ]
+}
