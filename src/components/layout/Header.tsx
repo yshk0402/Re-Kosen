@@ -92,7 +92,9 @@ export default function Header() {
               aria-controls="mobile-nav"
               aria-expanded={menuOpen}
               aria-label={menuLabel}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-white text-lg font-semibold text-muted transition hover:text-ink lg:hidden"
+              className={`inline-flex h-11 w-11 items-center justify-center rounded-full text-lg font-semibold text-white transition hover:bg-brand-strong lg:hidden ${
+                menuOpen ? "bg-brand-strong" : "bg-brand"
+              }`}
               onClick={() => setMenuOpen((prev) => !prev)}
               type="button"
             >
