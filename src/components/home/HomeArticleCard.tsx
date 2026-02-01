@@ -23,10 +23,10 @@ export default function HomeArticleCard({
   const titleSize = isSmall ? "text-sm sm:text-base" : "text-base sm:text-lg";
   const radius = isSmall ? "rounded-lg" : "rounded-xl";
   const imageSize = isSmall
-    ? "aspect-[16/9] w-36 shrink-0 sm:w-44"
+    ? "aspect-[16/9] w-40 shrink-0 sm:w-48"
     : "aspect-[16/9]";
   const sizes = isSmall
-    ? "(max-width: 640px) 144px, 176px"
+    ? "(max-width: 640px) 160px, 192px"
     : "(max-width: 1024px) 100vw, 32vw";
 
   return (
