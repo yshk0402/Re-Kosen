@@ -66,6 +66,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             changeFrequency: "yearly",
             priority: 0.3,
         },
+        {
+            url: `${SITE_URL}/1`,
+            lastModified: now,
+            changeFrequency: "monthly",
+            priority: 0.7,
+        },
     ];
 
     // 記事ページ
