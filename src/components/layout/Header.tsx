@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
+  { href: "/", label: "TOP" },
   { href: "/industry", label: "業界研究" },
   { href: "/company", label: "企業研究" },
   { href: "/job", label: "職種研究" },
@@ -100,7 +101,7 @@ export default function Header() {
 
       <div
         aria-hidden={!menuOpen}
-        className={`fixed inset-0 z-50 bg-white transition-opacity duration-200 lg:hidden ${
+        className={`fixed inset-0 z-50 bg-brand-soft transition-opacity duration-200 lg:hidden ${
           menuOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >

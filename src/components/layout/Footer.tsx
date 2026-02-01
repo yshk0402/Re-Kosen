@@ -5,6 +5,7 @@ const footerColumns = [
   {
     title: "Contents",
     links: [
+      { href: "/", label: "TOP" },
       { href: "/industry", label: "業界研究" },
       { href: "/company", label: "企業研究" },
       { href: "/job", label: "職種研究" },
