@@ -34,7 +34,7 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
   const pagination = response?.meta.pagination;
 
   return (
-    <div className="mx-auto w-full max-w-[1200px] space-y-8 px-4 py-10">
+    <div className="mx-auto w-full max-w-[960px] space-y-8 px-4 py-10">
       <header className="space-y-3">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand">
           Tag

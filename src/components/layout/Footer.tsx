@@ -26,7 +26,7 @@ const footerColumns = [
 export default function Footer() {
   return (
     <footer className="mt-16 bg-ink text-white/80">
-      <div className="mx-auto w-full max-w-[1200px] px-4 py-12">
+      <div className="mx-auto w-full max-w-[1440px] px-4 py-12">
         <div className="grid gap-10 lg:grid-cols-[1.6fr,1fr]">
           <div className="grid gap-8 sm:grid-cols-2">
             {footerColumns.map((column) => (

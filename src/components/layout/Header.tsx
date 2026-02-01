@@ -50,7 +50,7 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-40 border-b border-border/70 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-4 py-5">
+        <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 py-5">
           <Link className="flex items-center" href="/">
             <Image
               alt="高専ジョブ"
@@ -109,7 +109,7 @@ export default function Header() {
         }`}
       >
         <div
-          className={`mx-auto flex h-full w-full max-w-[1200px] flex-col px-4 py-6 transition-transform duration-200 ${
+          className={`mx-auto flex h-full w-full max-w-[1440px] flex-col px-4 py-6 transition-transform duration-200 ${
             menuOpen ? "translate-y-0" : "translate-y-2"
           }`}
         >
