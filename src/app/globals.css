@@ -89,10 +89,9 @@ h2.text-brand,
 h3.text-brand,
 h4.text-brand {
   display: inline-block;
-  padding-bottom: 0.08em;
   background-image: linear-gradient(#ffbb00, #ffbb00);
-  background-position: 0 100%;
-  background-size: 100% 0.2em;
+  background-position: 0 88%;
+  background-size: 100% 0.38em;
   background-repeat: no-repeat;
 }
 
