@@ -381,7 +381,7 @@ export default async function Home() {
 
               <section className="space-y-5">
                 <SectionHeader title="カテゴリ別" />
-                <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
+                <div className="grid gap-6 lg:grid-cols-2">
                   {categoryShelves.map((category) => (
                     <div key={category.key} className="space-y-4">
                       <div className="flex items-center justify-between">

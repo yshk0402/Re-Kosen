@@ -18,15 +18,15 @@ export default function HomeArticleCard({
 }: HomeArticleCardProps) {
   const isSmall = variant === "small";
   const layout = isSmall
-    ? "items-center gap-4 py-2"
+    ? "items-start gap-5 py-2"
     : "flex-col gap-3 py-2";
   const titleSize = isSmall ? "text-sm sm:text-base" : "text-base sm:text-lg";
   const radius = isSmall ? "rounded-lg" : "rounded-xl";
   const imageSize = isSmall
-    ? "h-16 w-24 shrink-0 sm:h-20 sm:w-32"
+    ? "aspect-[16/9] w-36 shrink-0 sm:w-44"
     : "aspect-[16/9]";
   const sizes = isSmall
-    ? "(max-width: 640px) 96px, 128px"
+    ? "(max-width: 640px) 144px, 176px"
     : "(max-width: 1024px) 100vw, 32vw";
 
   return (
