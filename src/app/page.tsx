@@ -93,7 +93,7 @@ function PopularList({ items }: { items: HomeCard[] }) {
           {items.map((item, index) => (
             <Link
               key={item.slug}
-              className="group flex items-start gap-4 py-4 transition"
+              className="group flex items-start gap-4 py-4 transition lg:gap-3 lg:py-3"
               href={`/articles/${item.slug}`}
             >
               <span
@@ -101,16 +101,16 @@ function PopularList({ items }: { items: HomeCard[] }) {
               >
                 No.{index + 1}
               </span>
-              <div className="relative aspect-[16/9] w-28 shrink-0 overflow-hidden rounded-lg bg-brand-soft sm:w-32">
+              <div className="relative aspect-[16/9] w-28 shrink-0 overflow-hidden rounded-lg bg-brand-soft sm:w-32 lg:w-40 xl:w-44">
                 <Image
                   alt={item.title}
                   fill
-                  sizes="(max-width: 640px) 112px, 128px"
+                  sizes="(max-width: 640px) 112px, (max-width: 1024px) 128px, (max-width: 1280px) 160px, 176px"
                   src={item.image}
                   className="object-cover"
                 />
               </div>
-              <p className="text-sm font-semibold text-ink transition group-hover:text-brand-strong">
+              <p className="min-w-0 text-sm font-semibold text-ink transition group-hover:text-brand-strong">
                 {item.title}
               </p>
             </Link>
