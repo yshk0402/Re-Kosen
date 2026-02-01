@@ -86,14 +86,14 @@ function PopularList({ items }: { items: HomeCard[] }) {
   ];
 
   return (
-    <section className="space-y-4">
+    <section className="flex h-full flex-col gap-4">
       <SectionHeader title="人気ランキング" />
       {items.length ? (
-        <div className="divide-y divide-border/60">
+        <div className="flex flex-1 flex-col justify-between divide-y divide-border/60">
           {items.map((item, index) => (
             <Link
               key={item.slug}
-              className="group flex items-center gap-3 py-3 transition"
+              className="group flex items-start gap-4 py-4 transition"
               href={`/articles/${item.slug}`}
             >
               <span
@@ -101,16 +101,16 @@ function PopularList({ items }: { items: HomeCard[] }) {
               >
                 No.{index + 1}
               </span>
-              <div className="relative aspect-[16/9] w-20 shrink-0 overflow-hidden rounded-lg bg-brand-soft">
+              <div className="relative aspect-[16/9] w-28 shrink-0 overflow-hidden rounded-lg bg-brand-soft sm:w-32">
                 <Image
                   alt={item.title}
                   fill
-                  sizes="80px"
+                  sizes="(max-width: 640px) 112px, 128px"
                   src={item.image}
                   className="object-cover"
                 />
               </div>
-              <p className="text-sm font-semibold text-ink line-clamp-2 transition group-hover:text-brand-strong">
+              <p className="text-sm font-semibold text-ink transition group-hover:text-brand-strong">
                 {item.title}
               </p>
             </Link>

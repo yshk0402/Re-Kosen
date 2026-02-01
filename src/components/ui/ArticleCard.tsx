@@ -39,7 +39,7 @@ export default function ArticleCard({
     >
       <div
         className={`relative aspect-[16/9] overflow-hidden rounded-xl bg-brand-soft ${
-          isCompact ? "w-40 shrink-0 sm:w-48 lg:w-full" : ""
+          isCompact ? "w-44 shrink-0 sm:w-56 lg:w-full" : ""
         }`}
       >
         {coverImage ? (
@@ -49,7 +49,7 @@ export default function ArticleCard({
             priority={false}
             sizes={
               isCompact
-                ? "(max-width: 640px) 160px, (max-width: 1024px) 240px, 360px"
+                ? "(max-width: 640px) 176px, (max-width: 1024px) 224px, 360px"
                 : "100vw"
             }
             src={coverImage}
@@ -73,20 +73,39 @@ export default function ArticleCard({
           {title}
         </h3>
         <p className="text-sm text-muted line-clamp-2">{excerpt}</p>
-        <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
-          {displayTags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full bg-brand-soft px-2 py-1 text-brand-strong"
-            >
-              {tag}
-            </span>
-          ))}
-          {extraTagCount ? (
-            <span className="text-xs text-muted/70">+{extraTagCount}</span>
-          ) : null}
-          <span className="ml-auto text-xs text-muted/70">更新日 {date}</span>
-        </div>
+        {isCompact ? (
+          <>
+            <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
+              {displayTags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full bg-brand-soft px-2 py-1 text-brand-strong"
+                >
+                  {tag}
+                </span>
+              ))}
+              {extraTagCount ? (
+                <span className="text-xs text-muted/70">+{extraTagCount}</span>
+              ) : null}
+            </div>
+            <p className="text-xs text-muted/70">更新日 {date}</p>
+          </>
+        ) : (
+          <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
+            {displayTags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full bg-brand-soft px-2 py-1 text-brand-strong"
+              >
+                {tag}
+              </span>
+            ))}
+            {extraTagCount ? (
+              <span className="text-xs text-muted/70">+{extraTagCount}</span>
+            ) : null}
+            <span className="ml-auto text-xs text-muted/70">更新日 {date}</span>
+          </div>
+        )}
       </div>
     </Link>
   );
