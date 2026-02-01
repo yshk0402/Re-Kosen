@@ -76,6 +76,7 @@ export default async function JobTagPage({
                 href={`/articles/${card.slug}`}
                 tags={card.tags}
                 title={card.title}
+                variant="compact"
               />
             );
           })}

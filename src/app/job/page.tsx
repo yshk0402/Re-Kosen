@@ -54,6 +54,7 @@ export default async function JobPage({ searchParams }: JobPageProps) {
                 href={`/articles/${card.slug}`}
                 tags={card.tags}
                 title={card.title}
+                variant="compact"
               />
             );
           })}

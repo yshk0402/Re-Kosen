@@ -30,20 +30,28 @@ export default function ArticleCard({
 
   return (
     <Link
-      className={`group grid gap-4 transition ${
-        isCompact ? "py-1" : "py-2"
+      className={`group transition ${
+        isCompact
+          ? "flex items-start gap-4 py-2 lg:flex-col lg:gap-4"
+          : "grid gap-4 py-2"
       }`}
       href={href}
     >
       <div
-        className="relative aspect-[16/9] overflow-hidden rounded-xl bg-brand-soft"
+        className={`relative aspect-[16/9] overflow-hidden rounded-xl bg-brand-soft ${
+          isCompact ? "w-40 shrink-0 sm:w-48 lg:w-full" : ""
+        }`}
       >
         {coverImage ? (
           <Image
             alt={title}
             fill
             priority={false}
-            sizes={isCompact ? "(max-width: 768px) 100vw, 33vw" : "100vw"}
+            sizes={
+              isCompact
+                ? "(max-width: 640px) 160px, (max-width: 1024px) 240px, 360px"
+                : "100vw"
+            }
             src={coverImage}
             className="object-cover transition duration-300 group-hover:scale-[1.01]"
           />

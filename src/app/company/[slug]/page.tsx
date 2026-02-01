@@ -76,6 +76,7 @@ export default async function CompanyTagPage({
                 href={`/articles/${card.slug}`}
                 tags={card.tags}
                 title={card.title}
+                variant="compact"
               />
             );
           })}
