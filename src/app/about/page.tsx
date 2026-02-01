@@ -1,3 +1,22 @@
+import type { Metadata } from "next";
+
+const title = "運営について";
+const description = "高専ジョブの運営方針や編集方針、運営者情報をまとめています。";
+
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title,
+    description,
+    type: "website",
+    url: "/about",
+  },
+};
+
 export default function AboutPage() {
   return (
     <div className="mx-auto w-full max-w-[1440px] space-y-6 px-4 py-10">

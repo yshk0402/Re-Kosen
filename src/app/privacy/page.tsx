@@ -1,3 +1,22 @@
+import type { Metadata } from "next";
+
+const title = "プライバシーポリシー";
+const description = "高専ジョブにおける個人情報の取り扱い方針を掲載しています。";
+
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: {
+    canonical: "/privacy",
+  },
+  openGraph: {
+    title,
+    description,
+    type: "website",
+    url: "/privacy",
+  },
+};
+
 export default function PrivacyPage() {
   return (
     <div className="mx-auto w-full max-w-[1440px] space-y-6 px-4 py-10">

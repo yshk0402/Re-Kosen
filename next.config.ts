@@ -32,6 +32,25 @@ const remotePatterns = [...strapiPattern, ...mediaPattern];
 
 const nextConfig: NextConfig = {
   images: remotePatterns.length ? { remotePatterns } : undefined,
+  async redirects() {
+    return [
+      {
+        source: "/articles/caree-five",
+        destination: "/articles/career-five",
+        permanent: true,
+      },
+      {
+        source: "/articles/creer-eight",
+        destination: "/articles/career-eight",
+        permanent: true,
+      },
+      {
+        source: "/articles/plant-enginieerging",
+        destination: "/articles/plant-engineering",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

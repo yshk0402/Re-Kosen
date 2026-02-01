@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ArticleCard from "@/components/ui/ArticleCard";
 import ArticleGridWithMore from "@/components/ui/ArticleGridWithMore";
@@ -13,6 +14,42 @@ type TagPageProps = {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ page?: string }>;
 };
+
+export async function generateMetadata({
+  params,
+}: TagPageProps): Promise<Metadata> {
+  const resolvedParams = await Promise.resolve(params);
+  const tag = await getTagBySlug(resolvedParams.slug);
+  const tagAttributes = getEntityAttributes(tag);
+
+  if (!tagAttributes) {
+    return {
+      title: "タグが見つかりません",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  const title = `タグ: ${tagAttributes.name}`;
+  const description = `「${tagAttributes.name}」に関連する高専ジョブの記事一覧です。`;
+  const canonical = `/tag/${tagAttributes.slug}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: canonical,
+    },
+  };
+}
 
 export default async function TagPage({ params, searchParams }: TagPageProps) {
   const resolvedParams = await Promise.resolve(params);

@@ -1,9 +1,24 @@
+import type { Metadata } from "next";
 import ArticleCard from "@/components/ui/ArticleCard";
 import ArticleGridWithMore from "@/components/ui/ArticleGridWithMore";
 import Pagination from "@/components/ui/Pagination";
 import TagFilter from "@/components/ui/TagFilter";
 import { buildTagOptions, getArticles, getTags, mapArticleCard } from "@/lib/strapi";
 import { careerMeta } from "./data";
+
+export const metadata: Metadata = {
+  title: careerMeta.title,
+  description: careerMeta.description,
+  alternates: {
+    canonical: careerMeta.basePath,
+  },
+  openGraph: {
+    title: careerMeta.title,
+    description: careerMeta.description,
+    type: "website",
+    url: careerMeta.basePath,
+  },
+};
 
 type CareerPageProps = {
   searchParams: Promise<{ page?: string }>;

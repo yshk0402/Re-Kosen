@@ -29,7 +29,10 @@
       ]
     },
     "excerpt": {
-      "type": "text"
+      "type": "text",
+      "required": true,
+      "minLength": 30,
+      "maxLength": 120
     },
     "stats": {
       "type": "enumeration",
@@ -60,7 +63,8 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::tag.tag",
-      "inversedBy": "articles"
+      "inversedBy": "articles",
+      "required": true
     },
     "featured": {
       "type": "boolean"
@@ -86,7 +90,8 @@
         "article.comparison-table",
         "article.callout",
         "article.blocks"
-      ]
+      ],
+      "required": true
     },
     "manualRelatedArticles": {
       "type": "relation",

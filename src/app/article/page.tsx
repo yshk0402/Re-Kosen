@@ -1,7 +1,22 @@
+import type { Metadata } from "next";
 import ArticleCard from "@/components/ui/ArticleCard";
 import Pagination from "@/components/ui/Pagination";
 import { getArticles, mapArticleCard } from "@/lib/strapi";
 import { articleMeta } from "./data";
+
+export const metadata: Metadata = {
+  title: articleMeta.title,
+  description: articleMeta.description,
+  alternates: {
+    canonical: articleMeta.basePath,
+  },
+  openGraph: {
+    title: articleMeta.title,
+    description: articleMeta.description,
+    type: "website",
+    url: articleMeta.basePath,
+  },
+};
 
 type ArticleIndexPageProps = {
   searchParams: Promise<{ page?: string }>;

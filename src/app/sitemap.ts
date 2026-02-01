@@ -1,5 +1,9 @@
 import type { MetadataRoute } from "next";
-import { getArticleSlugs, getTags, getEntityAttributes } from "@/lib/strapi";
+import {
+  getArticleSitemapEntries,
+  getTags,
+  getEntityAttributes,
+} from "@/lib/strapi";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://re-kosen.vercel.app";
 
@@ -33,6 +37,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.9,
         },
         {
+            url: `${SITE_URL}/article`,
+            lastModified: now,
+            changeFrequency: "daily",
+            priority: 0.9,
+        },
+        {
             url: `${SITE_URL}/job`,
             lastModified: now,
             changeFrequency: "daily",
@@ -59,10 +69,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ];
 
     // 記事ページ
-    const articleSlugs = await getArticleSlugs();
-    const articlePages: MetadataRoute.Sitemap = articleSlugs.map((slug) => ({
-        url: `${SITE_URL}/articles/${slug}`,
-        lastModified: now,
+    const articleEntries = await getArticleSitemapEntries();
+    const articlePages: MetadataRoute.Sitemap = articleEntries.map((entry) => ({
+        url: `${SITE_URL}/articles/${entry.slug}`,
+        lastModified: new Date(entry.updatedAt),
         changeFrequency: "weekly" as const,
         priority: 0.8,
     }));

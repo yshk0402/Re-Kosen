@@ -41,10 +41,6 @@ export default function Header() {
     };
   }, [menuOpen]);
 
-  if (pathname === "/1" || pathname.startsWith("/1/")) {
-    return null;
-  }
-
   const menuLabel = menuOpen ? "メニューを閉じる" : "メニューを開く";
 
   return (

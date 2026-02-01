@@ -1,9 +1,24 @@
+import type { Metadata } from "next";
 import ArticleCard from "@/components/ui/ArticleCard";
 import ArticleGridWithMore from "@/components/ui/ArticleGridWithMore";
 import Pagination from "@/components/ui/Pagination";
 import TagFilter from "@/components/ui/TagFilter";
 import { buildTagOptions, getArticles, getTags, mapArticleCard } from "@/lib/strapi";
 import { industryMeta } from "./data";
+
+export const metadata: Metadata = {
+  title: industryMeta.title,
+  description: industryMeta.description,
+  alternates: {
+    canonical: industryMeta.basePath,
+  },
+  openGraph: {
+    title: industryMeta.title,
+    description: industryMeta.description,
+    type: "website",
+    url: industryMeta.basePath,
+  },
+};
 
 type IndustryPageProps = {
   searchParams: Promise<{ page?: string }>;

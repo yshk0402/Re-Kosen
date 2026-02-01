@@ -28,7 +28,7 @@ export default function TagFilter({
     onChange?.(value);
 
     if (basePath) {
-      const nextPath = value === "all" ? basePath : `${basePath}/${value}`;
+      const nextPath = value === "all" ? basePath : `/tag/${value}`;
       router.push(nextPath);
     }
   };

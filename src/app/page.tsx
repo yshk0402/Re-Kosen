@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import HomeArticleCard from "@/components/home/HomeArticleCard";
@@ -17,6 +18,24 @@ import {
 
 const fallbackCoverImage = "/images/cover-placeholder.svg";
 const LINE_FALLBACK_URL = "https://example.com";
+
+const homeTitle = "高専生向けキャリアメディア";
+const homeDescription =
+  "高専生向けの業界研究・企業研究・キャリア設計の情報を発信。就活の判断材料をわかりやすくまとめています。";
+
+export const metadata: Metadata = {
+  title: homeTitle,
+  description: homeDescription,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: homeTitle,
+    description: homeDescription,
+    type: "website",
+    url: "/",
+  },
+};
 
 const categoryGroups = [
   { key: "industry", label: "業界研究", href: "/industry" },

@@ -262,16 +262,20 @@ export async function generateMetadata({
   const description = seo?.metaDescription ?? attributes.excerpt ?? undefined;
   const ogImage = resolveMediaUrl(seo?.ogImage ?? attributes.coverImage);
   const socialImages = ogImage ? [{ url: ogImage, alt: title }] : undefined;
+  const canonical = seo?.canonical ?? `/articles/${attributes.slug}`;
 
   return {
     title,
     description,
-    alternates: seo?.canonical ? { canonical: seo.canonical } : undefined,
+    alternates: {
+      canonical,
+    },
     robots: seo?.noindex ? { index: false, follow: false } : undefined,
     openGraph: {
       title,
       description,
       type: "article",
+      url: canonical,
       images: socialImages,
     },
     twitter: {

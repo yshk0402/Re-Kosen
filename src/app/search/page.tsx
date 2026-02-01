@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import ArticleCard from "@/components/ui/ArticleCard";
 import ArticleGridWithMore from "@/components/ui/ArticleGridWithMore";
 import Pagination from "@/components/ui/Pagination";
@@ -6,6 +7,36 @@ import { getArticles, mapArticleCard } from "@/lib/strapi";
 type SearchPageProps = {
   searchParams: Promise<{ q?: string; page?: string }>;
 };
+
+export async function generateMetadata({
+  searchParams,
+}: SearchPageProps): Promise<Metadata> {
+  const resolvedSearchParams = await Promise.resolve(searchParams);
+  const query = (resolvedSearchParams.q ?? "").trim();
+  const title = query ? `検索: ${query}` : "検索";
+  const description = "高専ジョブの記事検索結果です。";
+  const canonical = query
+    ? `/search?q=${encodeURIComponent(query)}`
+    : "/search";
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+    },
+    robots: {
+      index: false,
+      follow: true,
+    },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: canonical,
+    },
+  };
+}
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const resolvedSearchParams = await Promise.resolve(searchParams);

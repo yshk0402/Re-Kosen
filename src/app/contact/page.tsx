@@ -1,7 +1,26 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 const GOOGLE_FORM_URL = process.env.NEXT_PUBLIC_GOOGLE_FORM_URL || "#";
 const LINE_URL = "https://lin.ee/46Ad4lO";
+
+const title = "お問い合わせ";
+const description =
+  "高専ジョブへの取材や掲載のご相談、学生の方の相談窓口はこちらから。";
+
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: {
+    canonical: "/contact",
+  },
+  openGraph: {
+    title,
+    description,
+    type: "website",
+    url: "/contact",
+  },
+};
 
 export default function ContactPage() {
   return (

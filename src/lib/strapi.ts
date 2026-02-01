@@ -483,6 +483,51 @@ export const getArticleSlugs = async () => {
   return slugs;
 };
 
+export type ArticleSitemapEntry = {
+  slug: string;
+  updatedAt: string;
+};
+
+export const getArticleSitemapEntries = async () => {
+  const pageSize = 100;
+  const entries: ArticleSitemapEntry[] = [];
+  let page = 1;
+
+  while (true) {
+    const response =
+      await strapiFetch<StrapiCollectionResponse<StrapiArticle>>(
+        "/api/articles",
+        {
+          "fields[0]": "slug",
+          "fields[1]": "updatedAt",
+          "filters[stats][$eq]": "published",
+          "pagination[page]": page,
+          "pagination[pageSize]": pageSize,
+          "sort[0]": "updatedAt:desc",
+        },
+      );
+
+    if (!response) {
+      break;
+    }
+
+    response.data.forEach((item) => {
+      const attrs = getEntityAttributes<StrapiArticleAttributes>(item);
+      if (attrs?.slug && attrs.updatedAt) {
+        entries.push({ slug: attrs.slug, updatedAt: attrs.updatedAt });
+      }
+    });
+
+    const pageCount = response.meta.pagination?.pageCount ?? 1;
+    if (page >= pageCount) {
+      break;
+    }
+    page += 1;
+  }
+
+  return entries;
+};
+
 export const getArticleBySlug = async (
   slug: string,
   options?: { preview?: boolean },
