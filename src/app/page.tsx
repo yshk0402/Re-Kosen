@@ -79,6 +79,12 @@ function EmptyState({ children }: { children: ReactNode }) {
 }
 
 function PopularList({ items }: { items: HomeCard[] }) {
+  const rankStyles = [
+    "bg-[#D4A221] text-white",
+    "bg-[#5C86B0] text-white",
+    "bg-[#D07A3B] text-white",
+  ];
+
   return (
     <section className="space-y-4">
       <SectionHeader title="人気ランキング" />
@@ -90,8 +96,10 @@ function PopularList({ items }: { items: HomeCard[] }) {
               className="group flex items-center gap-3 py-3 transition"
               href={`/articles/${item.slug}`}
             >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-soft text-xs font-semibold text-brand">
-                {String(index + 1).padStart(2, "0")}
+              <span
+                className={`inline-flex shrink-0 items-center justify-center rounded-lg px-3 py-1 text-xs font-semibold ${rankStyles[index] ?? "bg-brand-soft text-brand"}`}
+              >
+                No.{index + 1}
               </span>
               <div className="relative aspect-[16/9] w-20 shrink-0 overflow-hidden rounded-lg bg-brand-soft">
                 <Image

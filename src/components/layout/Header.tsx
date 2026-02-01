@@ -48,56 +48,58 @@ export default function Header() {
   const menuLabel = menuOpen ? "メニューを閉じる" : "メニューを開く";
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/70 bg-white/90 backdrop-blur">
-      <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-4 py-5">
-        <Link className="flex items-center" href="/">
-          <Image
-            alt="高専ジョブ"
-            className="h-7 w-auto"
-            height={28}
-            priority
-            src="/icon.png"
-            width={82}
-          />
-        </Link>
-        <nav className="hidden items-center gap-6 text-base font-semibold text-muted lg:flex">
-          {navItems.map((item) => {
-            const isActive =
-              pathname === item.href || pathname.startsWith(item.href + "/");
-            return (
-              <Link
-                key={item.href}
-                className={`transition hover:text-ink ${
-                  isActive ? "text-ink" : "text-muted"
-                }`}
-                href={item.href}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
-        <div className="flex items-center gap-2">
-          <Link
-            className="hidden rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-strong lg:inline-flex"
-            href={LINE_URL}
-            rel="noreferrer"
-            target="_blank"
-          >
-            無料で相談する
+    <>
+      <header className="sticky top-0 z-40 border-b border-border/70 bg-white/90 backdrop-blur">
+        <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-4 py-5">
+          <Link className="flex items-center" href="/">
+            <Image
+              alt="高専ジョブ"
+              className="h-7 w-auto"
+              height={28}
+              priority
+              src="/icon.png"
+              width={82}
+            />
           </Link>
-          <button
-            aria-controls="mobile-nav"
-            aria-expanded={menuOpen}
-            aria-label={menuLabel}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-white text-lg font-semibold text-muted transition hover:text-ink lg:hidden"
-            onClick={() => setMenuOpen((prev) => !prev)}
-            type="button"
-          >
-            <span aria-hidden="true">{menuOpen ? "✕" : "≡"}</span>
-          </button>
+          <nav className="hidden items-center gap-6 text-base font-semibold text-muted lg:flex">
+            {navItems.map((item) => {
+              const isActive =
+                pathname === item.href || pathname.startsWith(item.href + "/");
+              return (
+                <Link
+                  key={item.href}
+                  className={`transition hover:text-ink ${
+                    isActive ? "text-ink" : "text-muted"
+                  }`}
+                  href={item.href}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+          <div className="flex items-center gap-2">
+            <Link
+              className="hidden rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-strong lg:inline-flex"
+              href={LINE_URL}
+              rel="noreferrer"
+              target="_blank"
+            >
+              無料で相談する
+            </Link>
+            <button
+              aria-controls="mobile-nav"
+              aria-expanded={menuOpen}
+              aria-label={menuLabel}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-white text-lg font-semibold text-muted transition hover:text-ink lg:hidden"
+              onClick={() => setMenuOpen((prev) => !prev)}
+              type="button"
+            >
+              <span aria-hidden="true">{menuOpen ? "✕" : "≡"}</span>
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
       <div
         aria-hidden={!menuOpen}
@@ -111,7 +113,11 @@ export default function Header() {
           }`}
         >
           <div className="flex items-center justify-between">
-            <Link className="flex items-center" href="/" onClick={() => setMenuOpen(false)}>
+            <Link
+              className="flex items-center"
+              href="/"
+              onClick={() => setMenuOpen(false)}
+            >
               <Image
                 alt="高専ジョブ"
                 className="h-7 w-auto"
@@ -163,6 +169,6 @@ export default function Header() {
           </nav>
         </div>
       </div>
-    </header>
+    </>
   );
 }
