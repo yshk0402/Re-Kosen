@@ -12,12 +12,14 @@ const desktopImage = {
   width: 1222,
   height: 4096,
   penWidth: 1440,
+  src: "/lp/LP_Desktop.webp",
 };
 
 const mobileImage = {
-  width: 390,
-  height: 3300,
+  width: 485,
+  height: 4096,
   penWidth: 390,
+  src: "/lp/LP_Mobile.webp",
 };
 
 const desktopScale = desktopImage.width / desktopImage.penWidth;
@@ -86,10 +88,13 @@ export default function LandingPageImageBase() {
   return (
     <div className="bg-white">
       {/* Desktop */}
-      <div className="relative mx-auto hidden w-full lg:block" style={{ aspectRatio: `${desktopImage.width} / ${desktopImage.height}` }}>
+      <div
+        className="relative mx-auto hidden w-full lg:block"
+        style={{ aspectRatio: `${desktopImage.width} / ${desktopImage.height}` }}
+      >
         <img
           alt="LP Desktop"
-          src="/lp/LP_Desktop.png"
+          src={desktopImage.src}
           width={desktopImage.width}
           height={desktopImage.height}
           className="absolute left-0 top-0 h-full w-full"
@@ -106,10 +111,13 @@ export default function LandingPageImageBase() {
       </div>
 
       {/* Mobile */}
-      <div className="relative mx-auto block w-full lg:hidden" style={{ aspectRatio: `${mobileImage.width} / ${mobileImage.height}` }}>
+      <div
+        className="relative mx-auto block w-full lg:hidden"
+        style={{ aspectRatio: `${mobileImage.width} / ${mobileImage.height}` }}
+      >
         <img
           alt="LP Mobile"
-          src="/lp/LP_Mobile.png"
+          src={mobileImage.src}
           width={mobileImage.width}
           height={mobileImage.height}
           className="absolute left-0 top-0 h-full w-full"
