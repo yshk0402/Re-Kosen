@@ -78,7 +78,6 @@
       "type": "dynamiczone",
       "components": [
         "article.summary-card",
-        "article.seo",
         "article.rich-text",
         "article.markdown",
         "article.pros-con",
