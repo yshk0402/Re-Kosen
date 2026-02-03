@@ -65,7 +65,7 @@ export default function Header() {
                 <Link
                   key={item.href}
                   className={`transition hover:text-ink ${
-                    isActive ? "text-ink" : "text-muted"
+                    isActive ? "text-brand" : "text-muted"
                   }`}
                   href={item.href}
                 >

@@ -1,0 +1,163 @@
+# ----------------------------------------
+# 見込み顧客の発掘に関する概要
+# アカウント: AIサムネ館
+# プロパティ: Re:Kosen
+# ----------------------------------------
+#  
+# 開始日: 20251105
+# 終了日: 20260202
+N 週目,新規ユーザー数
+0010,3
+0011,63
+0012,111
+0013,14
+
+# 開始日: 20251105
+# 終了日: 20260202
+N 週目,リピーター数
+0010,0
+0011,7
+0012,17
+0013,6
+
+# 開始日: 20251105
+# 終了日: 20260202
+N 週目,有望な見込み顧客
+0010,0
+0011,0
+0012,0
+0013,0
+
+# 開始日: 20251105
+# 終了日: 20260202
+N 週目,コンバージョンに至った見込み顧客
+0010,0
+0011,0
+0012,0
+0013,0
+
+#  
+# 開始日: 20251105
+# 終了日: 20260202
+プラットフォーム,キーイベント
+
+
+#  
+# 開始日: 20251105
+# 終了日: 20260202
+ユーザーの最初のメインのチャネル グループ（デフォルト チャネル グループ）,新規ユーザー数
+Direct,133
+Organic Search,35
+Organic Social,13
+Referral,10
+
+# ユーザー維持率
+# 開始日: 20251221
+# 終了日: 20260131
+日付,0 週目,1 週目,2 週目,3 週目,4 週目,5 週目
+12月21日 - 12月27日,0,0,0,0,0,0
+12月28日 - 1月3日,0,0,0,0,0,-1
+1月4日 - 1月10日,0,0,0,0,-1,-1
+1月11日 - 1月17日,3,1,1,-1,-1,-1
+1月18日 - 1月24日,63,4,-1,-1,-1,-1
+1月25日 - 1月31日,111,-1,-1,-1,-1,-1
+
+#  
+# 開始日: 20251105
+# 終了日: 20260202
+オーディエンス名,アクティブ ユーザー
+All Users,191
+
+#  
+# 開始日: 20251105
+# 終了日: 20260202
+市区町村,アクティブ ユーザー
+Hachioji,25
+Shinjuku City,14
+Yokohama,11
+Minato City,9
+Osaka,9
+Council Bluffs,7
+Paris,6
+Boardman,5
+Riyadh,5
+Warsaw,4
+Aspen,3
+Kure,3
+Moriguchi,3
+New York,3
+Anyang-si,2
+Burnaby,2
+Dublin,2
+Hiroshima,2
+Kofu,2
+Maebashi,2
+Montreal,2
+Nagoya,2
+Onomichi,2
+Sagamihara,2
+Saitama,2
+Sapporo,2
+Shibuya,2
+Strasbourg,2
+4566,1
+Adachi City,1
+Arakawa City,1
+Ashburn,1
+Bengaluru,1
+Bifuka,1
+Birmingham,1
+Butzbach,1
+Frankfurt am Main,1
+Fujimino,1
+Fukuoka,1
+Furano,1
+Fussa,1
+Hirakata,1
+Iizuka,1
+Itabashi City,1
+Jacksonville,1
+Kawaguchi,1
+Kawasaki,1
+Kobe,1
+Kokubunji,1
+Koriyama,1
+Kunitachi,1
+Layton,1
+Lille,1
+London,1
+Los Angeles,1
+Machida,1
+Meguro City,1
+Methuen,1
+Misawa,1
+Mueang Pattani District,1
+Nerima City,1
+Nishitokyo,1
+San Jose,1
+Setagaya City,1
+Shinagawa City,1
+Singapore,1
+Takehara,1
+Toba,1
+Tokorozawa,1
+Toshima City,1
+Zaventem,1
+
+#  
+# 開始日: 20251105
+# 終了日: 20260202
+セッションの手動参照元,セッション
+google,88
+t.co,37
+oa-research-channel.line-apps.com,9
+bing,3
+statics.teams.cdn.office.net,3
+yahoo,3
+vercel.com,2
+websearch.rakuten.co.jp,2
+
+#  
+# 開始日: 20251105
+# 終了日: 20260202
+N 日目
