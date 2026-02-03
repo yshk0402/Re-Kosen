@@ -64,7 +64,7 @@ export default function Header() {
               return (
                 <Link
                   key={item.href}
-                  className={`transition hover:text-ink ${
+                  className={`transition-colors hover:text-brand focus-visible:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/30 focus-visible:ring-offset-2 ${
                     isActive ? "!text-brand" : "text-muted"
                   }`}
                   href={item.href}
@@ -146,7 +146,7 @@ export default function Header() {
               return (
                 <Link
                   key={item.href}
-                  className={`rounded-2xl px-4 py-3 transition hover:bg-brand-soft ${
+                  className={`rounded-2xl px-4 py-3 transition-colors hover:bg-brand-soft active:bg-brand/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/30 focus-visible:ring-offset-2 ${
                     isActive ? "text-brand" : "text-ink"
                   }`}
                   href={item.href}
