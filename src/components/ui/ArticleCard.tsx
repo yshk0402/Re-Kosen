@@ -49,7 +49,7 @@ export default function ArticleCard({
             priority={false}
             sizes={
               isCompact
-                ? "(max-width: 640px) 176px, (max-width: 1024px) 224px, 360px"
+                ? "(max-width: 640px) 200px, (max-width: 1024px) 260px, 480px"
                 : "100vw"
             }
             src={coverImage}
