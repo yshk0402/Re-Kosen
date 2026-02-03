@@ -707,17 +707,6 @@ export type TagOption = {
   label: string;
 };
 
-export const buildTagOptions = (
-  tags: StrapiTag[],
-  allLabel: string,
-): TagOption[] => [
-    { value: "all", label: allLabel },
-    ...tags.map((tag) => ({
-      value: getEntityAttributes(tag)?.slug ?? "",
-      label: getEntityAttributes(tag)?.name ?? "",
-    })),
-  ];
-
 export const getTagBySlug = async (slug: string) => {
   const response = await strapiFetch<StrapiCollectionResponse<StrapiTag>>(
     "/api/tags",
@@ -728,6 +717,57 @@ export const getTagBySlug = async (slug: string) => {
   );
 
   return response?.data?.[0] ?? null;
+};
+
+export const getTagOptionsFromArticles = async (): Promise<TagOption[]> => {
+  const pageSize = 100;
+  const options: TagOption[] = [];
+  const seen = new Set<string>();
+  let page = 1;
+
+  while (true) {
+    const response =
+      await strapiFetch<StrapiCollectionResponse<StrapiArticle>>(
+        "/api/articles",
+        {
+          "fields[0]": "id",
+          "filters[stats][$eq]": "published",
+          "pagination[page]": page,
+          "pagination[pageSize]": pageSize,
+          "populate[tags]": "*",
+          "sort[0]": "updatedAt:desc",
+        },
+      );
+
+    if (!response) {
+      break;
+    }
+
+    response.data.forEach((article) => {
+      const attributes = getEntityAttributes<StrapiArticleAttributes>(article);
+      const tags = getRelationAttributes<StrapiTagAttributes>(
+        attributes?.tags,
+      );
+      tags.forEach((tag) => {
+        if (!tag.slug || !tag.name) {
+          return;
+        }
+        if (seen.has(tag.slug)) {
+          return;
+        }
+        seen.add(tag.slug);
+        options.push({ value: tag.slug, label: tag.name });
+      });
+    });
+
+    const pageCount = response.meta.pagination?.pageCount ?? 1;
+    if (page >= pageCount) {
+      break;
+    }
+    page += 1;
+  }
+
+  return options.sort((a, b) => a.label.localeCompare(b.label, "ja"));
 };
 
 export const scoreRelatedArticles = (

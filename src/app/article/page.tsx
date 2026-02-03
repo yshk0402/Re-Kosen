@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import ArticleCard from "@/components/ui/ArticleCard";
 import Pagination from "@/components/ui/Pagination";
 import TagMultiFilter from "@/components/ui/TagMultiFilter";
-import { getArticles, getEntityAttributes, getTags, mapArticleCard } from "@/lib/strapi";
+import {
+  getArticles,
+  getEntityAttributes,
+  getTags,
+  getTagOptionsFromArticles,
+  mapArticleCard,
+} from "@/lib/strapi";
 import { articleMeta } from "./data";
 
 export const metadata: Metadata = {
@@ -40,7 +46,7 @@ export default async function ArticleIndexPage({
     ? rawTagParam.split(",").map((slug) => slug.trim()).filter(Boolean)
     : [];
   const tags = await getTags();
-  const tagOptions = tags
+  let tagOptions = tags
     .map((tag) => {
       const attrs = getEntityAttributes(tag);
       return {
@@ -49,6 +55,10 @@ export default async function ArticleIndexPage({
       };
     })
     .filter((option) => option.value && option.label);
+
+  if (!tagOptions.length) {
+    tagOptions = await getTagOptionsFromArticles();
+  }
   const validTagSlugs = new Set(tagOptions.map((option) => option.value));
   const selectedTags = rawSelectedTags.filter((slug) => validTagSlugs.has(slug));
   const response = await getArticles({
