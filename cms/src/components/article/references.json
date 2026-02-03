@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_article_references",
+  "info": {
+    "displayName": "References"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "items": {
+      "type": "component",
+      "component": "article.reference-item",
+      "repeatable": true,
+      "required": true
+    }
+  },
+  "config": {}
+}

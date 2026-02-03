@@ -121,6 +121,12 @@ export type LinkCardItem = {
   image?: StrapiMedia | StrapiImage | null;
 };
 
+export type ReferenceItem = {
+  title: string;
+  url: string;
+  note?: string | null;
+};
+
 export type LinkCardsBlock = {
   __component: "article.link-cards" | "article.link-card";
   items?: LinkCardItem[];
@@ -146,6 +152,12 @@ export type ImageBlock = {
   caption?: string | null;
 };
 
+export type ReferencesBlock = {
+  __component: "article.references";
+  title?: string | null;
+  items?: ReferenceItem[];
+};
+
 export type ArticleBlock =
   | HeadingBlock
   | RichTextBlock
@@ -156,7 +168,8 @@ export type ArticleBlock =
   | ComparisonTableBlock
   | LinkCardsBlock
   | CTABlock
-  | ImageBlock;
+  | ImageBlock
+  | ReferencesBlock;
 
 export type ArticleCategory = "industry" | "company" | "career" | "job";
 

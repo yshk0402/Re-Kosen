@@ -9,6 +9,7 @@ import ComparisonTable from "@/components/article/ComparisonTable";
 import LinkCards from "@/components/article/LinkCards";
 import Markdown from "@/components/article/Markdown";
 import ProsCons from "@/components/article/ProsCons";
+import References from "@/components/article/References";
 import RelatedArticles from "@/components/article/RelatedArticles";
 import RichText from "@/components/article/RichText";
 import SummaryCard from "@/components/article/SummaryCard";
@@ -20,6 +21,7 @@ import {
   type ComparisonTableBlock,
   type HeadingBlock,
   type LinkCardsBlock,
+  type ReferencesBlock,
   type StrapiAuthorAttributes,
   type StrapiArticleAttributes,
   type StrapiArticle,
@@ -314,8 +316,16 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     (block) => block.__component === "article.summary-card",
   );
   const contentBlocks = blocks.filter(
-    (block) => block.__component !== "article.summary-card",
+    (block) =>
+      block.__component !== "article.summary-card" &&
+      block.__component !== "article.references",
   );
+  const referencesBlocks = blocks.filter(
+    (block): block is ReferencesBlock => block.__component === "article.references",
+  );
+  const referencesItems = referencesBlocks.flatMap((block) => block.items ?? []);
+  const referencesTitle =
+    referencesBlocks.find((block) => block.title)?.title ?? undefined;
 
   const resolveHeadingText = (block: HeadingBlock, index: number) =>
     block.text ?? block.title ?? `Section ${index + 1}`;
@@ -677,6 +687,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           return null;
         })}
       </section>
+
+      {referencesItems.length ? (
+        <References title={referencesTitle} items={referencesItems} />
+      ) : null}
 
       {relatedArticles.length ? <RelatedArticles items={relatedArticles} /> : null}
     </article>

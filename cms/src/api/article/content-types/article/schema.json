@@ -88,6 +88,7 @@
         "article.cta",
         "article.comparison-table",
         "article.callout",
+        "article.references",
         "article.blocks"
       ],
       "required": true

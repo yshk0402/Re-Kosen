@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_article_reference_items",
+  "info": {
+    "displayName": "Reference Item"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "note": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

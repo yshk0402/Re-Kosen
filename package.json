@@ -6,9 +6,14 @@
     "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "analytics:daily": "node scripts/analytics/daily_report_mcp.mjs",
+    "analytics:mcp:server": "node scripts/mcp/ga4_gsc_server.mjs"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.3",
+    "dotenv": "^16.4.5",
+    "googleapis": "^142.0.0",
     "next": "16.1.1",
     "marked": "^12.0.0",
     "react": "19.2.3",
