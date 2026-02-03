@@ -6,6 +6,10 @@ const FORM_URL = process.env.NEXT_PUBLIC_GOOGLE_FORM_URL || "#";
 export const metadata: Metadata = {
   title: "高専ジョブ LP",
   description: "landing-page-v2.pen を画像ベースで完全一致表示。",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 const desktopImage = {
