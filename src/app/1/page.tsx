@@ -9,17 +9,17 @@ export const metadata: Metadata = {
 };
 
 const desktopImage = {
-  width: 1222,
+  width: 1402,
   height: 4096,
   penWidth: 1440,
-  src: "/lp/LP_Desktop.webp",
+  src: "/lp/LP_Desktopx2.png",
 };
 
 const mobileImage = {
-  width: 485,
+  width: 563,
   height: 4096,
   penWidth: 390,
-  src: "/lp/LP_Mobile.webp",
+  src: "/lp/LP_Mobilex2.png",
 };
 
 const desktopScale = desktopImage.width / desktopImage.penWidth;
