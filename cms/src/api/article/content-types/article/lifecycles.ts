@@ -81,6 +81,7 @@ const ensureArticleValidation = async (data: Record<string, unknown>, id?: numbe
 
   const existingAttrs = (existing as { [key: string]: unknown }) || {};
   const excerpt = resolveText(data.excerpt, (existingAttrs.excerpt as string) ?? "");
+  const title = resolveText(data.title, (existingAttrs.title as string) ?? "");
   const blocks = normalizeBlocks(
     data.blocks ?? (existingAttrs.blocks as unknown),
   );
@@ -114,11 +115,23 @@ const ensureArticleValidation = async (data: Record<string, unknown>, id?: numbe
     throw new Error("Image ブロックの alt は必須です。");
   }
 
-  const metaTitle = typeof seo.metaTitle === "string" ? seo.metaTitle.trim() : "";
-  const metaDescription =
+  let metaTitle = typeof seo.metaTitle === "string" ? seo.metaTitle.trim() : "";
+  let metaDescription =
     typeof seo.metaDescription === "string" ? seo.metaDescription.trim() : "";
   if (!metaTitle || !metaDescription) {
-    throw new Error("SEO の metaTitle と metaDescription は必須です。");
+    const fallbackTitle = metaTitle || title.trim();
+    const fallbackDescription = metaDescription || excerpt.trim();
+    if (fallbackTitle && fallbackDescription) {
+      metaTitle = fallbackTitle;
+      metaDescription = fallbackDescription;
+      data.seo = {
+        ...(seo as Record<string, unknown>),
+        metaTitle,
+        metaDescription,
+      };
+    } else {
+      throw new Error("SEO の metaTitle と metaDescription は必須です。");
+    }
   }
 
   const ogImage = (seo as { ogImage?: unknown }).ogImage;
