@@ -1,9 +1,5 @@
 import type { MetadataRoute } from "next";
-import {
-  getArticleSitemapEntries,
-  getTags,
-  getEntityAttributes,
-} from "@/lib/strapi";
+import { getArticleSitemapEntries } from "@/lib/strapi";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://re-kosen.vercel.app";
 
@@ -83,17 +79,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.8,
     }));
 
-    // タグページ
-    const tags = await getTags();
-    const tagPages: MetadataRoute.Sitemap = tags.map((tag) => {
-        const attrs = getEntityAttributes(tag);
-        return {
-            url: `${SITE_URL}/tag/${attrs?.slug ?? ""}`,
-            lastModified: now,
-            changeFrequency: "weekly" as const,
-            priority: 0.6,
-        };
-    });
-
-    return [...staticPages, ...articlePages, ...tagPages];
+    return [...staticPages, ...articlePages];
 }

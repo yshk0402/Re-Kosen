@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import ArticleCard from "@/components/ui/ArticleCard";
 import ArticleGridWithMore from "@/components/ui/ArticleGridWithMore";
 import Pagination from "@/components/ui/Pagination";
-import TagFilter from "@/components/ui/TagFilter";
-import { buildTagOptions, getArticles, getTags, mapArticleCard } from "@/lib/strapi";
+import { getArticles, mapArticleCard } from "@/lib/strapi";
 import { jobMeta } from "./data";
 
 export const metadata: Metadata = {
@@ -32,8 +31,6 @@ export default async function JobPage({ searchParams }: JobPageProps) {
     page: Number.isNaN(page) ? 1 : page,
     pageSize: 15,
   });
-  const tags = await getTags();
-  const tagOptions = buildTagOptions(tags, "すべて");
   const articles = response?.data ?? [];
   const pagination = response?.meta.pagination;
 
@@ -46,11 +43,6 @@ export default async function JobPage({ searchParams }: JobPageProps) {
         <p className="text-sm text-muted sm:text-base">
           {jobMeta.description}
         </p>
-        <TagFilter
-          label="タグで絞り込み"
-          options={tagOptions}
-          basePath={jobMeta.basePath}
-        />
       </header>
 
       {articles.length ? (

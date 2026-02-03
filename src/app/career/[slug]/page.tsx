@@ -1,17 +1,22 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ArticleCard from "@/components/ui/ArticleCard";
 import ArticleGridWithMore from "@/components/ui/ArticleGridWithMore";
 import Pagination from "@/components/ui/Pagination";
-import TagFilter from "@/components/ui/TagFilter";
 import {
-  buildTagOptions,
   getArticles,
   getEntityAttributes,
   getTagBySlug,
-  getTags,
   mapArticleCard,
 } from "@/lib/strapi";
 import { careerMeta } from "../data";
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 
 type CareerTagPageProps = {
   params: Promise<{ slug: string }>;
@@ -38,8 +43,6 @@ export default async function CareerTagPage({
     page: Number.isNaN(page) ? 1 : page,
     pageSize: 15,
   });
-  const tags = await getTags();
-  const tagOptions = buildTagOptions(tags, "すべて");
   const articles = response?.data ?? [];
   const pagination = response?.meta.pagination;
 
@@ -52,12 +55,6 @@ export default async function CareerTagPage({
         <p className="text-sm text-muted sm:text-base">
           「{tagAttributes.name}」に関連する記事をまとめています。
         </p>
-        <TagFilter
-          label="タグで絞り込み"
-          options={tagOptions}
-          defaultValue={tagAttributes.slug}
-          basePath={careerMeta.basePath}
-        />
       </header>
 
       {articles.length ? (

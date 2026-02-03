@@ -571,6 +571,7 @@ export const getArticleBySlug = async (
 export type ArticleQuery = {
   category?: ArticleCategory;
   tagSlug?: string;
+  tagSlugs?: string[];
   searchQuery?: string;
   page?: number;
   pageSize?: number;
@@ -579,6 +580,7 @@ export type ArticleQuery = {
 export const getArticles = async ({
   category,
   tagSlug,
+  tagSlugs,
   searchQuery,
   page = 1,
   pageSize = 15,
@@ -597,6 +599,12 @@ export const getArticles = async ({
 
   if (tagSlug) {
     params["filters[tags][slug][$eq]"] = tagSlug;
+  }
+
+  if (tagSlugs && tagSlugs.length) {
+    tagSlugs.forEach((slug, index) => {
+      params[`filters[$and][${index}][tags][slug][$eq]`] = slug;
+    });
   }
 
   if (searchQuery) {
@@ -628,6 +636,12 @@ export const getArticles = async ({
 
   if (tagSlug) {
     fallbackParams["filters[tags][slug][$eq]"] = tagSlug;
+  }
+
+  if (tagSlugs && tagSlugs.length) {
+    tagSlugs.forEach((slug, index) => {
+      fallbackParams[`filters[$and][${index}][tags][slug][$eq]`] = slug;
+    });
   }
 
   if (searchQuery) {

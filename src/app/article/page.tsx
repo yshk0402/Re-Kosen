@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import ArticleCard from "@/components/ui/ArticleCard";
 import Pagination from "@/components/ui/Pagination";
-import { getArticles, mapArticleCard } from "@/lib/strapi";
+import TagMultiFilter from "@/components/ui/TagMultiFilter";
+import { getArticles, getEntityAttributes, getTags, mapArticleCard } from "@/lib/strapi";
 import { articleMeta } from "./data";
 
 export const metadata: Metadata = {
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 type ArticleIndexPageProps = {
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<{ page?: string; tag?: string }>;
 };
 
 const categoryLabels: Record<string, string> = {
@@ -34,12 +35,32 @@ export default async function ArticleIndexPage({
 }: ArticleIndexPageProps) {
   const resolvedSearchParams = await Promise.resolve(searchParams);
   const page = Number(resolvedSearchParams.page ?? "1");
+  const rawTagParam = (resolvedSearchParams.tag ?? "").trim();
+  const rawSelectedTags = rawTagParam
+    ? rawTagParam.split(",").map((slug) => slug.trim()).filter(Boolean)
+    : [];
+  const tags = await getTags();
+  const tagOptions = tags
+    .map((tag) => {
+      const attrs = getEntityAttributes(tag);
+      return {
+        value: attrs?.slug ?? "",
+        label: attrs?.name ?? "",
+      };
+    })
+    .filter((option) => option.value && option.label);
+  const validTagSlugs = new Set(tagOptions.map((option) => option.value));
+  const selectedTags = rawSelectedTags.filter((slug) => validTagSlugs.has(slug));
   const response = await getArticles({
+    tagSlugs: selectedTags.length ? selectedTags : undefined,
     page: Number.isNaN(page) ? 1 : page,
     pageSize: 15,
   });
   const articles = response?.data ?? [];
   const pagination = response?.meta.pagination;
+  const basePath = selectedTags.length
+    ? `${articleMeta.basePath}?tag=${encodeURIComponent(selectedTags.join(","))}`
+    : articleMeta.basePath;
 
   return (
     <div className="mx-auto w-full max-w-[1440px] space-y-8 px-4 py-10">
@@ -50,6 +71,11 @@ export default async function ArticleIndexPage({
         <p className="text-sm text-muted sm:text-base">
           {articleMeta.description}
         </p>
+        <TagMultiFilter
+          label="タグで絞り込み"
+          options={tagOptions}
+          selected={selectedTags}
+        />
       </header>
 
       {articles.length ? (
@@ -79,7 +105,7 @@ export default async function ArticleIndexPage({
       )}
 
       <Pagination
-        basePath={articleMeta.basePath}
+        basePath={basePath}
         currentPage={pagination?.page ?? 1}
         totalPages={pagination?.pageCount ?? 1}
       />
