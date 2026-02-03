@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getDefaultOgImageUrl } from "@/lib/seo";
 
 const GOOGLE_FORM_URL = process.env.NEXT_PUBLIC_GOOGLE_FORM_URL || "#";
 const LINE_URL = "https://lin.ee/46Ad4lO";
@@ -7,6 +8,7 @@ const LINE_URL = "https://lin.ee/46Ad4lO";
 const title = "お問い合わせ";
 const description =
   "高専ジョブへの取材や掲載のご相談、学生の方の相談窓口はこちらから。";
+const defaultOgImage = getDefaultOgImageUrl();
 
 export const metadata: Metadata = {
   title,
@@ -19,6 +21,11 @@ export const metadata: Metadata = {
     description,
     type: "website",
     url: "/contact",
+    images: [{ url: defaultOgImage }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [defaultOgImage],
   },
 };
 

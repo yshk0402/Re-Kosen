@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ArticleCard from "@/components/ui/ArticleCard";
 import Pagination from "@/components/ui/Pagination";
 import TagMultiFilter from "@/components/ui/TagMultiFilter";
+import { getDefaultOgImageUrl } from "@/lib/seo";
 import {
   getArticles,
   getEntityAttributes,
@@ -10,6 +11,8 @@ import {
   mapArticleCard,
 } from "@/lib/strapi";
 import { articleMeta } from "./data";
+
+const defaultOgImage = getDefaultOgImageUrl();
 
 export const metadata: Metadata = {
   title: articleMeta.title,
@@ -22,6 +25,11 @@ export const metadata: Metadata = {
     description: articleMeta.description,
     type: "website",
     url: articleMeta.basePath,
+    images: [{ url: defaultOgImage }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [defaultOgImage],
   },
 };
 

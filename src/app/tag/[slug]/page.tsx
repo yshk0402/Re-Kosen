@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import ArticleCard from "@/components/ui/ArticleCard";
 import ArticleGridWithMore from "@/components/ui/ArticleGridWithMore";
 import Pagination from "@/components/ui/Pagination";
+import { getDefaultOgImageUrl } from "@/lib/seo";
 import {
   getArticles,
   getEntityAttributes,
@@ -35,6 +36,7 @@ export async function generateMetadata({
   const title = `タグ: ${tagAttributes.name}`;
   const description = `「${tagAttributes.name}」に関連する高専ジョブの記事一覧です。`;
   const canonical = `/tag/${tagAttributes.slug}`;
+  const defaultOgImage = getDefaultOgImageUrl();
 
   return {
     title,
@@ -51,6 +53,11 @@ export async function generateMetadata({
       description,
       type: "website",
       url: canonical,
+      images: [{ url: defaultOgImage }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [defaultOgImage],
     },
   };
 }

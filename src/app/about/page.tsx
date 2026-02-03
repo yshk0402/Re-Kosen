@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { getDefaultOgImageUrl } from "@/lib/seo";
 
 const title = "運営について";
 const description = "高専ジョブの運営方針や編集方針、運営者情報をまとめています。";
+const defaultOgImage = getDefaultOgImageUrl();
 
 export const metadata: Metadata = {
   title,
@@ -14,6 +16,11 @@ export const metadata: Metadata = {
     description,
     type: "website",
     url: "/about",
+    images: [{ url: defaultOgImage }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [defaultOgImage],
   },
 };
 

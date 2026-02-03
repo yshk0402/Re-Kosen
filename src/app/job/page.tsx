@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import ArticleCard from "@/components/ui/ArticleCard";
 import ArticleGridWithMore from "@/components/ui/ArticleGridWithMore";
 import Pagination from "@/components/ui/Pagination";
+import { getDefaultOgImageUrl } from "@/lib/seo";
 import { getArticles, mapArticleCard } from "@/lib/strapi";
 import { jobMeta } from "./data";
+
+const defaultOgImage = getDefaultOgImageUrl();
 
 export const metadata: Metadata = {
   title: jobMeta.title,
@@ -16,6 +19,11 @@ export const metadata: Metadata = {
     description: jobMeta.description,
     type: "website",
     url: jobMeta.basePath,
+    images: [{ url: defaultOgImage }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [defaultOgImage],
   },
 };
 

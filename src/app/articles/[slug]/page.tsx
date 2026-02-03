@@ -39,6 +39,11 @@ import {
 } from "@/lib/strapi";
 import { renderMarkdown, type MarkdownRenderResult } from "@/lib/markdown";
 import { strapiBlocksToHtml, strapiBlocksToPlainText } from "@/lib/strapiBlocks";
+import {
+  getDefaultOgImageUrl,
+  getOrganizationJsonLd,
+  toAbsoluteUrl,
+} from "@/lib/seo";
 
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
@@ -260,7 +265,9 @@ export async function generateMetadata({
   const seo = attributes.seo;
   const title = seo?.metaTitle ?? attributes.title;
   const description = seo?.metaDescription ?? attributes.excerpt ?? undefined;
-  const ogImage = resolveMediaUrl(seo?.ogImage ?? attributes.coverImage);
+  const resolvedOgImage =
+    resolveMediaUrl(seo?.ogImage ?? attributes.coverImage) ?? null;
+  const ogImage = toAbsoluteUrl(resolvedOgImage ?? getDefaultOgImageUrl());
   const socialImages = ogImage ? [{ url: ogImage, alt: title }] : undefined;
   const canonical = seo?.canonical ?? `/articles/${attributes.slug}`;
 
@@ -279,7 +286,7 @@ export async function generateMetadata({
       images: socialImages,
     },
     twitter: {
-      card: ogImage ? "summary_large_image" : "summary",
+      card: "summary_large_image",
       title,
       description,
       images: ogImage ? [ogImage] : undefined,
@@ -402,10 +409,79 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     attributes.category in categoryLabels
       ? categoryLabels[attributes.category as ArticleCategory]
       : attributes.category;
+  const categoryPathMap: Record<string, string> = {
+    industry: "/industry",
+    company: "/company",
+    job: "/job",
+    career: "/career",
+  };
+  const categoryPath =
+    categoryPathMap[attributes.category] ?? "/article";
+  const canonicalPath =
+    attributes.seo?.canonical ?? `/articles/${attributes.slug}`;
+  const canonicalUrl = toAbsoluteUrl(canonicalPath);
+  const defaultOgImage = getDefaultOgImageUrl();
+  const resolvedOgImage =
+    resolveMediaUrl(attributes.seo?.ogImage ?? attributes.coverImage) ?? null;
+  const ogImageUrl = toAbsoluteUrl(resolvedOgImage ?? defaultOgImage);
+  const organizationJsonLd = getOrganizationJsonLd();
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: attributes.title,
+    description: attributes.seo?.metaDescription ?? attributes.excerpt ?? undefined,
+    image: ogImageUrl ? [ogImageUrl] : undefined,
+    datePublished: attributes.publishedAt ?? attributes.updatedAt,
+    dateModified: attributes.updatedAt,
+    author: authorName ? { "@type": "Person", name: authorName } : undefined,
+    publisher: {
+      "@type": "Organization",
+      name: organizationJsonLd.name,
+      logo: {
+        "@type": "ImageObject",
+        url: organizationJsonLd.logo,
+      },
+      url: organizationJsonLd.url,
+    },
+    mainEntityOfPage: canonicalUrl,
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "ホーム",
+        item: toAbsoluteUrl("/"),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: categoryLabel,
+        item: toAbsoluteUrl(categoryPath),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: attributes.title,
+        item: canonicalUrl,
+      },
+    ],
+  };
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [articleJsonLd, breadcrumbJsonLd],
+  };
 
   return (
     <article className="mx-auto w-full max-w-[960px] space-y-8 px-4 py-10">
       {isEnabled ? <StrapiPreviewBridge enabled /> : null}
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <header className="space-y-4">
         <div className="space-y-3">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand">

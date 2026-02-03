@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
 import AppShell from "@/components/layout/AppShell";
+import { getDefaultOgImageUrl, getOrganizationJsonLd } from "@/lib/seo";
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const defaultOgImage = getDefaultOgImageUrl();
+const organizationJsonLd = getOrganizationJsonLd();
 
 export const metadata: Metadata = {
   title: {
@@ -24,9 +27,11 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ja_JP",
     siteName: "高専ジョブ",
+    images: [{ url: defaultOgImage }],
   },
   twitter: {
     card: "summary_large_image",
+    images: [defaultOgImage],
   },
 };
 
@@ -38,6 +43,11 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         {GA_MEASUREMENT_ID ? (
           <>
             <Script

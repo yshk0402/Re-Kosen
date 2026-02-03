@@ -15,9 +15,11 @@ import {
   type HomeBanner,
   type StrapiArticleAttributes,
 } from "@/lib/strapi";
+import { getDefaultOgImageUrl } from "@/lib/seo";
 
 const fallbackCoverImage = "/images/cover-placeholder.svg";
 const LINE_FALLBACK_URL = "https://example.com";
+const defaultOgImage = getDefaultOgImageUrl();
 
 const homeTitle = "高専生向けキャリアメディア";
 const homeDescription =
@@ -34,6 +36,11 @@ export const metadata: Metadata = {
     description: homeDescription,
     type: "website",
     url: "/",
+    images: [{ url: defaultOgImage }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [defaultOgImage],
   },
 };
 

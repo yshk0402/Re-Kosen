@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { getDefaultOgImageUrl } from "@/lib/seo";
 
 const title = "プライバシーポリシー";
 const description = "高専ジョブにおける個人情報の取り扱い方針を掲載しています。";
+const defaultOgImage = getDefaultOgImageUrl();
 
 export const metadata: Metadata = {
   title,
@@ -14,6 +16,11 @@ export const metadata: Metadata = {
     description,
     type: "website",
     url: "/privacy",
+    images: [{ url: defaultOgImage }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [defaultOgImage],
   },
 };
 

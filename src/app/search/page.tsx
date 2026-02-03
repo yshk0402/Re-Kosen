@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ArticleCard from "@/components/ui/ArticleCard";
 import ArticleGridWithMore from "@/components/ui/ArticleGridWithMore";
 import Pagination from "@/components/ui/Pagination";
+import { getDefaultOgImageUrl } from "@/lib/seo";
 import { getArticles, mapArticleCard } from "@/lib/strapi";
 
 type SearchPageProps = {
@@ -18,6 +19,7 @@ export async function generateMetadata({
   const canonical = query
     ? `/search?q=${encodeURIComponent(query)}`
     : "/search";
+  const defaultOgImage = getDefaultOgImageUrl();
 
   return {
     title,
@@ -34,6 +36,11 @@ export async function generateMetadata({
       description,
       type: "website",
       url: canonical,
+      images: [{ url: defaultOgImage }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [defaultOgImage],
     },
   };
 }
