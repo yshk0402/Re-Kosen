@@ -63,10 +63,10 @@ export default function TagMultiFilter({
               <button
                 key={option.value}
                 type="button"
-                className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40 ${
                   isActive
-                    ? "bg-brand text-white"
-                    : "bg-brand-soft text-brand-strong hover:bg-brand/10"
+                    ? "bg-brand text-white hover:shadow-md"
+                    : "bg-brand-soft text-brand-strong hover:bg-brand/10 hover:ring-1 hover:ring-brand/30"
                 }`}
                 onClick={() => toggleTag(option.value)}
               >
