@@ -46,18 +46,18 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-40 border-b border-border/70 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 py-5">
+        <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 py-5 lg:py-6">
           <Link className="flex items-center" href="/">
             <Image
               alt="高専ジョブ"
-              className="h-7 w-auto lg:h-8"
-              height={28}
+              className="h-7 w-auto lg:h-10"
+              height={32}
               priority
               src="/icon.png"
               width={82}
             />
           </Link>
-          <nav className="hidden items-center gap-6 text-base font-semibold text-muted lg:flex">
+          <nav className="hidden items-center gap-8 text-lg font-semibold text-muted lg:flex">
             {navItems.map((item) => {
               const isActive =
                 pathname === item.href || pathname.startsWith(item.href + "/");
@@ -76,7 +76,7 @@ export default function Header() {
           </nav>
           <div className="flex items-center gap-2">
             <Link
-              className="hidden rounded-full bg-brand px-5 py-2.5 text-sm font-semibold transition hover:bg-brand-strong lg:inline-flex"
+              className="hidden rounded-full bg-brand px-6 py-3 text-base font-semibold transition hover:bg-brand-strong lg:inline-flex"
               href={LINE_URL}
               rel="noreferrer"
               style={{ color: "#fff" }}
