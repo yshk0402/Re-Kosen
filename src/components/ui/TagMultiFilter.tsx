@@ -55,25 +55,29 @@ export default function TagMultiFilter({
       <div className="text-xs font-semibold uppercase tracking-[0.2em] text-brand">
         {label}
       </div>
-      <div className="flex flex-wrap gap-2">
-        {options.map((option) => {
-          const isActive = selectedSet.has(option.value);
-          return (
-            <button
-              key={option.value}
-              type="button"
-              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
-                isActive
-                  ? "bg-brand text-white"
-                  : "bg-brand-soft text-brand-strong hover:bg-brand/10"
-              }`}
-              onClick={() => toggleTag(option.value)}
-            >
-              {option.label}
-            </button>
-          );
-        })}
-      </div>
+      {options.length ? (
+        <div className="flex flex-wrap gap-2">
+          {options.map((option) => {
+            const isActive = selectedSet.has(option.value);
+            return (
+              <button
+                key={option.value}
+                type="button"
+                className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                  isActive
+                    ? "bg-brand text-white"
+                    : "bg-brand-soft text-brand-strong hover:bg-brand/10"
+                }`}
+                onClick={() => toggleTag(option.value)}
+              >
+                {option.label}
+              </button>
+            );
+          })}
+        </div>
+      ) : (
+        <p className="text-xs text-muted">タグが見つかりません。</p>
+      )}
     </div>
   );
 }

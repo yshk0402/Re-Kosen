@@ -730,11 +730,11 @@ export const getTagOptionsFromArticles = async (): Promise<TagOption[]> => {
       await strapiFetch<StrapiCollectionResponse<StrapiArticle>>(
         "/api/articles",
         {
-          "fields[0]": "id",
           "filters[stats][$eq]": "published",
           "pagination[page]": page,
           "pagination[pageSize]": pageSize,
-          "populate[tags]": "*",
+          "populate[tags][fields][0]": "name",
+          "populate[tags][fields][1]": "slug",
           "sort[0]": "updatedAt:desc",
         },
       );
