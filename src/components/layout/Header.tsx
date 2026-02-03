@@ -64,7 +64,7 @@ export default function Header() {
               return (
                 <Link
                   key={item.href}
-                  className={`transition-colors hover:text-brand focus-visible:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/30 focus-visible:ring-offset-2 ${
+                  className={`transition-colors hover:text-brand-strong hover:underline hover:decoration-2 hover:underline-offset-8 focus-visible:text-brand-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/30 focus-visible:ring-offset-2 ${
                     isActive ? "!text-brand" : "text-muted"
                   }`}
                   href={item.href}
