@@ -42,7 +42,7 @@ export default async function ArticleIndexPage({
   const pagination = response?.meta.pagination;
 
   return (
-    <div className="mx-auto w-full max-w-[1600px] space-y-8 px-4 py-10">
+    <div className="mx-auto w-full max-w-[1440px] space-y-8 px-4 py-10">
       <header className="space-y-3">
         <h1 className="font-display text-3xl font-semibold text-brand sm:text-4xl">
           {articleMeta.title}

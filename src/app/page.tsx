@@ -306,7 +306,7 @@ export default async function Home() {
 
   return (
     <div className="pb-20">
-      <div className="mx-auto w-full max-w-[1600px] px-4 py-10">
+      <div className="mx-auto w-full max-w-[1440px] px-4 py-10">
         <div className="space-y-12">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
             <section className="space-y-5">
