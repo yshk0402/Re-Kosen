@@ -156,6 +156,7 @@ export type ReferencesBlock = {
   __component: "article.references";
   title?: string | null;
   items?: ReferenceItem[];
+  itemsJson?: ReferenceItem[] | null;
 };
 
 export type ArticleBlock =

@@ -13,6 +13,9 @@
       "component": "article.reference-item",
       "repeatable": true,
       "required": true
+    },
+    "itemsJson": {
+      "type": "json"
     }
   },
   "config": {}

@@ -323,7 +323,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const referencesBlocks = blocks.filter(
     (block): block is ReferencesBlock => block.__component === "article.references",
   );
-  const referencesItems = referencesBlocks.flatMap((block) => block.items ?? []);
+  const referencesItems = referencesBlocks.flatMap(
+    (block) => block.items ?? block.itemsJson ?? [],
+  );
   const referencesTitle =
     referencesBlocks.find((block) => block.title)?.title ?? undefined;
 

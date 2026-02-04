@@ -7,13 +7,15 @@ type ReferenceItem = {
 type ReferencesProps = {
   title?: string | null;
   items?: ReferenceItem[];
+  itemsJson?: ReferenceItem[] | null;
 };
 
 const isExternalUrl = (url: string) => /^https?:\/\//i.test(url);
 
-export default function References({ title, items }: ReferencesProps) {
+export default function References({ title, items, itemsJson }: ReferencesProps) {
+  const sourceItems = items?.length ? items : itemsJson ?? [];
   const normalizedItems =
-    items
+    sourceItems
       ?.map((item) => ({
         title: item.title?.trim() ?? "",
         url: item.url?.trim() ?? "",
