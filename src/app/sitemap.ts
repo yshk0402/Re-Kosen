@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { getArticleSitemapEntries } from "@/lib/strapi";
+import { getSiteUrl } from "@/lib/seo";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://re-kosen.vercel.app";
+const SITE_URL = getSiteUrl();
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const now = new Date();

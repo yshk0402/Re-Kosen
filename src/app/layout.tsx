@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
 import AppShell from "@/components/layout/AppShell";
-import { getDefaultOgImageUrl, getOrganizationJsonLd } from "@/lib/seo";
+import { getDefaultOgImageUrl, getOrganizationJsonLd, getSiteUrl } from "@/lib/seo";
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 const defaultOgImage = getDefaultOgImageUrl();
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: "%s | 高専ジョブ",
   },
   description: "高専生向けキャリアメディア。業界研究、企業研究、キャリア設計の情報を発信。",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://re-kosen.vercel.app"),
+  metadataBase: new URL(getSiteUrl()),
   icons: {
     icon: [
       { url: "/favicon.ico" },

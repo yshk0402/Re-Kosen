@@ -1,4 +1,4 @@
-const DEFAULT_SITE_URL = "https://re-kosen.vercel.app";
+const DEFAULT_SITE_URL = "https://www.kosen-job.com";
 
 export const getSiteUrl = () =>
   process.env.NEXT_PUBLIC_SITE_URL || DEFAULT_SITE_URL;
@@ -17,10 +17,13 @@ export const toAbsoluteUrl = (pathOrUrl: string) => {
 
 export const getDefaultOgImageUrl = () => toAbsoluteUrl("/icon.png");
 
-export const getOrganizationJsonLd = () => ({
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "高専ジョブ",
-  url: "https://www.kosen-job.com/",
-  logo: "https://www.kosen-job.com/icon.png",
-});
+export const getOrganizationJsonLd = () => {
+  const siteUrl = getSiteUrl().replace(/\/$/, "");
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "高専ジョブ",
+    url: siteUrl,
+    logo: toAbsoluteUrl("/icon.png"),
+  };
+};

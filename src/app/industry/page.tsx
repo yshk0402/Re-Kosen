@@ -8,24 +8,38 @@ import { industryMeta } from "./data";
 
 const defaultOgImage = getDefaultOgImageUrl();
 
-export const metadata: Metadata = {
-  title: industryMeta.title,
-  description: industryMeta.description,
-  alternates: {
-    canonical: industryMeta.basePath,
-  },
-  openGraph: {
+export async function generateMetadata({
+  searchParams,
+}: IndustryPageProps): Promise<Metadata> {
+  const resolvedSearchParams = await Promise.resolve(searchParams);
+  const page = Number(resolvedSearchParams.page ?? "1");
+  const shouldNoIndex = Number.isFinite(page) && page > 1;
+
+  return {
     title: industryMeta.title,
     description: industryMeta.description,
-    type: "website",
-    url: industryMeta.basePath,
-    images: [{ url: defaultOgImage }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    images: [defaultOgImage],
-  },
-};
+    alternates: {
+      canonical: industryMeta.basePath,
+    },
+    robots: shouldNoIndex
+      ? {
+          index: false,
+          follow: true,
+        }
+      : undefined,
+    openGraph: {
+      title: industryMeta.title,
+      description: industryMeta.description,
+      type: "website",
+      url: industryMeta.basePath,
+      images: [{ url: defaultOgImage }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [defaultOgImage],
+    },
+  };
+}
 
 type IndustryPageProps = {
   searchParams: Promise<{ page?: string }>;

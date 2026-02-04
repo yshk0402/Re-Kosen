@@ -14,24 +14,40 @@ import { articleMeta } from "./data";
 
 const defaultOgImage = getDefaultOgImageUrl();
 
-export const metadata: Metadata = {
-  title: articleMeta.title,
-  description: articleMeta.description,
-  alternates: {
-    canonical: articleMeta.basePath,
-  },
-  openGraph: {
+export async function generateMetadata({
+  searchParams,
+}: ArticleIndexPageProps): Promise<Metadata> {
+  const resolvedSearchParams = await Promise.resolve(searchParams);
+  const page = Number(resolvedSearchParams.page ?? "1");
+  const rawTagParam = (resolvedSearchParams.tag ?? "").trim();
+  const hasTagFilter = Boolean(rawTagParam);
+  const shouldNoIndex = hasTagFilter || (Number.isFinite(page) && page > 1);
+
+  return {
     title: articleMeta.title,
     description: articleMeta.description,
-    type: "website",
-    url: articleMeta.basePath,
-    images: [{ url: defaultOgImage }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    images: [defaultOgImage],
-  },
-};
+    alternates: {
+      canonical: articleMeta.basePath,
+    },
+    robots: shouldNoIndex
+      ? {
+          index: false,
+          follow: true,
+        }
+      : undefined,
+    openGraph: {
+      title: articleMeta.title,
+      description: articleMeta.description,
+      type: "website",
+      url: articleMeta.basePath,
+      images: [{ url: defaultOgImage }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [defaultOgImage],
+    },
+  };
+}
 
 type ArticleIndexPageProps = {
   searchParams: Promise<{ page?: string; tag?: string }>;

@@ -8,24 +8,38 @@ import { jobMeta } from "./data";
 
 const defaultOgImage = getDefaultOgImageUrl();
 
-export const metadata: Metadata = {
-  title: jobMeta.title,
-  description: jobMeta.description,
-  alternates: {
-    canonical: jobMeta.basePath,
-  },
-  openGraph: {
+export async function generateMetadata({
+  searchParams,
+}: JobPageProps): Promise<Metadata> {
+  const resolvedSearchParams = await Promise.resolve(searchParams);
+  const page = Number(resolvedSearchParams.page ?? "1");
+  const shouldNoIndex = Number.isFinite(page) && page > 1;
+
+  return {
     title: jobMeta.title,
     description: jobMeta.description,
-    type: "website",
-    url: jobMeta.basePath,
-    images: [{ url: defaultOgImage }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    images: [defaultOgImage],
-  },
-};
+    alternates: {
+      canonical: jobMeta.basePath,
+    },
+    robots: shouldNoIndex
+      ? {
+          index: false,
+          follow: true,
+        }
+      : undefined,
+    openGraph: {
+      title: jobMeta.title,
+      description: jobMeta.description,
+      type: "website",
+      url: jobMeta.basePath,
+      images: [{ url: defaultOgImage }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [defaultOgImage],
+    },
+  };
+}
 
 type JobPageProps = {
   searchParams: Promise<{ page?: string }>;

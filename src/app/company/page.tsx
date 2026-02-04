@@ -8,24 +8,38 @@ import { companyMeta } from "./data";
 
 const defaultOgImage = getDefaultOgImageUrl();
 
-export const metadata: Metadata = {
-  title: companyMeta.title,
-  description: companyMeta.description,
-  alternates: {
-    canonical: companyMeta.basePath,
-  },
-  openGraph: {
+export async function generateMetadata({
+  searchParams,
+}: CompanyPageProps): Promise<Metadata> {
+  const resolvedSearchParams = await Promise.resolve(searchParams);
+  const page = Number(resolvedSearchParams.page ?? "1");
+  const shouldNoIndex = Number.isFinite(page) && page > 1;
+
+  return {
     title: companyMeta.title,
     description: companyMeta.description,
-    type: "website",
-    url: companyMeta.basePath,
-    images: [{ url: defaultOgImage }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    images: [defaultOgImage],
-  },
-};
+    alternates: {
+      canonical: companyMeta.basePath,
+    },
+    robots: shouldNoIndex
+      ? {
+          index: false,
+          follow: true,
+        }
+      : undefined,
+    openGraph: {
+      title: companyMeta.title,
+      description: companyMeta.description,
+      type: "website",
+      url: companyMeta.basePath,
+      images: [{ url: defaultOgImage }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [defaultOgImage],
+    },
+  };
+}
 
 type CompanyPageProps = {
   searchParams: Promise<{ page?: string }>;
