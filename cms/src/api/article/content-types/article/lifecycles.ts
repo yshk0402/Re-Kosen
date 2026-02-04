@@ -1,3 +1,6 @@
+import { errors } from "@strapi/utils";
+
+const { ValidationError } = errors;
 const ARTICLE_UID = "api::article.article";
 
 const normalizeBlocks = (blocks: unknown) =>
@@ -97,22 +100,22 @@ const ensureArticleValidation = async (data: Record<string, unknown>, id?: numbe
   );
 
   if (!excerpt.trim()) {
-    throw new Error("excerpt は必須です。30〜120字を入力してください。");
+    throw new ValidationError("excerpt は必須です。30〜120字を入力してください。");
   }
   if (excerpt.trim().length < 30 || excerpt.trim().length > 120) {
-    throw new Error("excerpt は30〜120字で入力してください。");
+    throw new ValidationError("excerpt は30〜120字で入力してください。");
   }
   if (tagCount < 1) {
-    throw new Error("tags は1つ以上必須です。");
+    throw new ValidationError("tags は1つ以上必須です。");
   }
   if (!blocks.length) {
-    throw new Error("blocks は必須です。");
+    throw new ValidationError("blocks は必須です。");
   }
   if (!hasSummaryCard(blocks)) {
-    throw new Error("Summary Card ブロックを最低1つ追加してください。");
+    throw new ValidationError("Summary Card ブロックを最低1つ追加してください。");
   }
   if (hasMissingImageAlt(blocks)) {
-    throw new Error("Image ブロックの alt は必須です。");
+    throw new ValidationError("Image ブロックの alt は必須です。");
   }
 
   let metaTitle = typeof seo.metaTitle === "string" ? seo.metaTitle.trim() : "";
@@ -130,13 +133,13 @@ const ensureArticleValidation = async (data: Record<string, unknown>, id?: numbe
         metaDescription,
       };
     } else {
-      throw new Error("SEO の metaTitle と metaDescription は必須です。");
+      throw new ValidationError("SEO の metaTitle と metaDescription は必須です。");
     }
   }
 
   const ogImage = (seo as { ogImage?: unknown }).ogImage;
   if (!ogImage && !coverImage) {
-    throw new Error("OGP画像を設定してください（seo.ogImage または coverImage）。");
+    throw new ValidationError("OGP画像を設定してください（seo.ogImage または coverImage）。");
   }
 };
 

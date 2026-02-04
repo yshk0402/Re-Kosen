@@ -11,8 +11,7 @@
     "items": {
       "type": "component",
       "component": "article.reference-item",
-      "repeatable": true,
-      "required": true
+      "repeatable": true
     },
     "itemsJson": {
       "type": "json"
